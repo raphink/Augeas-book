@@ -31,8 +31,6 @@ While most programming languages provides modules to edit at least the most stan
 
 ## Installing Augeas ##
 
-While Augeas is a C library with bindings, it also provides a command-line tool called augtool.
-
 ### Installing from Source ###
 
 You might want to install Augeas from source if your distribution does not provide any binary packages, or if you simply want to use the latest version of Augeas or tune compilation parameters.
