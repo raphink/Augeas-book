@@ -1,0 +1,16 @@
+Augeas Book Contents
+=====================
+
+This is the source code for the Augeas book contents.
+
+Errata
+=====================
+If you see anything that is technically wrong or otherwise in need of correction,
+please email me at raphink at gmail dot com to inform me.
+
+
+Translation
+=====================
+If you wish to translate the book, I will put the translation up on the progit.org
+site.  Please put your translation into the appropriate subdirectory of this 
+project (ie: 'it' for Italian and so forth) and send me (schacon) a pull request.
