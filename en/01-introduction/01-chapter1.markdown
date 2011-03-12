@@ -49,12 +49,12 @@ Augeas does not attempt to provide an abstraction layer from the native configur
 
 As an example, if the /etc/foo.conf configuration file contains an include statement such as the following:
 
-	> #include /etc/foo.d/*
+	#include /etc/foo.d/*
 
 Augeas will not attempt to parse the contents of the files in /etc/foo.d/* and add them to the /etc/foo.conf tree. Instead, it will provide a tree like the following:
 
-	> /files/etc/foo.conf
-	> /files/etc/foo.conf/#include = /etc/foo.d/*
+	/files/etc/foo.conf
+	/files/etc/foo.conf/#include = /etc/foo.d/*
 
 "include" is just a parameter of the /etc/foo.conf configuration file and "/etc/foo.d/*" is the value of the parameter. The contents of the /etc/foo.d/* will probably appear in the tree if the lens is able to parse them, but in no way will Augeas make a logical link between /etc/foo.conf and /etc/foo.d/*.
 
@@ -87,15 +87,15 @@ Augeas does not attempt to understand or otherwise interprete configuration file
 
 For example, an /etc/hosts line like the following:
 
-	> 192.168.0.10	aslan	# Added by NetworkManager
+	192.168.0.10	aslan	# Added by NetworkManager
 
 will be represented by the following tree:
 
-	> /files/etc/hosts
-	> /files/etc/hosts/1
-	> /files/etc/hosts/1/ipaddr = "192.168.0.10"
-	> /files/etc/hosts/1/canonical = "aslan"
-	> /files/etc/hosts/1/#comment = "Added by NetworkManager"
+	/files/etc/hosts
+	/files/etc/hosts/1
+	/files/etc/hosts/1/ipaddr = "192.168.0.10"
+	/files/etc/hosts/1/canonical = "aslan"
+	/files/etc/hosts/1/#comment = "Added by NetworkManager"
 
 The order of the statements is strictly kept, Augeas does not inteprete the cnfiguration files per se, but it labels each of the fields on the line to ease access to the configuration items.
 

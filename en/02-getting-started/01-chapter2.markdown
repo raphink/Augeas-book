@@ -10,9 +10,9 @@ The first thing you might want to do is to see how Augeas sees your system confi
 
 This will give you an interactive shell which takes commands passed to Augeas. Augeas transforms your configuration files into a tree, which has two roots at its node: "/augeas" and "/files". The "/augeas" node contains metadata, which we will be looking at later on, while "/files" contains the representation of the files Augeas was able to parse. You can see these two nodes by typing "ls /":
 
-	>> ls /
-	>augeas/ = (none)
-	>files/ = (none)
+	> ls /
+	augeas/ = (none)
+	files/ = (none)
 
 What does that mean? We see the two nodes at the top of the Augeas tree, and we see that none of them has a value. In the Augeas tree, each node can have children and a value.
 
