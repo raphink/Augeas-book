@@ -14,7 +14,7 @@ There are three main approaches to the issue of configuration data editing on Un
 
 ### Keyhole Approaches ###
 
-While most programming languages provide modules to edit at least the most standard of these formats, a loti of system administrators and developers have had to manipulate these files using string editing tools such as sed, awk or cut, or even to write scripts dedicated to a specific parsing job. In the majority of these cases, the results are not garanteed, and you are likely to ruin the configuration files if your parsing expressions are wrong.
+While most programming languages provide modules to edit at least the most standard of these formats, a lot of system administrators and developers have had to manipulate these files using string editing tools such as sed, awk or cut, or even to write scripts dedicated to a specific parsing job. In the majority of these cases, the results are not garanteed, and you are likely to ruin the configuration files if your parsing expressions are wrong.
 
 Configuration management tools such as CFengine provide tools (like AppendIfNoSuchLine) to achieve keyhole approaches, but the problems are similar to using string editing tools: you have no garantee that the result will be a valid configuration file, and you have to write the regexps yourself.
 
