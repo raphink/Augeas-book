@@ -51,12 +51,12 @@ As an example, if the /etc/foo.conf configuration file contains an include state
 
 	#include /etc/foo.d/*
 
-Augeas will not attempt to parse the contents of the files in /etc/foo.d/* and add them to the /etc/foo.conf tree. Instead, it will provide a tree like the following:
+Augeas will not attempt to parse the contents of the files in /etc/foo.d/\* and add them to the /etc/foo.conf tree. Instead, it will provide a tree like the following:
 
 	/files/etc/foo.conf
 	/files/etc/foo.conf/#include = /etc/foo.d/*
 
-"include" is just a parameter of the /etc/foo.conf configuration file and "/etc/foo.d/\*" is the value of the parameter. The contents of the /etc/foo.d/* will probably appear in the tree if the lens is able to parse them, but in no way will Augeas make a logical link between /etc/foo.conf and /etc/foo.d/*.
+"include" is just a parameter of the /etc/foo.conf configuration file and "/etc/foo.d/\*" is the value of the parameter. The contents of the /etc/foo.d/\* will probably appear in the tree if the lens is able to parse them, but in no way will Augeas make a logical link between /etc/foo.conf and /etc/foo.d/\*.
 
 Other software provide this kind of abstraction layer. This is the case of theConfig::Model, which can use Augeas as a backend, and is able to understand the logic of a configuration files, such as include statements, or the link between several statements in a configuration file.
 
