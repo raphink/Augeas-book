@@ -21,14 +21,14 @@ If you want to see the error on a specific file, you can use the path to that fi
 
 There can be several reasons for a file to not appear in the Augeas tree:
 
-	* There is no existing lens for this file, or the lens you expect to parse this file has no filter for this file at this location. See chapter 7 for more information on writing lenses.
-	* The Unix uid you are using has no right to see the file. The "error" node in the "/augeas" tree will tell you so (__show an example__).
-	* The lens fails to parse part of the file, or the whole file.
+* There is no existing lens for this file, or the lens you expect to parse this file has no filter for this file at this location. See chapter 7 for more information on writing lenses.
+* The Unix uid you are using has no right to see the file. The "error" node in the "/augeas" tree will tell you so (__show an example__).
+* The lens fails to parse part of the file, or the whole file.
 
 Parsing errors are quite common, and there can be many reasons for them:
-	* The file uses \r for newlines. Most lenses, having been made for Unix systems, only recognize \n as valid newlines. Getting the file through dos2unix and trying again can confirm this possibility.
-	* The lens fails to parse a part of the file, for example it doesn't cover a specific case that is valid for this configuration file.
-	* The lens fails to parse the entire file.
+* The file uses \r for newlines. Most lenses, having been made for Unix systems, only recognize \n as valid newlines. Getting the file through dos2unix and trying again can confirm this possibility.
+* The lens fails to parse a part of the file, for example it doesn't cover a specific case that is valid for this configuration file.
+* The lens fails to parse the entire file.
 
 In the last two cases, it is important to check that the configuration is indeed valid. When available, use a command line tool provided with the application owning the configuration file, such as apachectl or visudo:
 
