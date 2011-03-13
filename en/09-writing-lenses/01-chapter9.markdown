@@ -1,6 +1,6 @@
 # Writing Your Own Lenses #
 
-Augeas comes with a set of various lenses which cover most of the basic configuration files on a Linux machine. However, there are so many configuration file formats on Linux systems, that you are very likely to miss one at some point.
+Augeas comes with a set of various lenses which cover most of the basic configuration files on a Unix machine. However, there are so many configuration file formats on Unix systems, that you are very likely to miss one at some point.
 
 Augeas lenses are written in a ML language that is similar to OCaml. The language consists mostly in regexps and operators to combine them.
 
@@ -11,7 +11,13 @@ Since Augeas lenses are mostly a combination of regular expressions that are oft
 
 ### Unit Test ###
 
-### Lens ### 
+__Example of a simple key/value conffile__
+
+
+### Module ### 
+
+
+__Example of a simple key/value conffile__
 
 
 ## Regular expressions ##
@@ -22,6 +28,7 @@ The bidirectional nature of the Augeas language imposes strict conditions on the
 ## Special keywords ##
 
 key, label, store, value. etc.
+
 
 ## Combination Operators ##
 
@@ -44,6 +51,40 @@ We have mentionned the importance of unit tests in the beginning of this chapter
 Augeas provides keywords to achieve unit tests in both the get and put directions.
 
 
+## Using Generic Modules ##
+
+Augeas provides special modules to ease the writing of lenses.
 
 
+### The Util module ###
+
+The Util (`util.aug`) module provides definitions of comments, empty lines and other utilities.
+
+__List functions__ and give examples.
+
+
+### The Sep module ###
+
+The Sep (`sep.aug`) module provides definitions for separators.
+__List functions__ and give examples.
+
+Note: `Sep.opt_space` is a synonym for `Util.indent`. Both are stricly equivalent, but it is clearer to use the first as a separator and the latter as an indentation.
+
+
+### The Rx module ###
+
+The Rx (`rx.aug`) module provides definitions for usual regular expressions.
+__List functions__ and give examples.
+
+
+### The Build module ###
+
+The Build (`build.aug`) module provides definitions for usual constuctions of regular expression.
+__List functions__ and give examples.
+
+
+### The IniFile module ###
+
+INI files are quite standard even on Unix systems. However, there are many different implementations and specificities. The Inifile (`inifile.aug`) module provides definitions to ease the writing of lenses for specific INI files. It is used in lenses such as Php (`php.aug`), MySQL (`mysql.aug`) or Puppet (`puppet.aug`).
+__List functions__ and give examples.
 
