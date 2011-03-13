@@ -4,26 +4,40 @@ The Augeas tree is built using bidirectional grammars called lenses (see chapter
 
 In the other direction (the put direction, see chapter 3), lenses may fail to save a tree back to a configuration file if that tree doesn't fit in the given lens.
 
-Whatever you are trying to troubleshoot, you will most likely benefit from the metadata exposed in the "/augeas" node at the top of the Augeas tree.
+Whatever you are trying to troubleshoot, you will most likely benefit from the metadata exposed in the `/augeas` node at the top of the Augeas tree.
 
 A simple way to list all known errors in an augtool session is to type:
 
 	> print /augeas//error
 
-The double slash tells Augeas to search for all subnodes under /augeas whose label matches "error". The print command will return all subnodes of the matching nodes, given you the details of the errors.
+The double slash tells Augeas to search for all subnodes under `/augeas` whose label matches "error". The print command will return all subnodes of the matching nodes, given you the details of the errors.
 
-If you want to see the error on a specific file, you can use the path to that file in the expression. For example, to see the error on /etc/fstab, you can use:
+If you want to see the error on a specific file, you can use the path to that file in the expression. For example, to see the error on `/etc/fstab`, you can use:
 
-	> print /augeas/files/etc/fstab//error
+	> print /augeas/files/etc/fstab/error
 
 
 ## Files don't appear in the tree ##
 
-There can be several reasons for a file to not appear in the Augeas tree:
+There can be several reasons for a file to not appear in the Augeas tree.
 
-* There is no existing lens for this file, or the lens you expect to parse this file has no filter for this file at this location. See chapter 7 for more information on writing lenses.
-* The Unix uid you are using has no right to see the file. The "error" node in the "/augeas" tree will tell you so (__show an example__).
-* The lens fails to parse part of the file, or the whole file.
+
+### No lens for the file ###
+
+One possibility is that there is no existing lens for this file, or the lens you expect to parse this file has no filter for this file at this location. See chapter 7 for more information on writing lenses.
+
+
+### UID has no rights to read ###
+
+Another possibility is that the Unix uid you are using has no right to see the file. The "error" node in the `/augeas` tree will tell you so, with a message such as:
+
+	/augeas/files/etc/sudoers/error = "read_failed"
+	/augeas/files/etc/sudoers/error/message = "Permission denied"
+
+
+### Parsing failed ###
+
+The last possibility is that the lens failed to parse part of the file, or the whole file.
 
 Parsing errors are quite common, and there can be many reasons for them:
 
@@ -31,7 +45,7 @@ Parsing errors are quite common, and there can be many reasons for them:
 * The lens fails to parse a part of the file, for example it doesn't cover a specific case that is valid for this configuration file.
 * The lens fails to parse the entire file.
 
-In the last two cases, it is important to check that the configuration is indeed valid. When available, use a command line tool provided with the application owning the configuration file, such as apachectl or visudo:
+In the last two cases, it is important to check that the configuration file is indeed valid. When available, use a command line tool provided with the application owning the configuration file, such as apachectl or visudo:
 
 	$ apachectl configtest
 	$ visudo -c
