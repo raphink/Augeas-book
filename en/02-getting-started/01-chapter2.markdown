@@ -118,6 +118,8 @@ Let us remove the third `opt` node in the first line of `/etc/fstab`:
 	 UUID=c8acd38c-037a-46c1-a8ce-3ac1c602c367 /               ext4    errors=remount-ro 0       1
 	 # swap was on /dev/sdb5 during installation
 
+The `rm` command removed only the `opt` node we wanted to remove, and the saved result is that only this option has been removed, leaving the rest of the file untouched.
+
 
 ## Preserving existing files ##
 
