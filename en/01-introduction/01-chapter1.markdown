@@ -1,6 +1,6 @@
 # Introduction #
 
-In the world of Unix systems, there is no standard way to store configuration. Countless of formats can be found, from standard INI files to complex, specific, multi-level formats, making the infamous /etc directory a sort of digital Augean stables.
+In the world of Unix systems, there is no standard way to store configuration. Countless of formats can be found, from standard INI files to complex, specific, multi-level formats, making the infamous /etc directory a sort of digital Augean stable.
 
 Augeas provides a way to cleanly manage these configuration files through a unified API.
 
