@@ -29,7 +29,7 @@ One possibility is that there is no existing lens for this file, or the lens you
 
 ### UID has no rights to read ###
 
-Another possibility is that the Unix uid you are using has no right to see the file. The "error" node in the `/augeas` tree will tell you so, with a message such as:
+Another possibility is that the Unix UID you are using has no right to see the file. The "error" node in the `/augeas` tree will tell you so, with a message such as:
 
 	/augeas/files/etc/sudoers/error = "read_failed"
 	/augeas/files/etc/sudoers/error/message = "Permission denied"
@@ -39,7 +39,7 @@ Another possibility is that the Unix uid you are using has no right to see the f
 
 The last possibility is that the lens failed to parse part of the file, or the whole file.
 
-Parsing errors are quite common, and there can be many reasons for them:
+Parsing errors are quite common, and there can be several reasons for them:
 
 * The file uses \r for newlines. Most lenses, having been made for Unix systems, only recognize \n as valid newlines. Getting the file through dos2unix and trying again can confirm this possibility.
 * The lens fails to parse a part of the file, for example it doesn't cover a specific case that is valid for this configuration file.
@@ -50,12 +50,14 @@ In the last two cases, it is important to check that the configuration file is i
 	$ apachectl configtest
 	$ visudo -c
 
-Note that when the application owning the configuration file is happy with the file and Augeas is not, it is always safer to consider that Augeas is wrong and that the lens has to be modified, since other users are likely to be in the same case.
+Note that when the application owning the configuration file is happy with the file and Augeas is not, it is always safer to consider that Augeas is wrong and that the lens has to be modified, since other users are likely to be in the same situation.
 
 
 ## Save failed ##
 
 Just as files can fail to be parsed by Augeas, trees can fail to be transformed back into files, too. This prevents Augeas from saving a tree that wouldn't make sense to the configuration file, thus preventing from breaking configuration files.
 
+
+__Explain cases and solutions__
 
 

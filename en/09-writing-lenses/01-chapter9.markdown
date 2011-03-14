@@ -22,12 +22,36 @@ __Example of a simple key/value conffile, step by step__
 
 ## Regular expressions ##
 
-The bidirectional nature of the Augeas language imposes strict conditions on the language. This makes complex regular expressions languages such as PCRE hard to implement. For this reason, Augeas only supports POSIX simple regular expressions.
+The bidirectional nature of the Augeas language imposes strict conditions on the language (see chapter 3). This makes complex regular expressions languages such as PCRE hard to implement. For this reason, Augeas only supports POSIX simple regular expressions.
+
+__Give Examples__
 
 
 ## Special keywords ##
 
-key, label, store, value. etc.
+The Augeas language provides a set of keywords to build lenses.
+
+
+### key ###
+
+
+### label ###
+
+
+### store ###
+
+
+### value ###
+
+
+### seq ###
+
+
+### rec ###
+
+
+### square ###
+
 
 
 ## Combination Operators ##
@@ -35,13 +59,37 @@ key, label, store, value. etc.
 Augeas lenses are put together by assembling regular expressions with combination operators.
 
 
+### Concatenation Operator ###
+
+
+### Union Operator ###
+
+
 ## Filters and Autoload ##
 
-Augeas lenses need to specify which files they apply to. If they didn't, Augeas would have no way to know which lens to apply to which files. Trying to guess would be a really bad idea. For example, if you have a file whose only content is the following:
+Augeas lenses need to specify which files they apply to. If they didn't, Augeas would have no way to know which lens to apply to which files. Trying to guess would be a really bad idea. For example, consider a file whose only content is the following:
 
 	# this is a comment
 
 Many lenses are able to parse this line, and will mostly likely map it the same way. However, once a lens has been chosen for the file, the rest of the configguration statements are likely to be very different from one lens to another, so you are almost sure that the lens you chose will be wrong.
+
+Each lenses may have one and only one autoload statement, involving a lens and a filter, such as the following:
+
+	autoload xfm
+	let lns = ...
+	let filter = incl "/etc/foo.conf"
+	let xfm = transform lns filter
+
+
+## Typechecking lenses ##
+
+
+Augeas comes with a command line tool called `augparse` which can be used to typecheck lenses, checking that they meet the conditions to be used as bidirectional transforms.
+
+
+### Typechecking recursive lenses ###
+
+
 
 
 ## Unit tests ##
@@ -68,7 +116,7 @@ __List functions__ and give examples.
 The Sep (`sep.aug`) module provides definitions for separators.
 __List functions__ and give examples.
 
-Note: `Sep.opt_space` is a synonym for `Util.indent`. Both are stricly equivalent, but it is clearer to use the first as a separator and the latter as an indentation.
+Note: `Sep.opt_space` is a synonym for `Util.indent`. Both are stricly equivalent, but it is clearer to use the former as a separator and the latter as an indentation.
 
 
 ### The Rx module ###
