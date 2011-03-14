@@ -11,13 +11,13 @@ Since Augeas lenses are mostly a combination of regular expressions that are oft
 
 ### Unit Test ###
 
-__Example of a simple key/value conffile__
+__Example of a simple key/value conffilem, step by step__
 
 
 ### Module ### 
 
 
-__Example of a simple key/value conffile__
+__Example of a simple key/value conffile, step by step__
 
 
 ## Regular expressions ##

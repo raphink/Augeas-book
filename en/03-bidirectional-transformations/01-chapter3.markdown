@@ -9,6 +9,13 @@ Lenses are programs that are said to be bidirectional.
 
 ## A Bit of Theory ##
 
+__This might be a part for Francis__
+__Also see with Nate if you can use/adapt his schemas__
+
+## Bidirectional transformations in Augeas ##
+
+
+## Other examples of Bidirectional Languages ##
 
 
 

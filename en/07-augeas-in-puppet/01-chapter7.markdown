@@ -5,3 +5,5 @@ Because Augeas is a configuration API, it fits right into tools that are made fo
 Since Puppet is written in Ruby, the Augeas Puppet type makes use of the Ruby bindings for Augeas.
 
 
+__This part could be reviewed by Dominic once written__
+
