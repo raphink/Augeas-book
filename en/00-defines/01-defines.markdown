@@ -1,3 +1,7 @@
+% Augeas: A configuration API
+% Raphaël Pinson
+%
+
 [info]: ../images/IconNote.png "**NOTE**"
 [info]: ../images/IconNote.png "**NOTE**"
 [info]: ../images/info.png "**INFO**"
@@ -5,3 +9,4 @@
 [important]: ../images/important.png "**IMPORTANT**"
 [stop]: ../images/stop.png "**STOP**"
 [example]: ../images/example.png "**EXAMPLE**"
+

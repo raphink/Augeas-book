@@ -1,6 +1,7 @@
 BOOK_NAME=augeas-book
 BOOK_MARKDOWN=$(BOOK_NAME).markdown
 BOOK_HTML=$(BOOK_NAME).html
+BOOK_TEX=$(BOOK_NAME).tex
 BOOK_PDF=$(BOOK_NAME).pdf
 BOOK_PS=$(BOOK_NAME).ps
 BOOKLET_PDF=$(BOOK_NAME).booklet.pdf
@@ -17,9 +18,14 @@ html: $(BOOK_HTML)
 $(BOOK_HTML): $(BOOK_MARKDOWN)
 	pandoc -o $(BOOK_HTML) $(BOOK_MARKDOWN)
 
+tex: $(BOOK_TEX)
+$(BOOK_TEX): $(BOOK_MARKDOWN)
+	pandoc -s --template latex.template -o $(BOOK_TEX) $(BOOK_MARKDOWN)
+
 pdf: $(BOOK_PDF)
-$(BOOK_PDF): $(BOOK_MARKDOWN)
-	markdown2pdf -o $(BOOK_HTML) $(BOOK_MARKDOWN)
+$(BOOK_PDF): $(BOOK_TEX)
+	pdflatex $(BOOK_TEX)
+	#markdown2pdf -o $(BOOK_HTML) $(BOOK_MARKDOWN)
 
 numberedpdf: $(BOOK_MARKDOWN)
 	markdown2pdf -N -o $(BOOK_HTML) $(BOOK_MARKDOWN)
@@ -38,7 +44,7 @@ booklet: $(BOOKLET_PS)
 
 clean:
 	rm -f $(BOOK_MARKDOWN)
-	rm -f *.pdf *.ps
+	rm -f *.tex *.pdf *.ps *.aux *.log *.out
 	rm -f *.html
 
 
