@@ -104,6 +104,8 @@ The order of the statements is strictly kept, Augeas does not inteprete the conf
 
 ### Installing from Source ###
 
+\index{Installation!from source}
+
 You might want to install Augeas from source if your distribution does not provide any binary packages, or if you simply want to use the latest version of Augeas or tune compilation parameters.
 
 You can find the latest source code on the Augeas website:
@@ -127,6 +129,8 @@ If you wish to build the documentation for Augeas, you will to add `naturaldocs`
 
 ### Installing from Binary Packages ###
 
+\index{Installation!from packages}
+
 Most distributions provide Augeas packages.
 
 On RedHat systems, you can install the `augeas` package, using yum for example:
@@ -145,6 +149,8 @@ You might also want to install the documentation package with:
 
 
 ### Installing from the Development Head ###
+
+\index{Installation!from development head}
 
 Augeas is maintained in a public repository which can be cloned and used to test the latest functionalities and fixes before they are released.
 

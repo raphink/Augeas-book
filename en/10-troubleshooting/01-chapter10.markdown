@@ -8,11 +8,17 @@ Whatever you are trying to troubleshoot, you will most likely benefit from the m
 
 A simple way to list all known errors in an augtool session is to type:
 
+\index{Commands!print}
+\index{Metadata!error}
+
 	> print /augeas//error
 
 The double slash tells Augeas to search for all subnodes under `/augeas` whose label matches "error". The print command will return all subnodes of the matching nodes, given you the details of the errors.
 
 If you want to see the error on a specific file, you can use the path to that file in the expression. For example, to see the error on `/etc/fstab`, you can use:
+
+\index{Commands!print}
+\index{Metadata!error}
 
 	> print /augeas/files/etc/fstab/error
 
@@ -30,6 +36,8 @@ One possibility is that there is no existing lens for this file, or the lens you
 ### UID has no rights to read ###
 
 Another possibility is that the Unix UID you are using has no right to see the file. The "error" node in the `/augeas` tree will tell you so, with a message such as:
+
+\index{Metadata!error}
 
 	/augeas/files/etc/sudoers/error = "read_failed"
 	/augeas/files/etc/sudoers/error/message = "Permission denied"

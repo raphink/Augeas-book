@@ -9,6 +9,8 @@ The first thing you might want to do is to see how Augeas sees your system confi
 
 	$ augtool
 
+\index{Commands!ls}
+
 This will give you an interactive shell which takes commands passed to Augeas. Augeas transforms your configuration files into a tree, which has two nodes at its root: `/augeas` and `/files`. The `/augeas` node contains metadata, which we will be looking at later on, while `/files` contains the representation of the files Augeas was able to parse. You can see these two nodes by typing `ls /`:
 
 	augtool> ls /
@@ -34,6 +36,8 @@ You can see which files (or directories containing files) were successfully pars
 	crypttab/ = (none)
 	...
 
+\index{Commands!print}
+
 Let's inspect the contents of the first line of `/etc/fstab` in the Augeas tree. We can use the `print` command to inspect nodes and their values recursively:
 
 	augtool> print /files/etc/fstab/1
@@ -47,6 +51,8 @@ Let's inspect the contents of the first line of `/etc/fstab` in the Augeas tree.
 	/files/etc/fstab/1/dump = "0"
 	/files/etc/fstab/1/passno = "0"
 
+\index{Commands!match}
+
 What if we only wanted to find the `opt` nodes of this first line? The `match` command lets us find the nodes matching an expression:
 
 	augtool> match /files/etc/fstab/1/opt
@@ -59,6 +65,8 @@ Now, we might want to get the value of the single node matching an expression, a
 	augtool> get /files/etc/fstab/1/opt[1]
 	/files/etc/fstab/1/opt[1] = nodev
 
+\index{Commands!quit}
+
 To leave the `augtool` session, you can type `quit` or `^D`:
 
 	augtool> quit
@@ -67,6 +75,9 @@ To leave the `augtool` session, you can type `quit` or `^D`:
 ## Using a Fakeroot ##
 
 It is often useful to play with `augtool` when you want to understand the Augeas tree or try XPath expressions. However, you likely don't want to play with the files in your `/etc` directory and take the risk to ruin your system. Augeas lets you set a fakeroot so that the files parsed and modified by Augeas are taken from this root instead of the `/` directory of your system.
+
+\index{augtool!options!--root}
+\index{Environment variables!\textsc{augeas\_root}}
 
 In `augtool` you can set this fakeroot by using the `--root` option:
 
@@ -88,14 +99,20 @@ We have seen already how Augeas lets you parse your configuration files in a uni
 
 The fakeroot option will be useful for us here, in order to modify the files without affecting the system. We will also use the `--backup` option in `augtool` so that modified files will be saved with a `.augsave` extension, leaving the original files untouched.
 
+\index{augtool!options!--backup}
+\index{augtool!options!--root}
+\index{Commands!rm}
+\index{Commands!quit}
+\index{Commands!save}
+\index{Environment variables!\textsc{augeas\_root}}
+
 Let us remove the third `opt` node in the first line of `/etc/fstab`:
 
 	$ augtool --backup --root myroot
 	augtool> rm /files/etc/fstab/1/opt[3]
 	rm : /files/etc/fstab/1/opt[3] 1
 	augtool> print /files/etc/fstab/1
-	/files/etc/fstab/1
-	/files/etc/fstab/1/spec = "proc"
+	/files/etc/fstab/1 /files/etc/fstab/1/spec = "proc"
 	/files/etc/fstab/1/file = "/proc"
 	/files/etc/fstab/1/vfstype = "proc"
 	/files/etc/fstab/1/opt[1] = "nodev"
@@ -123,10 +140,15 @@ The `rm` command removed only the `opt` node we wanted to remove, and the saved 
 
 ## Preserving existing files ##
 
+\index{augtool!options!--backup}
+\index{augtool!options!--new}
+\index{Metadata!save}
+
 Augeas offers two options to preserve the existing files when saving the tree. In `augtool`, these options can be triggered with the following flags:
 
 * --backup will save the original file with the extension .augorig and write the new file under the original file name ;
 * --new will save the modified file with a .augnew extension and leave the original file untouched.
 
 These options actually modify the value of the `/augeas/save` node in the Augeas tree. See chapter __FIXME__ for more information.
+
 

@@ -3,11 +3,14 @@ BOOK_MARKDOWN=$(BOOK_NAME).markdown
 BOOK_HTML=$(BOOK_NAME).html
 BOOK_TEX=$(BOOK_NAME).tex
 BOOK_PDF=$(BOOK_NAME).pdf
+BOOK_IDX=$(BOOK_NAME).idx
+BOOK_IND=$(BOOK_NAME).ind
 BOOK_PS=$(BOOK_NAME).ps
 BOOKLET_PDF=$(BOOK_NAME).booklet.pdf
 BOOKLET_PS=$(BOOK_NAME).booklet.ps
 BOOKLET_TMP_PS=$(BOOK_NAME).booklet.tmp.ps
 LATEX_TEMPLATE=latex.template
+PANDOC_OPTS=--toc
 
 all:
 
@@ -17,22 +20,32 @@ $(BOOK_MARKDOWN):
 
 html: $(BOOK_HTML)
 $(BOOK_HTML): $(BOOK_MARKDOWN)
-	pandoc -o $(BOOK_HTML) $(BOOK_MARKDOWN)
+	pandoc $(PANDOC_OPTS) -o $(BOOK_HTML) $(BOOK_MARKDOWN)
 
 tex: $(BOOK_TEX)
 $(BOOK_TEX): $(BOOK_MARKDOWN)
-	pandoc -s --no-wrap -r markdown -w latex \
-	   --template $(LATEX_TEMPLATE) \
+	pandoc -s $(PANDOC_OPTS) -r markdown -w latex \
+	   --no-wrap --template $(LATEX_TEMPLATE) \
 	   -o $(BOOK_TEX) $(BOOK_MARKDOWN)
 
+$(BOOK_IDX): $(BOOK_TEX)
+	pdflatex -interaction=batchmode $(BOOK_TEX)
+	pdflatex -interaction=batchmode $(BOOK_TEX)
+
+$(BOOK_IND): $(BOOK_IDX)
+	makeindex $(BOOK_IDX)
+
 pdf: $(BOOK_PDF)
-$(BOOK_PDF): $(BOOK_MARKDOWN)
-	#pdflatex -interaction=batchmode $(BOOK_TEX)
-	markdown2pdf --template $(LATEX_TEMPLATE) \
-	   -o $(BOOK_HTML) $(BOOK_MARKDOWN)
+$(BOOK_PDF): $(BOOK_IND)
+	pdflatex -interaction=batchmode $(BOOK_TEX)
+	#markdown2pdf --template $(LATEX_TEMPLATE) \
+	#   $(PANDOC_OPTS) \
+	#   -o $(BOOK_HTML) $(BOOK_MARKDOWN)
 
 numberedpdf: $(BOOK_MARKDOWN)
-	markdown2pdf -N -o $(BOOK_HTML) $(BOOK_MARKDOWN)
+	markdown2pdf --template $(LATEX_TEMPLATE) \
+	   $(PANDOC_OPTS) \
+	   -N -o $(BOOK_HTML) $(BOOK_MARKDOWN)
 
 $(BOOK_PS): $(BOOK_PDF)
 	pdftops $(BOOK_PDF) $(BOOK_PS)
@@ -49,6 +62,7 @@ booklet: $(BOOKLET_PS)
 clean:
 	rm -f $(BOOK_MARKDOWN)
 	rm -f *.tex *.pdf *.ps *.aux *.log *.out
+	rm -f *.idx *.ind *.ilg *.toc *.dvi
 	rm -f *.html
 
 help:

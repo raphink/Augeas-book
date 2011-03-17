@@ -1,5 +1,7 @@
 # Path Expressions 
 
+\index{Path!expressions}
+
 Augeas maps configuration files into a tree, and lets you access this tree using XPath expressions.
 In this chapter, we will inspect the various XPath expressions offered by Augeas, and give examples of what you can achieve with them.
 
@@ -36,8 +38,10 @@ You can use ` | ` to achieve the union of two paths:
 will return the nodes matching `/files/etc/fstab` as well as the ones matching `/files/etc/hosts`.
 
 
-
 ## Functions 
+
+\index{Path!expressions!functions}
+
 
 To enrich the filtering you can achieve with conditionals, Augeas provides a set of functions which can be used in conditional context.
 
@@ -55,9 +59,9 @@ In addition to functions, it is often necessary to refer to nodes relatively as 
 
 
 
-
-
 ## Using variables in paths 
+
+\index{Path!expressions!variables}
 
 Augeas provides two ways to declare variables.
 
@@ -72,6 +76,8 @@ Augeas provides two ways to declare variables.
 
 
 ## Ensuring idempotence
+
+\index{Path!expressions!idempotence}
 
 	augtool> set '/files/etc/php.ini/PHP/extension[. = "foo.so"]' foo.so
 

@@ -65,6 +65,9 @@ $for(header-includes)$
 $header-includes$
 $endfor$
 
+\usepackage{makeidx}
+\makeindex
+
 $if(title)$
 \title{$title$}
 $endif$
@@ -93,5 +96,7 @@ $for(include-after)$
 
 $include-after$
 $endfor$
+
+\printindex
 
 \end{document}

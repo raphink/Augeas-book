@@ -1,13 +1,19 @@
 # Augeas metadata 
 
+\index{Metadata}
+
 We have seen earlier that the `/augeas` top node exposes Augeas metadata which can be parsed and modified in the same fashion as the `/files` data.
 This chapter will focus on documenting the various parts of the `/augeas` tree and their functions.
 
 
 ## The root node 
 
+\index{Metadata!root}
+\index{augtool!options!--root}
+\index{Environment variables!\textsc{augeas\_root}}
 The `/augeas/root` node contains the root of the Augeas tree. This is the variable which can be set via either the `AUGEAS_ROOT` environment variable or the `--root` option to `augtool`.
 
+\index{Commands!print}
 Example:
 
 	$ augtool --root fakeroot
@@ -20,12 +26,14 @@ Example:
 
 ## The version tree 
 
+\index{Metadata!version}
 `/augeas/version` is a tree which contains several informations:
 
 * The top node has the version of Augeas as its value ;
 * The `save` node contains `mode` nodes which list the known saving modes for this version of Augeas ;
 * The `defvar` node contains **what exactly??**.
 
+\index{Commands!print}
 Example:
 
 	augtool> print /augeas/version/
@@ -41,6 +49,7 @@ Example:
 
 ## The save node 
 
+\index{Metadata!save}
 The `/augeas/save` node contains the saving mode used by Augeas for the session. The value of this node must be one of the values listed in the `/augeas/version/save/mode` nodes.
 
 If this node is modified during the session, it will affect the behaviour of the `save` call whenever it is executed.
@@ -48,12 +57,14 @@ If this node is modified during the session, it will affect the behaviour of the
 
 ## The load tree 
 
+\index{Metadata!load}
 The `/augeas/load` tree contains the lenses metadata. For each lens loaded in the Augeas session, it lists 3 types of nodes:
 
 * a `lens` node, which specifies the name of the module used by this lens ;
 * `incl` nodes for each inclusion path to files recognized by this lens ;
 * `excl` nodes for each path to be excluded from this lens.
 
+\index{Commands!print}
 Example:
 
 	augtool> print /augeas/load/Pam/
@@ -80,11 +91,16 @@ Let us look at some use cases.
 
 It is common to use Augeas to modify only one file. In that case you know exactly which lens you want to use and on which file. For performance reasons, you might want to narrow the lenses and files Augeas knows about. For example, if you want to only modify `/etc/fstab`, using the `Fstab` lens. In order to do that, we can start `augtool` without loading any lenses:
 
+\index{augtool!options!--noautoload}
+
 	$ augtool --noautoload
 	augtool> print /augeas/load
 	/augeas/load
 
 The `print` command shows us that no lenses are known in the session. We can now tell Augeas to load the `Fstab` lens and to include `/etc/fstab` for it:
+
+\index{Commands!set}
+\index{Commands!print}
 
 	augtool> set /augeas/load/Fstab/lens "Fstab.lns"
 	augtool> set /augeas/load/Fstab/incl "/etc/fstab"
@@ -96,6 +112,9 @@ The `print` command shows us that no lenses are known in the session. We can now
 
 
 We can now call `load` and list the files in `/files/etc`:
+
+\index{Commands!load}
+\index{Commands!ls}
 
 	augtool> load
 	augtool> ls /files/etc
@@ -109,6 +128,11 @@ We can now call `load` and list the files in `/files/etc`:
 Augeas lenses have hardcoded lists of files they know about. For example the `Fstab` lens has an include statement for `/etc/fstab` hardcoded in `fstab.aug`. While Augeas attempts to cover the most common needs for inclusions, it cannot know about all files you are using. Some lenses don't even have default include statements because no common files are known to use them. This is the case of the `Json` lens, which is useful but applies to no common configuration file.
 
 So how do you go about using the `Json` lens on a JSON file? You can modify the `/augeas/load` tree for that. For example if you have a `foo.json` file in your current directory, you could do the following:
+
+\index{augtool!options!--root}
+\index{Commands!set}
+\index{Commands!load}
+\index{Commands!ls}
 
 	$ augtool --root .
 	augtool> set /augeas/load/Json/incl "/foo.json"
@@ -192,8 +216,8 @@ Example:
 	/augeas/variables
 	/augeas/variables/l = "/augeas/files/etc/ldap.conf"
 
-> ![**NOTE**][info] As of Augeas 0.8.0, this node is purely informative:
-> changing its value has no effect on the way Augeas works.
+> ![**NOTE**][info] *As of Augeas 0.8.0, this node is purely informative:
+> changing its value has no effect on the way Augeas works.*
 
 
 ## The span node 

@@ -1,5 +1,7 @@
 # Writing Your Own Lenses 
 
+\index{Lenses!writing}
+
 Augeas comes with a set of various lenses which cover most of the basic configuration files on a Unix machine. However, there are so many configuration file formats on Unix systems, that you are very likely to miss one at some point.
 
 Augeas lenses are written in a ML language that is similar to OCaml. The language consists mostly in regexps and operators to combine them.
