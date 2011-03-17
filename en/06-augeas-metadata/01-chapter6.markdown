@@ -14,8 +14,8 @@ Example:
 	augtool> print /augeas/root
 	/augeas/root = "fakeroot/"
 
-> ![**NOTE**][info] As of Augeas 0.8.0, this node is purely informative:
-> changing its value has no effect on the way Augeas works.
+> ![**NOTE**][info] *As of Augeas 0.8.0, this node is purely informative:
+> changing its value has no effect on the way Augeas works.*
 
 
 ## The version tree 

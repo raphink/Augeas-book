@@ -31,7 +31,9 @@ Conditionals can be combined in different ways. __Give examples__.
 
 You can use ` | ` to achieve the union of two paths:
 
-	/files/etc/fstab | /files/etc/hosts
+	augtool> match '/files/etc/fstab | /files/etc/hosts'
+
+will return the nodes matching `/files/etc/fstab` as well as the ones matching `/files/etc/hosts`.
 
 
 
