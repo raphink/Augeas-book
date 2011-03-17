@@ -51,5 +51,14 @@ clean:
 	rm -f *.tex *.pdf *.ps *.aux *.log *.out
 	rm -f *.html
 
+help:
+	@echo "To build the book type:"
+	@echo "   make html : HTML file"
+	@echo "   make tex  : TeX file"
+	@echo "   make pdf  : PDF file"
+	@echo "   make numberedpdf : PDF with numbered sections"
+	@echo "   make booklet     : A5 PDF for recto-version printing"
+	@echo
+	@echo "make clean : Clean all generated files"
 
 
