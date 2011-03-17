@@ -41,7 +41,7 @@ The last possibility is that the lens failed to parse part of the file, or the w
 
 Parsing errors are quite common, and there can be several reasons for them:
 
-* The file uses \r for newlines. Most lenses, having been made for Unix systems, only recognize \n as valid newlines. Getting the file through dos2unix and trying again can confirm this possibility.
+* The file uses `\r` for newlines. Most lenses, having been made for Unix systems, only recognize `\n` as valid newlines. Getting the file through dos2unix and trying again can confirm this possibility.
 * The lens fails to parse a part of the file, for example it doesn't cover a specific case that is valid for this configuration file.
 * The lens fails to parse the entire file.
 
