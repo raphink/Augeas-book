@@ -63,7 +63,7 @@ Note that when the application owning the configuration file is happy with the f
 
 ## Save failed ##
 
-Just as files can fail to be parsed by Augeas, trees can fail to be transformed back into files, too. This prevents Augeas from saving a tree that wouldn't make sense to the configuration file, thus preventing from breaking configuration files.
+Just as files can fail to be parsed by Augeas, trees can fail to be transformed back into files, too. This prevents Augeas from saving a tree that wouldn't make sense in the configuration file, thus preventing it from breaking configuration files.
 
 
 __Explain cases and solutions__

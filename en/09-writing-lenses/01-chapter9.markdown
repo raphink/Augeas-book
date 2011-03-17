@@ -4,7 +4,7 @@
 
 Augeas comes with a set of various lenses which cover most of the basic configuration files on a Unix machine. However, there are so many configuration file formats on Unix systems, that you are very likely to miss one at some point.
 
-Augeas lenses are written in a ML language that is similar to OCaml. The language consists mostly in regexps and operators to combine them.
+Augeas lenses are written in a ML language that is similar to OCaml. The language consists mostly of regexps and operators to combine them.
 
 
 ## A simple example 
@@ -73,7 +73,7 @@ Augeas lenses need to specify which files they apply to. If they didn't, Augeas 
 
 	# this is a comment
 
-Many lenses are able to parse this line, and will mostly likely map it the same way. However, once a lens has been chosen for the file, the rest of the configguration statements are likely to be very different from one lens to another, so you are almost sure that the lens you chose will be wrong.
+Many lenses are able to parse this line, and will mostly likely map it the same way. However, once a lens has been chosen for the file, the rest of the configuration statements are likely to be very different from one lens to another, so you are almost sure that the lens you chose will be wrong.
 
 Each lenses may have one and only one autoload statement, involving a lens and a filter, such as the following:
 
@@ -96,7 +96,7 @@ Augeas comes with a command line tool called `augparse` which can be used to typ
 
 ## Unit tests 
 
-We have mentionned the importance of unit tests in the beginning of this chapter. It is worth repeting it: unit tests are essential to the stability of an Augeas lens. Unit tests need to be well written and kept up-to-date with new features and bug fixes if you want to ensure that your lens does what it has been written for.
+We have mentionned the importance of unit tests in the beginning of this chapter. It is worth repeting it: unit tests are essential to the stability of an Augeas lens. Unit tests need to be well written and kept up-to-date with new features and bug fixes to ensure that the lens continues to work with the files it was written for.
 
 Augeas provides keywords to achieve unit tests in both the get and put directions.
 
@@ -118,7 +118,7 @@ __List functions__ and give examples.
 The Sep (`sep.aug`) module provides definitions for separators.
 __List functions__ and give examples.
 
-> ![**NOTE**][info] *`Sep.opt_space` is a synonym for `Util.indent`. Both are stricly equivalent, but it is clearer to use the former as a separator and the latter as an indentation.*
+> ![**NOTE**][info] *`Sep.opt_space` is a synonym for `Util.indent`. Both are strictly equivalent, but it is clearer to use the former as a separator and the latter as an indentation.*
 
 
 ### The Rx module 
@@ -129,12 +129,12 @@ __List functions__ and give examples.
 
 ### The Build module 
 
-The Build (`build.aug`) module provides definitions for usual constuctions of regular expression.
+The Build (`build.aug`) module provides definitions for usual constructions of regular expression.
 __List functions__ and give examples.
 
 
 ### The IniFile module 
 
-INI files are quite standard even on Unix systems. However, there are many different implementations and specificities. The Inifile (`inifile.aug`) module provides definitions to ease the writing of lenses for specific INI files. It is used in lenses such as Php (`php.aug`), MySQL (`mysql.aug`) or Puppet (`puppet.aug`).
+INI files are quite standard even on Unix systems. However, there are many different implementations and variations. The Inifile (`inifile.aug`) module provides definitions to ease the writing of lenses for specific INI files. It is used as a basis for lenses such as Php (`php.aug`), MySQL (`mysql.aug`) or Puppet (`puppet.aug`).
 __List functions__ and give examples.
 
