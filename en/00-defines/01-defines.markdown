@@ -2,8 +2,7 @@
 % Raphaël Pinson
 %
 
-[info]: ../images/IconNote.png "**NOTE**"
-[info]: ../images/IconNote.png "**NOTE**"
+[note]: ../images/IconNote.png "**NOTE**"
 [info]: ../images/info.png "**INFO**"
 [warning]: ../images/warning.png "**WARNING**"
 [important]: ../images/important.png "**IMPORTANT**"
