@@ -116,7 +116,7 @@ __List functions__ and give examples.
 The Sep (`sep.aug`) module provides definitions for separators.
 __List functions__ and give examples.
 
-Note: `Sep.opt_space` is a synonym for `Util.indent`. Both are stricly equivalent, but it is clearer to use the former as a separator and the latter as an indentation.
+> ![**NOTE**](../images/note.png) *`Sep.opt_space` is a synonym for `Util.indent`. Both are stricly equivalent, but it is clearer to use the former as a separator and the latter as an indentation.*
 
 
 ### The Rx module ###
