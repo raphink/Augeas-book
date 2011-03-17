@@ -10,7 +10,7 @@ BOOKLET_TMP_PS=$(BOOK_NAME).booklet.tmp.ps
 all:
 
 $(BOOK_MARKDOWN):
-	find . -type f -name '*-chapter*\.markdown' | \
+	find . -mindepth 2 -type f -name '*\.markdown' | \
 	   sort | xargs cat > $(BOOK_MARKDOWN)
 
 html: $(BOOK_HTML)

@@ -22,7 +22,7 @@ Filtering on node names is often not enough to find what you want. You will ofte
 __Give examples__
 
 
-> ![**NOTE**](../images/note.png)  *Contrarily to most XML trees, the Augeas tree contains no attributes, but only nodes with values and children. For this reason, it doesn't use conditional syntaxes featuring the `@` prefix, which is common to many standard XPath queries.*
+> ![**NOTE**][info]  *Contrarily to most XML trees, the Augeas tree contains no attributes, but only nodes with values and children. For this reason, it doesn't use conditional syntaxes featuring the `@` prefix, which is common to many standard XPath queries.*
 
 Conditionals can be combined in different ways. __Give examples__.
 
