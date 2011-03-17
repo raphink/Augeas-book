@@ -7,6 +7,7 @@ BOOK_PS=$(BOOK_NAME).ps
 BOOKLET_PDF=$(BOOK_NAME).booklet.pdf
 BOOKLET_PS=$(BOOK_NAME).booklet.ps
 BOOKLET_TMP_PS=$(BOOK_NAME).booklet.tmp.ps
+LATEX_TEMPLATE=latex.template
 
 all:
 
@@ -20,12 +21,15 @@ $(BOOK_HTML): $(BOOK_MARKDOWN)
 
 tex: $(BOOK_TEX)
 $(BOOK_TEX): $(BOOK_MARKDOWN)
-	pandoc -s --template latex.template -o $(BOOK_TEX) $(BOOK_MARKDOWN)
+	pandoc -s --no-wrap -r markdown -w latex \
+	   --template $(LATEX_TEMPLATE) \
+	   -o $(BOOK_TEX) $(BOOK_MARKDOWN)
 
 pdf: $(BOOK_PDF)
-$(BOOK_PDF): $(BOOK_TEX)
-	pdflatex $(BOOK_TEX)
-	#markdown2pdf -o $(BOOK_HTML) $(BOOK_MARKDOWN)
+$(BOOK_PDF): $(BOOK_MARKDOWN)
+	#pdflatex -interaction=batchmode $(BOOK_TEX)
+	markdown2pdf --template $(LATEX_TEMPLATE) \
+	   -o $(BOOK_HTML) $(BOOK_MARKDOWN)
 
 numberedpdf: $(BOOK_MARKDOWN)
 	markdown2pdf -N -o $(BOOK_HTML) $(BOOK_MARKDOWN)
