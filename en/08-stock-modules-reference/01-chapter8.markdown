@@ -1,281 +1,281 @@
-# Stock Modules Reference #
+# Stock Modules Reference 
 
 Augeas comes with an extensive collection of lenses to parse common configuration files. This chapter will cover the most common of these lenses and provide a reference and examples for them.
 
 
-## The Access Module ##
+## The Access Module 
 Description of the module
 
-## The Aliases Module ##
+## The Aliases Module 
 Description of the module
 
-## The Approx Module ##
+## The Approx Module 
 Description of the module
 
-## The AptPreferences Module ##
+## The AptPreferences Module 
 Description of the module
 
-## The Aptsources Module ##
+## The Aptsources Module 
 Description of the module
 
-## The BBhosts Module ##
+## The BBhosts Module 
 Description of the module
 
-## The Build Module ##
+## The Build Module 
 Description of the module
 
-## The Cgconfig Module ##
+## The Cgconfig Module 
 Description of the module
 
-## The Cgrules Module ##
+## The Cgrules Module 
 Description of the module
 
-## The CobblerModules Module ##
+## The CobblerModules Module 
 Description of the module
 
-## The CobblerSettings Module ##
+## The CobblerSettings Module 
 Description of the module
 
-## The Cron Module ##
+## The Cron Module 
 Description of the module
 
-## The Crypttab Module ##
+## The Crypttab Module 
 Description of the module
 
-## The Darkice Module ##
+## The Darkice Module 
 Description of the module
 
-## The Debctrl Module ##
+## The Debctrl Module 
 Description of the module
 
-## The Device_map Module ##
+## The Device_map Module 
 Description of the module
 
-## The Dhclient Module ##
+## The Dhclient Module 
 Description of the module
 
-## The Dhcpd Module ##
+## The Dhcpd Module 
 Description of the module
 
-## The Dnsmasq Module ##
+## The Dnsmasq Module 
 Description of the module
 
-## The Dpkg Module ##
+## The Dpkg Module 
 Description of the module
 
-## The Dput Module ##
+## The Dput Module 
 Description of the module
 
-## The Ethers Module ##
+## The Ethers Module 
 Description of the module
 
-## The Exports Module ##
+## The Exports Module 
 Description of the module
 
-## The Fstab Module ##
+## The Fstab Module 
 Description of the module
 
-## The Gdm Module ##
+## The Gdm Module 
 Description of the module
 
-## The Group Module ##
+## The Group Module 
 Description of the module
 
-## The Grub Module ##
+## The Grub Module 
 Description of the module
 
-## The Hosts Module ##
+## The Hosts Module 
 Description of the module
 
-## The Httpd Module ##
+## The Httpd Module 
 Description of the module
 
-## The Inetd Module ##
+## The Inetd Module 
 Description of the module
 
-## The IniFile  Module ##
+## The IniFile  Module 
 Description of the module
 
-## The Inittab Module ##
+## The Inittab Module 
 Description of the module
 
-## The Interfaces Module ##
+## The Interfaces Module 
 Description of the module
 
-## The Iptables Module ##
+## The Iptables Module 
 Description of the module
 
-## The Json Module ##
+## The Json Module 
 Description of the module
 
-## The Keepalived Module ##
+## The Keepalived Module 
 Description of the module
 
-## The Krb5 Module ##
+## The Krb5 Module 
 Description of the module
 
-## The Limits Module ##
+## The Limits Module 
 Description of the module
 
-## The Login_defs Module ##
+## The Login_defs Module 
 Description of the module
 
-## The Logrotate Module ##
+## The Logrotate Module 
 Description of the module
 
-## The Lokkit Module ##
+## The Lokkit Module 
 Description of the module
 
-## The Mke2fs Module ##
+## The Mke2fs Module 
 Description of the module
 
-## The Modprobe Module ##
+## The Modprobe Module 
 Description of the module
 
-## The Modules_conf Module ##
+## The Modules_conf Module 
 Description of the module
 
-## The Monit Module ##
+## The Monit Module 
 Description of the module
 
-## The Multipath Module ##
+## The Multipath Module 
 Description of the module
 
-## The MySQL Module ##
+## The MySQL Module 
 Description of the module
 
-## The NagiosCfg Module ##
+## The NagiosCfg Module 
 Description of the module
 
-## The Nrpe Module ##
+## The Nrpe Module 
 Description of the module
 
-## The Nsswitch Module ##
+## The Nsswitch Module 
 Description of the module
 
-## The Ntp Module ##
+## The Ntp Module 
 Description of the module
 
-## The Odbc Module ##
+## The Odbc Module 
 Description of the module
 
-## The OpenVPN Module ##
+## The OpenVPN Module 
 Description of the module
 
-## The Pam Module ##
+## The Pam Module 
 Description of the module
 
-## The Passwd Module ##
+## The Passwd Module 
 Description of the module
 
-## The Pbuilder Module ##
+## The Pbuilder Module 
 Description of the module
 
-## The Pg_Hba Module ##
+## The Pg_Hba Module 
 Description of the module
 
-## The PHP Module ##
+## The PHP Module 
 Description of the module
 
-## The Phpvars Module ##
+## The Phpvars Module 
 Description of the module
 
-## The Postfix_Access Module ##
+## The Postfix_Access Module 
 Description of the module
 
-## The Postfix_Main Module ##
+## The Postfix_Main Module 
 Description of the module
 
-## The Postfix_Master Module ##
+## The Postfix_Master Module 
 Description of the module
 
-## The PuppetFileserver Module ##
+## The PuppetFileserver Module 
 Description of the module
 
-## The Puppet Module ##
+## The Puppet Module 
 Description of the module
 
-## The Resolv Module ##
+## The Resolv Module 
 Description of the module
 
-## The Rsyncd Module ##
+## The Rsyncd Module 
 Description of the module
 
-## The Rx Module ##
+## The Rx Module 
 Description of the module
 
-## The Samba Module ##
+## The Samba Module 
 Description of the module
 
-## The Securetty Module ##
+## The Securetty Module 
 Description of the module
 
-## The Sep Module ##
+## The Sep Module 
 Description of the module
 
-## The Services Module ##
+## The Services Module 
 Description of the module
 
-## The Shells Module ##
+## The Shells Module 
 Description of the module
 
-## The Shellvars_list Module ##
+## The Shellvars_list Module 
 Description of the module
 
-## The Shellvars Module ##
+## The Shellvars Module 
 Description of the module
 
-## The Slapd Module ##
+## The Slapd Module 
 Description of the module
 
-## The Solaris_System Module ##
+## The Solaris_System Module 
 Description of the module
 
-## The Soma Module ##
+## The Soma Module 
 Description of the module
 
-## The Spacevars Module ##
+## The Spacevars Module 
 Description of the module
 
-## The Squid Module ##
+## The Squid Module 
 Description of the module
 
-## The Sshd Module ##
+## The Sshd Module 
 Description of the module
 
-## The Sudoers Module ##
+## The Sudoers Module 
 Description of the module
 
-## The Sysconfig Module ##
+## The Sysconfig Module 
 Description of the module
 
-## The Sysctl Module ##
+## The Sysctl Module 
 Description of the module
 
-## The Syslog Module ##
+## The Syslog Module 
 Description of the module
 
-## The Util Module ##
+## The Util Module 
 Description of the module
 
-## The Vsftpd Module ##
+## The Vsftpd Module 
 Description of the module
 
-## The Webmin Module ##
+## The Webmin Module 
 Description of the module
 
-## The Wine Module ##
+## The Wine Module 
 Description of the module
 
-## The Xinetd Module ##
+## The Xinetd Module 
 Description of the module
 
-## The Xml Module ##
+## The Xml Module 
 Description of the module
 
-## The Xorg Module ##
+## The Xorg Module 
 Description of the module
 
-## The Yum Module ##
+## The Yum Module 
 Description of the module
 
