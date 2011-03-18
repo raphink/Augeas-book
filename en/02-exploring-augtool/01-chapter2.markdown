@@ -177,7 +177,108 @@ The data are then available via the `span` command in `augtool`:
 \index{Commands!span}
 
 	$ augtool --span
-	augtool> span /files/etc/fstab/1/
-	/etc/fstab label=(0:0) value=(0:0) span=(340,410)
+	augtool> get /files/etc/ntp.conf/driftfile
+	/files/etc/ntp.conf/driftfile = /var/lib/ntp/ntp.drift
+	augtool> span /files/etc/ntp.conf/driftfile
+	/etc/ntp.conf label=(67:76) value=(77:99) span=(67,100)
+	augtool> quit
+	$ head -c100 /etc/ntp.conf  | tail -c+67
+	
+	driftfile /var/lib/ntp/ntp.drift
+
+This indicates that:
+
+* The `driftfile` label was found in the file between positions 67 and 76. This also means that `driftfile` is a dynamic key, not a static label (see chapter 9) ;
+* The value of the `driftfile` node was found between positions 77 and 99 in the file ;
+* The whole span of the node is between positions 67 and 100 in the file. The span is one character further than the value, since the `\n` character is considered part of the lens matching the node, but is excluded from the value.
+
+
+## Scripting with augtool
+
+\index{augtool!scripting}
+
+In addition to running as an interactive shell, `augtool` can take commands from the command line or STDIN:
+
+\index{Commands!ls}
+\index{augtool!piping}
+
+	$ augtool ls /files
+	etc/ = (none)
+	$ echo "ls /files/" | augtool
+	etc/ = (none)
+
+This allows to write shell scripts that send commands to `augtool`. Following is an example in bash:
+
+\index{Commands!set}
+\index{Commands!save}
+\index{augtool!piping}
+
+	#!/bin/bash
+	function do_augtool() {
+	   local command="$1"
+	   echo -e "$command" | augtool
+	}
+	
+	do_augtool "set /files/etc/hosts/1/canonical alice\nsave"
+
+\index{augtool!options!--autosave}
+
+> ![**NOTE**][info] *The `--autosave` option in `augtool` allows you to ommit the `save` command.*
+
+
+### Using augtool as an interpreter
+
+`augtool` can also take commands from a file:
+
+\index{augtool!options!--file}
+\index{Commands!ls}
+
+	$ cat commands.augtool
+	ls "/files"
+	$ augtool --file commands.augtool
+	etc/ = (none)
+
+This allows to use `augtool` as a script interpreter in a shebang and write self-executable `augtool` scripts:
+
+	$ cat commands.augtool
+	#!/usr/bin/augtool -f
+	ls "/files"
+	$ chmod +x commands.augtool
+	$ ./commands.augtool
+	etc/ = (none)
+
+
+### Dropping into an interactive session
+
+When `augtool` takes commands from the command line, STDIN or a file, it doesn't start an interactive session. If you wish to pass commands to `augtool` for preprocessing and run an interactive command afterwards, you can use the `--interactive` flag:
+
+\index{augtool!piping}
+\index{Commands!get}
+\index{augtool!options!--interactive}
+
+	$ echo "set /files/etc/hosts/1/canonical alice" | augtool --interactive
+	augtool> get /files/etc/hosts/1/canonical
+	/files/etc/hosts/1/canonical = alice
+
+> ![**NOTE**][info] *The `--interactive` option only works for STDIN and file input.*
+
+
+This option also allows you to make scripts that set up an environment and drop you in an interactive shell:
+
+\index{augtool!options!--file}
+\index{Commands!get}
+\index{Commands!set}
+\index{Commands!quit}
+
+	$ cat shell.augtool
+	#!/usr/bin/augtool -if
+	set /files/etc/hosts/1/canonical alice
+	$ chmod +x shell.augtool
+	$ ./shell.augtool
+	augtool> get /files/etc/hosts/1/canonical
+	/files/etc/hosts/1/canonical = alice
+	augtool> quit
+
+> ![**NOTE**][info] *Only concatenated short options can be used in shebangs, hence the use of `-if`.*
 
 
