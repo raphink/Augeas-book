@@ -47,11 +47,13 @@ So far, our examples have been done using `augtool`, the CLI interface to Augeas
 
 
 \index{API!bindings|)}
-\index{API|)}
 
 
 ## API Flags
 
 \index{Flags}
 \index{API!flags|see{Flags}}
+
+
+\index{API|)}
 
