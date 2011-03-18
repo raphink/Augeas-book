@@ -247,6 +247,6 @@ Example:
 \index{augtool!options!--span}
 \index{Flags!\textsc{aug\_enable\_span}}
 
-The `/augeas/span` node indicates whether the `span` functionality[^See chapter 2] is activated in the session.
+The `/augeas/span` node indicates whether the `span` functionality^[See chapter 2: *Locating nodes in files*] is activated in the session.
 
 

@@ -154,7 +154,7 @@ Augeas offers two options to preserve the existing files when saving the tree. I
 * --backup will save the original file with the extension .augsave and write the new file under the original file name ;
 * --new will save the modified file with a .augnew extension and leave the original file untouched.
 
-These options actually modify the value of the `/augeas/save` node in the Augeas tree. See chapter __FIXME__ for more information.
+These options actually modify the value of the `/augeas/save` node in the Augeas tree^[See chapter 6: *The save node*].
 
 
 ## Locating nodes in files
@@ -164,7 +164,7 @@ These options actually modify the value of the `/augeas/save` node in the Augeas
 
 The span metadata were added in Augeas 0.8.0. For performance reasons, they are not activated by default. This functionality can be activated by the `AUG_ENABLE_SPAN` flag or the `--span` flag in `augtool`.
 
-You can see if the `span` functionality is activated in the current session by looking at the `/augeas/span` node[^See chapter 6]:
+You can see if the `span` functionality is activated in the current session by looking at the `/augeas/span` node^[See chapter 6: *The span node*]:
 
 \index{Metadata!\slash{}augeas\slash{}span}
 
