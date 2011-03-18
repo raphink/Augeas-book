@@ -155,3 +155,25 @@ Augeas offers two options to preserve the existing files when saving the tree. I
 These options actually modify the value of the `/augeas/save` node in the Augeas tree. See chapter __FIXME__ for more information.
 
 
+## Locating nodes in files
+
+\index{augtool!options!--span}
+\index{Flags!\textsc{AUG\_ENABLE\_SPAN}}
+
+The span metadata were added in Augeas 0.8.0. For performance reasons, they are not activated by default. This functionality can be activated by the `AUG_ENABLE_SPAN` flag or the `--span` flag in `augtool`.
+
+You can see if the `span` functionality is activated in the current session by looking at the `/augeas/span` node[^See chapter 6]:
+
+\index{Metadata!\slash{}augeas\slash{}span}
+
+	augtool> get /augeas/span
+	/augeas/span = enable
+
+
+The data are then available via the `span` command in `augtool`:
+
+	$ augtool --span
+	augtool> span /files/etc/fstab/1/
+	/etc/fstab label=(0:0) value=(0:0) span=(340,410)
+
+

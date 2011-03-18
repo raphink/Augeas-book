@@ -240,5 +240,9 @@ Example:
 ## The span node 
 
 \index{Metadata!\slash{}augeas\slash{}span}
+\index{augtool!options!--span}
+\index{Flags!\textsc{AUG\_ENABLE\_SPAN}}
+
+The `/augeas/span` node indicates whether the `span` functionality[^See chapter 2] is activated in the session.
 
 
