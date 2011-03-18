@@ -75,7 +75,7 @@ __Explain cases and solutions__
 ## Turning on debug
 
 \index{Environment variables!\textsc{augeas\_debug}}
-\index{Environment variables!\textsc{augeas\_debug_dir}}
+\index{Environment variables!\textsc{augeas\_debug\_dir}}
 
 Augeas has a debug facility that is turned off by default. Two environment variables control the activate of this functionality: `AUGEAS_DEBUG` and `AUGEAS_DEBUG_DIR`.
 
