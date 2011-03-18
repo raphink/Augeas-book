@@ -105,7 +105,7 @@ It is common to use Augeas to modify only one file. In that case you know exactl
 	augtool> print /augeas/load
 	/augeas/load
 
-\index{Flags!\textsc{AUG\_NO\_MODL\_AUTOLOAD}}
+\index{Flags!\textsc{aug\_no\_modl\_autoload}}
 
 > ![**NOTE**][info] *This can also be achieved using the `AUG_NO_MODL_AUTOLOAD` flag with the API*
 
@@ -245,7 +245,7 @@ Example:
 
 \index{Metadata!\slash{}augeas\slash{}span}
 \index{augtool!options!--span}
-\index{Flags!\textsc{AUG\_ENABLE\_SPAN}}
+\index{Flags!\textsc{aug\_enable\_span}}
 
 The `/augeas/span` node indicates whether the `span` functionality[^See chapter 2] is activated in the session.
 

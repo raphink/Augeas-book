@@ -158,7 +158,7 @@ These options actually modify the value of the `/augeas/save` node in the Augeas
 ## Locating nodes in files
 
 \index{augtool!options!--span}
-\index{Flags!\textsc{AUG\_ENABLE\_SPAN}}
+\index{Flags!\textsc{aug\_enable\_span}}
 
 The span metadata were added in Augeas 0.8.0. For performance reasons, they are not activated by default. This functionality can be activated by the `AUG_ENABLE_SPAN` flag or the `--span` flag in `augtool`.
 
