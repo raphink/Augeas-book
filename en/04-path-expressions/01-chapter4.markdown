@@ -1,6 +1,7 @@
 # Path Expressions 
 
-\index{Path!expressions}
+\index{Path expressions}
+\index{Tree!\slash{}files|see{Path expressions}}
 
 Augeas maps configuration files into a tree, and lets you access this tree using XPath expressions.
 In this chapter, we will inspect the various XPath expressions offered by Augeas, and give examples of what you can achieve with them.
@@ -40,18 +41,34 @@ will return the nodes matching `/files/etc/fstab` as well as the ones matching `
 
 ## Functions 
 
-\index{Path!expressions!functions}
+\index{Path expressions!functions|(}
 
 
 To enrich the filtering you can achieve with conditionals, Augeas provides a set of functions which can be used in conditional context.
 
 
-### The value() function 
+### The last() function 
+
+\index{Path expressions!functions!last()}
+
+### The position() function
+
+\index{Path expressions!functions!position()}
 
 ### The label() function 
 
+\index{Path expressions!functions!label()}
+
 ### The count() function 
 
+\index{Path expressions!functions!count()}
+
+### The regexp() function
+
+\index{Path expressions!functions!regexp()}
+
+
+\index{Path expressions!functions|)}
 
 ## Node references 
 
@@ -61,23 +78,32 @@ In addition to functions, it is often necessary to refer to nodes relatively as 
 
 ## Using variables in paths 
 
-\index{Path!expressions!variables}
+\index{Path expressions!variables|(}
 
 Augeas provides two ways to declare variables.
 
 
 ### defvar 
 
+\index{Path expressions!variables!defvar}
+\index{Commands!defvar}
+
 
 ### defnode 
 
+\index{Path expressions!variables!defnode}
+\index{Commands!defnode}
+
+
+
+\index{Path expressions!variables|)}
 
 ### Using variables to express conditionals 
 
 
 ## Ensuring idempotence
 
-\index{Path!expressions!idempotence}
+\index{Path expressions!idempotence}
 
 	augtool> set '/files/etc/php.ini/PHP/extension[. = "foo.so"]' foo.so
 

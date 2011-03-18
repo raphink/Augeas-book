@@ -138,3 +138,30 @@ __List functions__ and give examples.
 INI files are quite standard even on Unix systems. However, there are many different implementations and variations. The Inifile (`inifile.aug`) module provides definitions to ease the writing of lenses for specific INI files. It is used as a basis for lenses such as Php (`php.aug`), MySQL (`mysql.aug`) or Puppet (`puppet.aug`).
 __List functions__ and give examples.
 
+
+
+## Using your lens
+
+Augeas uses a search path to find its lenses. By default, it will search for lenses in `$prefix/share/augeas/lenses` and `/$prefix/share/augeas/lenses/dist`, where `$prefix` is the compilation prefix, usually `/usr`.
+
+The `dist` subdirectory is reserved for stock lenses, while the top directory can be used to store your own lenses.
+
+If you prefer to store your lenses in another place, or just wish to try a new lens without installing it in your system, you can override this search path in several ways.
+
+### Ignoring the stock modules
+
+\index{augtool!options!--nostdinc}
+
+In order to ignore the default search path for lenses, you can use the `--nostdinc` flag in `augtool`.
+
+
+### Adding your own directory of lenses
+
+\index{augtool!options!--include}
+\index{Environment variables!\textsc{augeas\_lens\_lib}}
+
+Directories containing additional lenses can be added to the search path by using the `--include` option in `augtool`, or the `AUGEAS_LENS_LIB` environment variable:
+
+	$ augtool --include mylenses
+
+

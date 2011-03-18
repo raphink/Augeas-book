@@ -1,6 +1,7 @@
 # Augeas metadata 
 
 \index{Metadata}
+\index{Tree!\slash{}augeas|see{Metadata}}
 
 We have seen earlier that the `/augeas` top node exposes Augeas metadata which can be parsed and modified in the same fashion as the `/files` data.
 This chapter will focus on documenting the various parts of the `/augeas` tree and their functions.
@@ -8,12 +9,14 @@ This chapter will focus on documenting the various parts of the `/augeas` tree a
 
 ## The root node 
 
-\index{Metadata!root}
+\index{Metadata!\slash{}augeas\slash{}root}
 \index{augtool!options!--root}
 \index{Environment variables!\textsc{augeas\_root}}
+
 The `/augeas/root` node contains the root of the Augeas tree. This is the variable which can be set via either the `AUGEAS_ROOT` environment variable or the `--root` option to `augtool`.
 
 \index{Commands!print}
+
 Example:
 
 	$ augtool --root fakeroot
@@ -26,7 +29,8 @@ Example:
 
 ## The version tree 
 
-\index{Metadata!version}
+\index{Metadata!\slash{}augeas\slash{}version}
+
 `/augeas/version` is a tree which contains several informations:
 
 * The top node has the version of Augeas as its value ;
@@ -34,6 +38,7 @@ Example:
 * The `defvar` node contains **what exactly??**.
 
 \index{Commands!print}
+
 Example:
 
 	augtool> print /augeas/version/
@@ -49,7 +54,8 @@ Example:
 
 ## The save node 
 
-\index{Metadata!save}
+\index{Metadata!\slash{}augeas\slash{}save}
+
 The `/augeas/save` node contains the saving mode used by Augeas for the session. The value of this node must be one of the values listed in the `/augeas/version/save/mode` nodes.
 
 If this node is modified during the session, it will affect the behaviour of the `save` call whenever it is executed.
@@ -57,7 +63,8 @@ If this node is modified during the session, it will affect the behaviour of the
 
 ## The load tree 
 
-\index{Metadata!load}
+\index{Metadata!\slash{}augeas\slash{}load}
+
 The `/augeas/load` tree contains the lenses metadata. For each lens loaded in the Augeas session, it lists 3 types of nodes:
 
 * a `lens` node, which specifies the name of the module used by this lens ;
@@ -65,6 +72,7 @@ The `/augeas/load` tree contains the lenses metadata. For each lens loaded in th
 * `excl` nodes for each path to be excluded from this lens.
 
 \index{Commands!print}
+
 Example:
 
 	augtool> print /augeas/load/Pam/
@@ -146,6 +154,8 @@ So how do you go about using the `Json` lens on a JSON file? You can modify the 
 
 ## The files tree 
 
+\index{Metadata!\slash{}augeas\slash{}files|(}
+
 The `/augeas/files` provides metadata about the files parsed by Augeas. The paths in this tree mirror thoses of the `/files` tree.
 
 For each file, the following nodes may be present.
@@ -204,10 +214,17 @@ In the example above, we see the that `/etc/ldap.conf` uses the `@Spacevars` len
 
 The parsing of `/etc/ldap.conf` failed on position 9510, which located in beginning of line 310. The error message indicates that the file could not be fully parsed.
 
+\index{Metadata!\slash{}augeas\slash{}files|)}
 
 ## The variables tree 
 
+\index{Metadata!\slash{}augeas\slash{}variables}
+\index{Path expressions!variables!defvar}
+
 When you set variables in Augeas (see chapter 4), the paths of the variables are recorded here.
+
+\index{Commands!print}
+\index{Commands!defvar}
 
 Example:
 
@@ -221,5 +238,7 @@ Example:
 
 
 ## The span node 
+
+\index{Metadata!\slash{}augeas\slash{}span}
 
 

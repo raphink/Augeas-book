@@ -2,6 +2,7 @@
 
 While Augeas is a C library with bindings, it also provides a command-line tool called `augtool`, which we will be using in the following examples. In chapter 5, we will see how to use the API and bindings directly.
 
+\index{augtool!commands|see{Commands}}
 
 ## Parsing your System Configuration Files 
 
