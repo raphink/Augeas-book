@@ -9,6 +9,8 @@ In this chapter, we will inspect the various XPath expressions offered by Augeas
 
 ## Generalities on XPath expressions 
 
+XPath expressions are an XML parsing and modifying facility. 
+
 
 ## Using globs 
 
@@ -17,17 +19,45 @@ When you write XPath expressions, you might want to match generic nodes or nodes
 * `*` as a node name matches any node ;
 * `//` matches on any sublevel of the tree.
 
+Examples:
+
+	/files/etc/hosts/*
+
+will match all children nodes of the `/files/etc/hosts` node.
+
+	/files/etc/hosts//canonical
+
+will match all `canonical` nodes under the `/files/etc/hosts` node, at any sublevel.
+
+\index{Metadata!\slash{}augeas\slash{}error}
+
+	/augeas//error
+
+will match all `error` nodes at any sublevel under the `/augeas` node.
+
 
 ## Conditionals 
 
 Filtering on node names is often not enough to find what you want. You will often wish to find nodes defined by their value or subnodes. XPath offers a syntax of conditionals using square brackets.
 
-__Give examples__
+Examples:
+
+	/files/etc/hosts/*[canonical = "alice"]
+
+will match the children nodes of `/files/etc/hosts` that have a `canonical` subnode with value `alice`.
+
+	/files/etc/hosts/*/canonical[. = "alice"]
+
+will match `canonical` nodes two levels under the `/files/etc/hosts` node that have value `alice`.
 
 
 > ![**NOTE**][info]  *In contrast to most XML trees, the Augeas tree contains no attributes, but only nodes with values and children. For this reason, it doesn't use conditional syntaxes featuring the `@` prefix, which is common to many standard XPath queries.*
 
-Conditionals can be combined in different ways. __Give examples__.
+Conditionals can be combined. See these examples:
+
+	/files/etc/hosts/*[ipaddr = "127.0.0.1"][canonical = "alice"]
+
+will match the children nodes of `/files/etc/hosts` that have both a `ipaddr` sudnode with value `127.0.0.1` and a `canonical` subnode with value `alice`.
 
 
 ## Union of paths
