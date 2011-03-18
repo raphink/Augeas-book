@@ -1,20 +1,57 @@
-# Using the C API and Bindings #
+# Using the C API and Bindings 
+
+\index{API|(}
+\index{API!calls|see{Calls}}
 
 So far, our examples have been done using `augtool`, the CLI interface to Augeas. However, Augeas is first and foremost a C library.
 
 
-## Using the C API ##
+## Using the C API 
+
+\index{API!C API}
 
 
-## Using Bindings ##
+## Using Bindings 
+
+\index{API!bindings|(}
 
 
-### Python Bindings ###
+### Haskell bindings
+
+\index{API!bindings!Haskell}
 
 
-### Ruby Bindings ###
+### Java bindings
+
+\index{API!bindings!Java}
 
 
-### Perl Bindings ###
+### Perl Bindings 
 
+\index{API!bindings!Perl}
+
+
+### PHP bindings
+
+\index{API!bindings!PHP}
+
+
+### Python Bindings 
+
+\index{API!bindings!Python}
+
+
+### Ruby Bindings 
+
+\index{API!bindings!Ruby}
+
+
+\index{API!bindings|)}
+\index{API|)}
+
+
+## API Flags
+
+\index{Flags}
+\index{API!flags|see{Flags}}
 

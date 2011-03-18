@@ -102,6 +102,8 @@ The order of the statements is strictly kept, Augeas does not interpret the conf
 
 ## Installing Augeas ##
 
+\index{Installation}
+
 ### Installing from Source ###
 
 \index{Installation!from source}
