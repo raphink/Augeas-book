@@ -172,6 +172,8 @@ You can see if the `span` functionality is activated in the current session by l
 
 The data are then available via the `span` command in `augtool`:
 
+\index{Commands!span}
+
 	$ augtool --span
 	augtool> span /files/etc/fstab/1/
 	/etc/fstab label=(0:0) value=(0:0) span=(340,410)

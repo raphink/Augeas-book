@@ -105,6 +105,10 @@ It is common to use Augeas to modify only one file. In that case you know exactl
 	augtool> print /augeas/load
 	/augeas/load
 
+\index{Flags!\textsc{AUG\_NO\_MODL\_AUTOLOAD}}
+
+> ![**NOTE**][info] *This can also be achieved using the `AUG_NO_MODL_AUTOLOAD` flag with the API*
+
 The `print` command shows us that no lenses are known in the session. We can now tell Augeas to load the `Fstab` lens and to include `/etc/fstab` for it:
 
 \index{Commands!set}
