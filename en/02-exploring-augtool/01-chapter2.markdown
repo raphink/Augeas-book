@@ -145,7 +145,7 @@ The `rm` command removed only the `opt` node we specified, and the saved file ha
 
 \index{augtool!options!--backup}
 \index{augtool!options!--new}
-\index{Metadata!save}
+\index{Metadata!\slash{}augeas\slash{}save}
 
 Augeas offers two options to preserve the existing files when saving the tree. In `augtool`, these options can be triggered with the following flags:
 
