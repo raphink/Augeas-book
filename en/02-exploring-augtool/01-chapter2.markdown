@@ -1,9 +1,9 @@
-# Getting Started #
+# Exploring augtool
 
 While Augeas is a C library with bindings, it also provides a command-line tool called `augtool`, which we will be using in the following examples. In chapter 4, we will see how to use the API and bindings directly.
 
 
-## Parsing your System Configuration Files ##
+## Parsing your System Configuration Files 
 
 The first thing you might want to do is to see how Augeas sees your system configuration files. Fire up `augtool`:
 
@@ -74,7 +74,7 @@ To leave the `augtool` session, you can type `quit` or `^D`:
 	augtool> quit
 
 
-## Using a Fakeroot ##
+## Using a Fakeroot 
 
 It is often useful to play with `augtool` when you want to understand the Augeas tree or try XPath expressions. However, you likely don't want to play with the files in your `/etc` directory and take the risk of ruining your system. Augeas lets you set a fakeroot so that the files parsed and modified by Augeas are taken from this root instead of the `/` directory of your system.
 
@@ -95,7 +95,7 @@ In general, you can also set the location of this fakeroot with the `AUGEAS_ROOT
 This option can also let you modify files inside a chroot for example.
 
 
-## Modifying Files ##
+## Modifying Files 
 
 We have seen already how Augeas lets you parse your configuration files in a unified way. The Augeas tree is not only a parsing facility as Augeas exposes commands to modify the tree and save the changes to the original files.
 
@@ -129,7 +129,7 @@ Let us change the filesystem options specified on the first line of `/etc/fstab`
 	+++ myroot/etc/fstab.augsave	2010-09-30 08:45:53.000000000 +0200
 	@@ -5,7 +5,7 @@
 	 # devices that works even if disks are added and removed. See fstab(5).
-	 #
+	 
 	 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
 	-proc            /proc           proc    nodev,noexec 0       0
 	+proc            /proc           proc    nodev,noexec,nosuid 0       0
@@ -140,7 +140,7 @@ Let us change the filesystem options specified on the first line of `/etc/fstab`
 The `rm` command removed only the `opt` node we specified, and the saved file has only this option removed.  The rest of the file and even this line was left untouched, preserving the original formatting and layout.
 
 
-## Preserving existing files ##
+## Preserving existing files 
 
 \index{augtool!options!--backup}
 \index{augtool!options!--new}
