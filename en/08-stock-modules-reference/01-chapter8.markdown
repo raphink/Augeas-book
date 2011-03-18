@@ -21,9 +21,6 @@ Description of the module
 ## The BBhosts Module 
 Description of the module
 
-## The Build Module 
-Description of the module
-
 ## The Cgconfig Module 
 Description of the module
 
@@ -201,16 +198,10 @@ Description of the module
 ## The Rsyncd Module 
 Description of the module
 
-## The Rx Module 
-Description of the module
-
 ## The Samba Module 
 Description of the module
 
 ## The Securetty Module 
-Description of the module
-
-## The Sep Module 
 Description of the module
 
 ## The Services Module 
@@ -253,9 +244,6 @@ Description of the module
 Description of the module
 
 ## The Syslog Module 
-Description of the module
-
-## The Util Module 
 Description of the module
 
 ## The Vsftpd Module 
