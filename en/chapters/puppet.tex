@@ -1,10 +1,10 @@
 \chapter{Using Augeas in Puppet}
 
-\index{Puppet}
-
+\index{Puppet|(}
 Because Augeas is a configuration API, it fits right into tools that are made for configuration management. One of the most widely used of these tools in the open-source world is Puppet, and Augeas has been available as a native type in Puppet since version 0.24.7.
 
-\index{API!bindings!Ruby} Since Puppet is written in Ruby, the Augeas Puppet type makes use of the Ruby bindings for Augeas.
+\index{API!bindings!Ruby}
+Since Puppet is written in Ruby, the Augeas Puppet type makes use of the Ruby bindings for Augeas.
 
 \section{The Augeas type}
 
@@ -48,7 +48,9 @@ augeas { "hosts_alice":
    onlyif => "match canonical[. = 'alice']" size == 0",
 }
 \end{verbatim}
+
 \begin{quote}
 \includegraphics{../images/info.png} \emph{For proper idempotence, this statement has to be coupled with the methods described earlier\footnote{See \emph{ensuring idempotence} on page \pageref{sec:ensuring_idempotence}}.}
-
 \end{quote}
+
+\index{Puppet|)}
