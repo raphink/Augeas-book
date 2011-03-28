@@ -3,9 +3,13 @@
 \addcontentsline{toc}{chapter}{Introduction}
 \chapter*{Introduction}
 
-\begin{quote}
-``Augeias was king of Elis, in some accounts a son of Helios, in others of Poseidon, and in still others of Phorbas.'' --- Apollodorus, The Library 2.88
-\end{quote}
+\begin{verse}
+``Augeias was king of Elis, \\
+in some accounts a son of Helios, \\
+in others of Poseidon, \\
+and in still others of Phorbas.'' \\
+\small{-- Apollodorus, The Library 2.88}
+\end{verse}
 
 In the world of Unix systems, there is no standard way to store configuration. Countless formats can be found, from standard INI files to complex, specific, multi-level formats, making the infamous /etc directory a sort of digital Augean stable.
 
@@ -49,15 +53,17 @@ Augeas does not attempt to provide an abstraction layer from the native configur
 
 As an example, if the \verb!/etc/foo.conf! configuration file contains an include statement such as the following:
 
-\begin{verbatim}
+\begin{minted}{bash}
 #include /etc/foo.d/*
-\end{verbatim}
+\end{minted}
+
 Augeas will not attempt to parse the contents of the files in \verb!/etc/foo.d/*! and add them to the \verb!/etc/foo.conf! tree. Instead, it will provide a tree like the following:
 
 \begin{verbatim}
 /files/etc/foo.conf
 /files/etc/foo.conf/#include = /etc/foo.d/*
 \end{verbatim}
+
 \verb!#include! is just a parameter of the \verb!/etc/foo.conf! configuration file and \verb!/etc/foo.d/*! is the value of the parameter. The contents of \verb!/etc/foo.d/*! will probably appear in the tree if the lens is able to parse them, but in no way will Augeas make a logical link between \verb!/etc/foo.conf! and \verb!/etc/foo.d/*!.
 
 Other software provide this kind of abstraction layer. This is the case of Config::Model, which can use Augeas as a backend, and is able to understand the logic of a configuration files, such as include statements, or the link between several statements in a configuration file.
@@ -86,9 +92,10 @@ Augeas does not attempt to understand or otherwise interprete configuration file
 
 For example, an \verb!/etc/hosts! line like the following:
 
-\begin{verbatim}
+\begin{minted}{bash}
 192.168.0.10    aslan   # Added by NetworkManager
-\end{verbatim}
+\end{minted}
+
 will be represented by the following tree:
 
 \begin{verbatim}
@@ -98,6 +105,7 @@ will be represented by the following tree:
 /files/etc/hosts/1/canonical = "aslan"
 /files/etc/hosts/1/#comment = "Added by NetworkManager"
 \end{verbatim}
+
 The order of the statements is strictly kept, Augeas does not interpret the configuration files per se, but it labels each of the fields on the line to ease access to individual configuration items.
 
 \section{Installing Augeas}
@@ -115,20 +123,23 @@ You can find the latest source code on the Augeas website:
 \begin{verbatim}
 http://augeas.net/download/
 \end{verbatim}
+
 Next, install the necessary dependencies to build Augeas. The minimal dependencies you will need are the readline headers. You can use one of these commands to install them:
 
-\begin{verbatim}
+\begin{minted}{bash}
 $ sudo yum install readline-devel
 $ sudo apt-get install libreadline-dev
-\end{verbatim}
+\end{minted}
+
 Then, extract, compile and install:
 
-\begin{verbatim}
+\begin{minted}{bash}
 $ tar xvzf augeas-0.8.0.tar.gz
 $ cd augeas-0.8.0
 $ ./configure
 $ make && make install
-\end{verbatim}
+\end{minted}
+
 If you wish to build the documentation for Augeas, you will to add \verb!naturaldocs! and \verb!pdflatex! to the dependencies, and add the \verb!--with-naturaldocs=HTML! and \verb!--with-pdfdocs! flags to the \verb!./configure! command.
 
 \subsection{Installing from Binary Packages}
@@ -139,21 +150,21 @@ Most distributions provide Augeas packages, often split up into the shared libra
 
 On Red Hat or Fedora derivatives, you can install the \verb!augeas! package using yum:
 
-\begin{verbatim}
+\begin{minted}{bash}
 $ sudo yum install augeas
-\end{verbatim}
+\end{minted}
 
 Or on Debian and Ubuntu systems, you can install the Augeas library and the augtool command-line interface with the following:
 
-\begin{verbatim}
+\begin{minted}{bash}
 $ sudo apt-get install augeas-tools
-\end{verbatim}
+\end{minted}
 
 You might also want to install the documentation package with:
 
-\begin{verbatim}
+\begin{minted}{bash}
 $ sudo apt-get install augeas-doc
-\end{verbatim}
+\end{minted}
 
 \subsection{Installing from the Development Head}
 
@@ -163,9 +174,9 @@ Augeas is maintained in a public repository which can be cloned and used to test
 
 If you wish to build and install from the development head, you will need \verb!git! (provided by the \verb!git-core! package on Debian-based distributions), \verb!autoconf!, \verb!automake! and \verb!libtool!, as well as the normal dependencies to build Augeas from source. Then follow these instructions:
 
-\begin{verbatim}
+\begin{minted}{bash}
 $ git clone git://git.fedorahosted.org/augeas.git
 $ ./autogen.sh
 $ ./configure
 $ make && make install
-\end{verbatim}
+\end{minted}
