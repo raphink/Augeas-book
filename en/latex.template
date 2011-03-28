@@ -2,8 +2,8 @@ $if(legacy-header)$
 $legacy-header$
 $else$
 % Use koma?
-\documentclass{scrbook}
-%\documentclass{book}
+%\documentclass{scrbook}
+\documentclass{book}
 \usepackage{amsmath}
 $if(xetex)$
 \usepackage{ifxetex}
