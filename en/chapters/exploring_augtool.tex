@@ -217,7 +217,7 @@ In addition to running as an interactive shell, \verb!augtool! can take commands
     etc/ = (none)
 \end{minted}
 
-This allows to write shell scripts that send commands to \verb!augtool!. Following is an example in bash:
+This allows to write shell scripts that send commands to \verb!augtool!.
 
 \index{Commands!set} \index{Commands!save} \index{augtool!piping}
 
@@ -231,8 +231,11 @@ This allows to write shell scripts that send commands to \verb!augtool!. Followi
 
 \begin{quote}
 \includegraphics{../images/info.png} \emph{The \texttt{--autosave} option in \texttt{augtool} allows you to ommit the \texttt{save} command.}
-
 \end{quote}
+
+Listing \ref{lst:augtool_wrap} shows an example of a bash script wrapping around \verb!augtool!. Lines 2 through 5 define the wrapping function \verb!do_augtool! which is then called on line 7. Commands are separated with \verb!\n! so they get passed line by line to \verb!augtool! through \verb!echo -e!.
+
+
 \subsection{Using augtool as an interpreter}
 
 \verb!augtool! can also take commands from a file:
