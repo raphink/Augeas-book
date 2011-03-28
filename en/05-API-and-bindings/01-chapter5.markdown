@@ -55,7 +55,9 @@ So far, our examples have been done using `augtool`, the CLI interface to Augeas
 
 Synopsis:
 
+\begin{minted}{python}
 	def __init__(self, root=None, loadpath=None, flags=NONE)
+\end{minted}
 
 Initialize the library.
 
@@ -71,15 +73,19 @@ and the directories in `AUGEAS_LENS_LIB`.
 
 Example:
 
+\begin{minted}{python}
 	import augeas
 	a = augeas.Augeas(root="fakeroot")
+\end{minted}
 
 
 #### The get method
 
 Synopsis:
 
+\begin{minted}{python}
 	def get(self, path)
+\end{minted}
 
 Lookup the value associated with `path`.
 Returns the value at the path specified.
@@ -88,7 +94,9 @@ It is an error if more than one node matches `path`.
 
 Example:
 
+\begin{minted}{python}
 	val = a.get("/files/etc/ftab/1/canonical")
+\end{minted}
 
 
 ### Ruby Bindings 

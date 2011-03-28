@@ -1,7 +1,9 @@
 $if(legacy-header)$
 $legacy-header$
 $else$
-\documentclass{book}
+% Use koma?
+\documentclass{scrbook}
+%\documentclass{book}
 \usepackage{amsmath}
 $if(xetex)$
 \usepackage{ifxetex}
@@ -67,6 +69,7 @@ $endfor$
 
 \usepackage{makeidx}
 \makeindex
+\usepackage{minted}
 
 $if(title)$
 \title{$title$}

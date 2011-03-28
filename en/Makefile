@@ -11,6 +11,7 @@ BOOKLET_PS=$(BOOK_NAME).booklet.ps
 BOOKLET_TMP_PS=$(BOOK_NAME).booklet.tmp.ps
 LATEX_TEMPLATE=latex.template
 PANDOC_OPTS=--toc
+TEXINPUTS=minted:
 
 all:
 
@@ -29,15 +30,15 @@ $(BOOK_TEX): $(BOOK_MARKDOWN)
 	   -o $(BOOK_TEX) $(BOOK_MARKDOWN)
 
 $(BOOK_IDX): $(BOOK_TEX)
-	pdflatex -interaction=batchmode $(BOOK_TEX)
-	pdflatex -interaction=batchmode $(BOOK_TEX)
+	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $(BOOK_TEX)
+	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $(BOOK_TEX)
 
 $(BOOK_IND): $(BOOK_IDX)
 	makeindex $(BOOK_IDX)
 
 pdf: $(BOOK_PDF)
 $(BOOK_PDF): $(BOOK_IND)
-	pdflatex -interaction=batchmode $(BOOK_TEX)
+	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $(BOOK_TEX)
 	#markdown2pdf --template $(LATEX_TEMPLATE) \
 	#   $(PANDOC_OPTS) \
 	#   -o $(BOOK_HTML) $(BOOK_MARKDOWN)
