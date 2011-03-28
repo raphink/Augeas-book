@@ -1,0 +1,79 @@
+\chapter{Troubleshooting Augeas}
+
+\label{chap:troubleshooting} \index{Lenses!troubleshooting}
+
+The Augeas tree is built using bidirectional grammars called lenses\footnote{See chapter \ref{chap:bx} on page \pageref{chap:bx}}. The configuration files will not appear in the Augeas tree if the lens responsible for parsing them fails to do so.
+
+In the other direction\footnote{The \verb!put! direction, see chapter \ref{chap:bx} on page \pageref{chap:bx}}, lenses may fail to save a tree back to a configuration file if that tree doesn't fit in the given lens.
+
+Whatever you are trying to troubleshoot, you will most likely benefit from the metadata exposed in the \verb!/augeas! node at the top of the Augeas tree.
+
+A simple way to list all known errors in an augtool session is to type:
+
+\index{Commands!print} \index{Metadata!\slash{}augeas\slash{}error}
+
+\begin{verbatim}
+> print /augeas//error
+\end{verbatim}
+The double slash tells Augeas to search for all subnodes under \verb!/augeas! whose label matches ``error''. The print command will return all subnodes of the matching nodes, given you the details of the errors.
+
+If you want to see the error on a specific file, you can use the path to that file in the expression. For example, to see the error on \verb!/etc/fstab!, you can use:
+
+\index{Commands!print} \index{Metadata!\slash{}augeas\slash{}error}
+
+\begin{verbatim}
+> print /augeas/files/etc/fstab/error
+\end{verbatim}
+\section{Files don't appear in the tree}
+
+There can be several reasons for a file to not appear in the Augeas tree.
+
+\subsection{No lens for the file}
+
+One possibility is that there is no existing lens for this file, or the lens you expect to parse this file has no filter for this file at this location. See chapter \ref{chap:writing_lenses} on page \pageref{chap:writing_lenses} for more information on writing lenses.
+
+\subsection{UID has no rights to read}
+
+Another possibility is that the Unix UID you are using has no right to see the file. The ``error'' node in the \verb!/augeas! tree will tell you so, with a message such as:
+
+\index{Metadata!\slash{}augeas\slash{}error}
+
+\begin{verbatim}
+/augeas/files/etc/sudoers/error = "read_failed"
+/augeas/files/etc/sudoers/error/message = "Permission denied"
+\end{verbatim}
+\subsection{Parsing failed}
+
+The last possibility is that the lens failed to parse part of the file, or the whole file.
+
+Parsing errors are quite common, and there can be several reasons for them:
+
+\begin{itemize}
+\item
+  The file uses \verb!\r! for newlines. Most lenses, having been made for Unix systems, only recognize \verb!\n! as valid newlines. Getting the file through dos2unix and trying again can confirm this possibility.
+\item
+  The lens fails to parse a part of the file, for example it doesn't cover a specific case that is valid for this configuration file.
+\item
+  The lens fails to parse the entire file.
+\end{itemize}
+In the last two cases, it is important to check that the configuration file is indeed valid. When available, use a command line tool provided with the application owning the configuration file, such as apachectl or visudo:
+
+\begin{verbatim}
+$ apachectl configtest
+$ visudo -c
+\end{verbatim}
+Note that when the application owning the configuration file is happy with the file and Augeas is not, it is always safer to consider that Augeas is wrong and that the lens has to be modified, since other users are likely to be in the same situation.
+
+\section{Save failed}
+
+Just as files can fail to be parsed by Augeas, trees can fail to be transformed back into files, too. This prevents Augeas from saving a tree that wouldn't make sense in the configuration file, thus preventing it from breaking configuration files.
+
+\textbf{Explain cases and solutions}
+
+\section{Turning on debug}
+
+\index{Environment variables!\textsc{augeas\_debug}} \index{Environment variables!\textsc{augeas\_debug\_dir}}
+
+Augeas has a debug facility that is turned off by default. Two environment variables control the activate of this functionality: \verb!AUGEAS_DEBUG! and \verb!AUGEAS_DEBUG_DIR!.
+
+

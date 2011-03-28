@@ -1,0 +1,47 @@
+% Use koma?
+%\documentclass{scrbook}
+\documentclass{book}
+\usepackage{amsmath}
+\usepackage[mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{fancyvrb}
+\usepackage{graphicx}
+\usepackage[breaklinks=true,unicode=true]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setcounter{secnumdepth}{0}
+\VerbatimFootnotes % allows verbatim text in footnotes
+
+% Make indexes
+\usepackage{makeidx}
+\makeindex
+
+% Use minted for syntax highlighting
+\usepackage{minted}
+% See pygmentize -L styles for the list of styles
+%\usemintedstyle{pastie}
+
+\title{Augeas: A configuration API}
+\author{Raphaël Pinson}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\include{includes/introduction}
+\include{includes/exploring_augtool}
+\include{includes/bx}
+\include{includes/path_expressions}
+\include{includes/api}
+\include{includes/metadata}
+\include{includes/puppet}
+\include{includes/modules_reference}
+\include{includes/writing_lenses}
+\include{includes/troubleshooting}
+\include{includes/contact}
+
+\printindex
+
+\end{document}
+

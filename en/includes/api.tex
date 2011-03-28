@@ -1,0 +1,92 @@
+\chapter{Using the C API and Bindings}
+
+\index{API|(} \index{API!calls|see{Calls}}
+
+\begin{quote}
+``He cleaned in one day the ox dung of King Augeas, Jove helping him for the most part. By letting in a river he washed away all the dung.'' --- Hyginus, Fabula 15
+
+\end{quote}
+So far, our examples have been done using \verb!augtool!, the CLI interface to Augeas. However, Augeas is first and foremost a C library.
+
+\section{Using the C API}
+
+\index{API!C API}
+
+\section{API Flags}
+
+\index{Flags} \index{API!flags|see{Flags}}
+
+\section{Using Bindings}
+
+\index{API!bindings|(}
+
+\subsection{Haskell bindings}
+
+\index{API!bindings!Haskell}
+
+\subsection{Java bindings}
+
+\index{API!bindings!Java}
+
+\subsection{Perl Bindings}
+
+\index{API!bindings!Perl}
+
+\subsection{PHP bindings}
+
+\index{API!bindings!PHP}
+
+\subsection{Python Bindings}
+
+\index{API!bindings!Python}
+
+\subsubsection{Installation}
+
+\subsubsection{Initialization}
+
+Synopsis:
+
+\begin{minted}{python}
+    def __init__(self, root=None, loadpath=None, flags=NONE)
+\end{minted}
+
+Initialize the library.
+
+Use \verb!root! as the filesystem root. If \verb!root! is None, use the value of the environment variable AUGEAS\_ROOT. If that doesn't exist either, use \verb!/!.
+
+\verb!loadpath! is a colon-spearated list of directories that modules should be searched in. This is in addition to the standard load path and the directories in \verb!AUGEAS_LENS_LIB!.
+
+\verb!flags! is a bitmask made up of values from \verb!AUG_FLAGS!.
+
+Example:
+
+\begin{minted}{python}
+    import augeas
+    a = augeas.Augeas(root="fakeroot")
+\end{minted}
+
+\subsubsection{The get method}
+
+Synopsis:
+
+\begin{minted}{python}
+    def get(self, path)
+\end{minted}
+
+Lookup the value associated with \verb!path!. Returns the value at the path specified. It is an error if more than one node matches \verb!path!.
+
+Example:
+
+\begin{minted}{python}
+    val = a.get("/files/etc/ftab/1/canonical")
+\end{minted}
+
+\subsection{Ruby Bindings}
+
+\index{API!bindings!Ruby}
+
+\index{API!bindings|)}
+
+\index{API|)}
+
+

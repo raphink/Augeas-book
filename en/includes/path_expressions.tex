@@ -1,0 +1,133 @@
+\chapter{Path Expressions}
+
+\index{Path expressions} \index{Tree!\slash{}files|see{Path expressions}}
+
+Augeas maps configuration files into a tree, and lets you access this tree using XPath expressions. In this chapter, we will inspect the various XPath expressions offered by Augeas, and give examples of what you can achieve with them.
+
+\section{Generalities on XPath expressions}
+
+XPath expressions are an XML parsing and modifying facility.
+
+\section{Using globs}
+
+When you write XPath expressions, you might want to match generic nodes or nodes at any level of the tree. There are two operators for that:
+
+\begin{itemize}
+\item
+  \verb!*! as a node name matches any node ;
+\item
+  \verb!//! matches on any sublevel of the tree.
+\end{itemize}
+Examples:
+
+\begin{verbatim}
+/files/etc/hosts/*
+\end{verbatim}
+will match all children nodes of the \verb!/files/etc/hosts! node.
+
+\begin{verbatim}
+/files/etc/hosts//canonical
+\end{verbatim}
+will match all \verb!canonical! nodes under the \verb!/files/etc/hosts! node, at any sublevel.
+
+\index{Metadata!\slash{}augeas\slash{}error}
+
+\begin{verbatim}
+/augeas//error
+\end{verbatim}
+will match all \verb!error! nodes at any sublevel under the \verb!/augeas! node.
+
+\section{Conditionals}
+
+Filtering on node names is often not enough to find what you want. You will often wish to find nodes defined by their value or subnodes. XPath offers a syntax of conditionals using square brackets.
+
+Examples:
+
+\begin{verbatim}
+/files/etc/hosts/*[canonical = "alice"]
+\end{verbatim}
+will match the children nodes of \verb!/files/etc/hosts! that have a \verb!canonical! subnode with value \verb!alice!.
+
+\begin{verbatim}
+/files/etc/hosts/*/canonical[. = "alice"]
+\end{verbatim}
+will match \verb!canonical! nodes two levels under the \verb!/files/etc/hosts! node that have value \verb!alice!.
+
+\begin{quote}
+\includegraphics{../images/info.png} \emph{In contrast to most XML trees, the Augeas tree contains no attributes, but only nodes with values and children. For this reason, it doesn't use conditional syntaxes featuring the \texttt{@} prefix, which is common to many standard XPath queries.}
+
+\end{quote}
+Conditionals can be combined. See these examples:
+
+\begin{verbatim}
+/files/etc/hosts/*[ipaddr = "127.0.0.1"][canonical = "alice"]
+\end{verbatim}
+will match the children nodes of \verb!/files/etc/hosts! that have both a \verb!ipaddr! sudnode with value \verb!127.0.0.1! and a \verb!canonical! subnode with value \verb!alice!.
+
+\section{Union of paths}
+
+You can use \verb!|! to achieve the union of two paths:
+
+\begin{verbatim}
+augtool> match '/files/etc/fstab | /files/etc/hosts'
+\end{verbatim}
+will return the nodes matching \verb!/files/etc/fstab! as well as the ones matching \verb!/files/etc/hosts!.
+
+\section{Functions}
+
+\index{Path expressions!functions|(}
+
+To enrich the filtering you can achieve with conditionals, Augeas provides a set of functions which can be used in conditional context.
+
+\subsection{The last() function}
+
+\index{Path expressions!functions!last()}
+
+\subsection{The position() function}
+
+\index{Path expressions!functions!position()}
+
+\subsection{The label() function}
+
+\index{Path expressions!functions!label()}
+
+\subsection{The count() function}
+
+\index{Path expressions!functions!count()}
+
+\subsection{The regexp() function}
+
+\index{Path expressions!functions!regexp()}
+
+\index{Path expressions!functions|)}
+
+\section{Node references}
+
+In addition to functions, it is often necessary to refer to nodes relatively as you build complex XPath expressions. Augeas provides special node references for that.
+
+\section{Using variables in paths}
+
+\label{sec:variables} \index{Path expressions!variables|(}
+
+Augeas provides two ways to declare variables.
+
+\subsection{defvar}
+
+\index{Path expressions!variables!defvar} \index{Commands!defvar}
+
+\subsection{defnode}
+
+\index{Path expressions!variables!defnode} \index{Commands!defnode}
+
+\index{Path expressions!variables|)}
+
+\subsection{Using variables to express conditionals}
+
+\section{Ensuring idempotence}
+
+\label{sec:ensuring_idempotence} \index{Path expressions!idempotence}
+
+\begin{verbatim}
+augtool> set '/files/etc/php.ini/PHP/extension[. = "foo.so"]' foo.so
+\end{verbatim}
+

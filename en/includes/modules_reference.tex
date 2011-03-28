@@ -1,0 +1,269 @@
+\chapter{Stock Modules Reference}
+
+Augeas comes with an extensive collection of lenses to parse common configuration files. This chapter will cover the most common of these lenses and provide a reference and examples for them.
+
+This list is not complete. The complete documentation of the modules can be obtained by building it from the Augeas source\footnote{See \emph{installing Augeas} on page \pageref{sec:installing_augeas}}.
+
+\section{The Access Module}
+
+Description of the module
+
+\section{The Aliases Module}
+
+Description of the module
+
+\section{The Approx Module}
+
+Description of the module
+
+\section{The AptPreferences Module}
+
+Description of the module
+
+\section{The Aptsources Module}
+
+Description of the module
+
+\section{The Cron Module}
+
+Description of the module
+
+\section{The Crypttab Module}
+
+Description of the module
+
+\section{The Dhclient Module}
+
+Description of the module
+
+\section{The Dhcpd Module}
+
+Description of the module
+
+\section{The Dnsmasq Module}
+
+Description of the module
+
+\section{The Ethers Module}
+
+Description of the module
+
+\section{The Exports Module}
+
+Description of the module
+
+\section{The Fstab Module}
+
+The \verb!Fstab! modules parses \verb!/etc/fstab! and \verb!/etc/mtab!.
+
+\subsection{Anatomy}
+
+The root nodes are either \verb!#comment! nodes or \verb!seq! nodes.
+
+Each of the \verb!seq! nodes correspond to a line in the file, and has the following nodes:
+
+\begin{itemize}
+\item
+  A \verb!spec! node, the block special device or remote filesystem to be mounted ;
+\item
+  A \verb!file! node, the mount point for the file system ;
+\item
+  A \verb!vfstype! node, the type of filesystem ;
+\item
+  One or more \verb!opt! nodes, the mount options associated with the filesystem ;
+\item
+  An optional \verb!dump! node, the parameter for the \verb!dump(8)! command ;
+\item
+  An optional \verb!passno! node, the parameter for the \verb!fsck(8)! command.
+\end{itemize}
+See \verb!man fstab! for more information on these fields.
+
+\subsection{Sample tree}
+
+\begin{verbatim}
+/files/etc/fstab
+/files/etc/fstab/#comment[1] = "/etc/fstab: static file system information."
+/files/etc/fstab/#comment[2] = "Use 'blkid -o value -s UUID' to print the universally unique identifier"
+/files/etc/fstab/#comment[3] = "for a device; this may be used with UUID= as a more robust way to name"
+/files/etc/fstab/#comment[4] = "devices that works even if disks are added and removed. See fstab(5)."
+/files/etc/fstab/#comment[5] = "<file system> <mount point>   <type>  <options>       <dump>  <pass>"
+/files/etc/fstab/1
+/files/etc/fstab/1/spec = "proc"
+/files/etc/fstab/1/file = "/proc"
+/files/etc/fstab/1/vfstype = "proc"
+/files/etc/fstab/1/opt[1] = "nodev"
+/files/etc/fstab/1/opt[2] = "noexec"
+/files/etc/fstab/1/opt[3] = "nosuid"
+/files/etc/fstab/1/dump = "0"
+/files/etc/fstab/1/passno = "0"
+/files/etc/fstab/#comment[6] = "/ was on /dev/sda1 during installation"
+/files/etc/fstab/2
+/files/etc/fstab/2/spec = "UUID=4cbb4f80-45f9-4e46-a076-8ec1124f4835"
+/files/etc/fstab/2/file = "/"
+/files/etc/fstab/2/vfstype = "ext3"
+/files/etc/fstab/2/opt = "errors"
+/files/etc/fstab/2/opt/value = "remount-ro"
+/files/etc/fstab/2/dump = "0"
+/files/etc/fstab/2/passno = "1"
+/files/etc/fstab/3
+/files/etc/fstab/3/spec = "/dev/sda2"
+/files/etc/fstab/3/file = "none"
+/files/etc/fstab/3/vfstype = "swap"
+/files/etc/fstab/3/opt = "rw"
+/files/etc/fstab/3/dump = "0"
+/files/etc/fstab/3/passno = "0"
+\end{verbatim}
+\subsection{Examples of path expressions}
+
+\begin{verbatim}
+match '/files/etc/fstab/*[label() != "#comment"]'
+\end{verbatim}
+matches all lines except comment lines.
+
+\begin{verbatim}
+match '/files/etc/fstab/*[file = "/"]/spec'
+\end{verbatim}
+matches the \verb!spec! node for the filesystem mounted on ``/''.
+
+\begin{verbatim}
+rm '/files/etc/fstab/*/opt[. = "nosuid"]'
+\end{verbatim}
+removes all \verb!opt! nodes whose value is \verb!nosuid!.
+
+\section{The Group Module}
+
+Description of the module
+
+\section{The Grub Module}
+
+Description of the module
+
+\section{The Hosts Module}
+
+Description of the module
+
+\section{The Httpd Module}
+
+Description of the module
+
+\section{The Inetd Module}
+
+Description of the module
+
+\section{The Inittab Module}
+
+Description of the module
+
+\section{The Interfaces Module}
+
+Description of the module
+
+\section{The Iptables Module}
+
+Description of the module
+
+\section{The Json Module}
+
+Description of the module
+
+\section{The Limits Module}
+
+Description of the module
+
+\section{The Login\_defs Module}
+
+Description of the module
+
+\section{The Logrotate Module}
+
+Description of the module
+
+\section{The Modprobe Module}
+
+Description of the module
+
+\section{The Modules\_conf Module}
+
+Description of the module
+
+\section{The MySQL Module}
+
+Description of the module
+
+\section{The Nsswitch Module}
+
+Description of the module
+
+\section{The Ntp Module}
+
+Description of the module
+
+\section{The Pam Module}
+
+Description of the module
+
+\section{The Passwd Module}
+
+Description of the module
+
+\section{The Pg\_Hba Module}
+
+Description of the module
+
+\section{The PHP Module}
+
+Description of the module
+
+\section{The Postfix\_Master Module}
+
+Description of the module
+
+\section{The Puppet Module}
+
+Description of the module
+
+\section{The Resolv Module}
+
+Description of the module
+
+\section{The Services Module}
+
+Description of the module
+
+\section{The Shells Module}
+
+Description of the module
+
+\section{The Sshd Module}
+
+Description of the module
+
+\section{The Sudoers Module}
+
+Description of the module
+
+\section{The Sysconfig Module}
+
+Description of the module
+
+\section{The Sysctl Module}
+
+Description of the module
+
+\section{The Syslog Module}
+
+Description of the module
+
+\section{The Xinetd Module}
+
+Description of the module
+
+\section{The Xml Module}
+
+Description of the module
+
+\section{The Yum Module}
+
+Description of the module
+
+

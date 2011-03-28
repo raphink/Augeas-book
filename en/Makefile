@@ -1,6 +1,4 @@
 BOOK_NAME=augeas-book
-BOOK_MARKDOWN=$(BOOK_NAME).markdown
-BOOK_HTML=$(BOOK_NAME).html
 BOOK_TEX=$(BOOK_NAME).tex
 BOOK_PDF=$(BOOK_NAME).pdf
 BOOK_IDX=$(BOOK_NAME).idx
@@ -15,20 +13,6 @@ TEXINPUTS=minted:
 
 all:
 
-$(BOOK_MARKDOWN):
-	find . -mindepth 2 -type f -name '*\.markdown' | \
-	   sort | xargs cat > $(BOOK_MARKDOWN)
-
-html: $(BOOK_HTML)
-$(BOOK_HTML): $(BOOK_MARKDOWN)
-	pandoc $(PANDOC_OPTS) -o $(BOOK_HTML) $(BOOK_MARKDOWN)
-
-tex: $(BOOK_TEX)
-$(BOOK_TEX): $(BOOK_MARKDOWN)
-	pandoc -s $(PANDOC_OPTS) -r markdown -w latex \
-	   --no-wrap --template $(LATEX_TEMPLATE) \
-	   -o $(BOOK_TEX) $(BOOK_MARKDOWN)
-
 $(BOOK_IDX): $(BOOK_TEX)
 	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $(BOOK_TEX)
 	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $(BOOK_TEX)
@@ -39,14 +23,6 @@ $(BOOK_IND): $(BOOK_IDX)
 pdf: $(BOOK_PDF)
 $(BOOK_PDF): $(BOOK_IND)
 	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $(BOOK_TEX)
-	#markdown2pdf --template $(LATEX_TEMPLATE) \
-	#   $(PANDOC_OPTS) \
-	#   -o $(BOOK_HTML) $(BOOK_MARKDOWN)
-
-numberedpdf: $(BOOK_MARKDOWN)
-	markdown2pdf --template $(LATEX_TEMPLATE) \
-	   $(PANDOC_OPTS) \
-	   -N -o $(BOOK_HTML) $(BOOK_MARKDOWN)
 
 $(BOOK_PS): $(BOOK_PDF)
 	pdftops $(BOOK_PDF) $(BOOK_PS)
@@ -61,17 +37,12 @@ booklet: $(BOOKLET_PS)
 
 
 clean:
-	rm -f $(BOOK_MARKDOWN)
-	rm -f *.tex *.pdf *.ps *.aux *.log *.out
+	rm -f *.pdf *.ps *.aux *.log *.out
 	rm -f *.idx *.ind *.ilg *.toc *.dvi
-	rm -f *.html
 
 help:
 	@echo "To build the book type:"
-	@echo "   make html : HTML file"
-	@echo "   make tex  : TeX file"
 	@echo "   make pdf  : PDF file"
-	@echo "   make numberedpdf : PDF with numbered sections"
 	@echo "   make booklet     : A5 PDF for recto-version printing"
 	@echo
 	@echo "make clean : Clean all generated files"
