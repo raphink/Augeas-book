@@ -10,15 +10,19 @@ While Augeas is a C library with bindings, it also provides a command-line tool 
 
 The first thing you might want to do is to see how Augeas sees your system configuration files. Fire up `augtool`:
 
+\begin{minted}{bash}
 	$ augtool
+\end{minted}
 
 \index{Commands!ls}
 
 This will give you an interactive shell which passes commands to Augeas. Augeas transforms your configuration files into a tree, which has two nodes at its root: `/augeas` and `/files`. The `/augeas` node contains metadata, which we will be looking at later on, while `/files` contains the representation of the files Augeas was able to parse. You can see these two nodes by typing `ls /`:
 
+\begin{minted}{augtool}
 	augtool> ls /
 	augeas/ = (none)
 	files/ = (none)
+\end{minted}
 
 What does that mean? We see the two nodes at the top of the Augeas tree, and we see that neither of them has a value. In the Augeas tree, each node can have children and a value associated with it.
 
@@ -86,14 +90,18 @@ It is often useful to play with `augtool` when you want to understand the Augeas
 
 In `augtool` you can set this fakeroot by using the `--root` option:
 
+\begin{minted}{bash}
 	$ mkdir -p myroot/etc
 	$ rsync -av /etc/ myroot/etc
 	$ augtool -r myroot
+\end{minted}
 
 In general, you can also set the location of this fakeroot with the `AUGEAS_ROOT` environment variable:
 
+\begin{minted}{bash}
 	$ export AUGEAS_ROOT="$(pwd)/myroot"
 	$ augtool
+\end{minted}
 
 This option can also let you modify files inside a chroot for example.
 
@@ -113,6 +121,7 @@ The fakeroot option will be useful for us here, in order to modify the files wit
 
 Let us change the filesystem options specified on the first line of `/etc/fstab` by removing the third `opt` node:
 
+\begin{minted}{bash}
 	$ augtool --backup --root myroot
 	augtool> rm /files/etc/fstab/1/opt[3]
 	rm : /files/etc/fstab/1/opt[3] 1
@@ -136,9 +145,8 @@ Let us change the filesystem options specified on the first line of `/etc/fstab`
 	 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
 	-proc            /proc           proc    nodev,noexec 0       0
 	+proc            /proc           proc    nodev,noexec,nosuid 0       0
-	 # / was on /dev/sdb1 during installation
-	 UUID=c8acd38c-037a-46c1-a8ce-3ac1c602c367 /               ext4    errors=remount-ro 0       1
-	 # swap was on /dev/sdb5 during installation
+	 /dev/sdb1 /               ext4    errors=remount-ro 0       1
+\end{minted}
 
 The `rm` command removed only the `opt` node we specified, and the saved file has only this option removed.  The rest of the file and even this line was left untouched, preserving the original formatting and layout.
 
@@ -168,14 +176,17 @@ You can see if the `span` functionality is activated in the current session by l
 
 \index{Metadata!\slash{}augeas\slash{}span}
 
+\begin{minted}{augtool}
 	augtool> get /augeas/span
 	/augeas/span = enable
+\end{minted}
 
 
 The data are then available via the `span` command in `augtool`:
 
 \index{Commands!span}
 
+\begin{minted}{bash}
 	$ augtool --span
 	augtool> get /files/etc/ntp.conf/driftfile
 	/files/etc/ntp.conf/driftfile = /var/lib/ntp/ntp.drift
@@ -185,6 +196,7 @@ The data are then available via the `span` command in `augtool`:
 	$ head -c100 /etc/ntp.conf  | tail -c+67
 	
 	driftfile /var/lib/ntp/ntp.drift
+\end{minted}
 
 This indicates that:
 
@@ -202,10 +214,12 @@ In addition to running as an interactive shell, `augtool` can take commands from
 \index{Commands!ls}
 \index{augtool!piping}
 
+\begin{minted}{bash}
 	$ augtool ls /files
 	etc/ = (none)
 	$ echo "ls /files/" | augtool
 	etc/ = (none)
+\end{minted}
 
 This allows to write shell scripts that send commands to `augtool`. Following is an example in bash:
 
@@ -213,6 +227,7 @@ This allows to write shell scripts that send commands to `augtool`. Following is
 \index{Commands!save}
 \index{augtool!piping}
 
+\begin{minted}{bash}
 	#!/bin/bash
 	function do_augtool() {
 	   local command="$1"
@@ -220,6 +235,7 @@ This allows to write shell scripts that send commands to `augtool`. Following is
 	}
 	
 	do_augtool "set /files/etc/hosts/1/canonical alice\nsave"
+\end{minted}
 
 \index{augtool!options!--autosave}
 
@@ -233,19 +249,23 @@ This allows to write shell scripts that send commands to `augtool`. Following is
 \index{augtool!options!--file}
 \index{Commands!ls}
 
+\begin{minted}{bash}
 	$ cat commands.augtool
 	ls "/files"
 	$ augtool --file commands.augtool
 	etc/ = (none)
+\end{minted}
 
 This allows to use `augtool` as a script interpreter in a shebang and write self-executable `augtool` scripts:
 
+\begin{minted}{bash}
 	$ cat commands.augtool
 	#!/usr/bin/augtool -f
 	ls "/files"
 	$ chmod +x commands.augtool
 	$ ./commands.augtool
 	etc/ = (none)
+\end{minted}
 
 
 ### Dropping into an interactive session
@@ -256,9 +276,11 @@ When `augtool` takes commands from the command line, STDIN or a file, it doesn't
 \index{Commands!get}
 \index{augtool!options!--interactive}
 
+\begin{minted}{bash}
 	$ echo "set /files/etc/hosts/1/canonical alice" | augtool --interactive
 	augtool> get /files/etc/hosts/1/canonical
 	/files/etc/hosts/1/canonical = alice
+\end{minted}
 
 > ![**NOTE**][info] *The `--interactive` option only works for STDIN and file input.*
 
@@ -270,6 +292,7 @@ This option also allows you to make scripts that set up an environment and drop 
 \index{Commands!set}
 \index{Commands!quit}
 
+\begin{minted}{bash}
 	$ cat shell.augtool
 	#!/usr/bin/augtool -if
 	set /files/etc/hosts/1/canonical alice
@@ -278,6 +301,7 @@ This option also allows you to make scripts that set up an environment and drop 
 	augtool> get /files/etc/hosts/1/canonical
 	/files/etc/hosts/1/canonical = alice
 	augtool> quit
+\end{minted}
 
 > ![**NOTE**][info] *Only concatenated short options can be used in shebangs, hence the use of `-if`.*
 

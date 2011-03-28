@@ -67,9 +67,14 @@ $for(header-includes)$
 $header-includes$
 $endfor$
 
+% Make indexes
 \usepackage{makeidx}
 \makeindex
+
+% Use minted for syntax highlighting
 \usepackage{minted}
+% See pygmentize -L styles for the list of styles
+%\usemintedstyle{pastie}
 
 $if(title)$
 \title{$title$}
