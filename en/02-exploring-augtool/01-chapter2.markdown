@@ -162,17 +162,18 @@ Augeas offers two options to preserve the existing files when saving the tree. I
 * --backup will save the original file with the extension .augsave and write the new file under the original file name ;
 * --new will save the modified file with a .augnew extension and leave the original file untouched.
 
-These options actually modify the value of the `/augeas/save` node in the Augeas tree^[See chapter 6: *The save node*].
+These options actually modify the value of the `/augeas/save` node in the Augeas tree^[See *the save node* on page \pageref{sec:save_node}].
 
 
 ## Locating nodes in files
 
+\label{sec:locating_nodes}
 \index{augtool!options!--span}
 \index{Flags!\textsc{aug\_enable\_span}}
 
 The span metadata were added in Augeas 0.8.0. For performance reasons, they are not activated by default. This functionality can be activated by the `AUG_ENABLE_SPAN` flag or the `--span` flag in `augtool`.
 
-You can see if the `span` functionality is activated in the current session by looking at the `/augeas/span` node^[See chapter 6: *The span node*]:
+You can see if the `span` functionality is activated in the current session by looking at the `/augeas/span` node^[See *the span node* on page \pageref{sec:span_node}]:
 
 \index{Metadata!\slash{}augeas\slash{}span}
 
@@ -200,7 +201,7 @@ The data are then available via the `span` command in `augtool`:
 
 This indicates that:
 
-* The `driftfile` label was found in the file between positions 67 and 76. This also means that `driftfile` is a dynamic key, not a static label (see chapter 9) ;
+* The `driftfile` label was found in the file between positions 67 and 76. This also means that `driftfile` is a dynamic key, not a static label^[See chapter \ref{chap:writing_lenses}] ;
 * The value of the `driftfile` node was found between positions 77 and 99 in the file ;
 * The whole span of the node is between positions 67 and 100 in the file. The span is one character further than the value, since the `\n` character is considered part of the lens matching the node, but is excluded from the value.
 
@@ -227,15 +228,11 @@ This allows to write shell scripts that send commands to `augtool`. Following is
 \index{Commands!save}
 \index{augtool!piping}
 
-\begin{minted}{bash}
-	#!/bin/bash
-	function do_augtool() {
-	   local command="$1"
-	   echo -e "$command" | augtool
-	}
-	
-	do_augtool "set /files/etc/hosts/1/canonical alice\nsave"
-\end{minted}
+\begin{listing}[H]
+  \inputminted[linenos,frame=leftline]{bash}{listings/augtool_wrap.sh}
+  \caption{Piping commands to augtool in a bash script}
+  \label{lst:augtool_wrap}
+\end{listing}
 
 \index{augtool!options!--autosave}
 

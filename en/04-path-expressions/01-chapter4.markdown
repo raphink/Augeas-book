@@ -108,6 +108,7 @@ In addition to functions, it is often necessary to refer to nodes relatively as 
 
 ## Using variables in paths 
 
+\label{sec:variables}
 \index{Path expressions!variables|(}
 
 Augeas provides two ways to declare variables.
@@ -133,6 +134,7 @@ Augeas provides two ways to declare variables.
 
 ## Ensuring idempotence
 
+\label{sec:ensuring_idempotence}
 \index{Path expressions!idempotence}
 
 	augtool> set '/files/etc/php.ini/PHP/extension[. = "foo.so"]' foo.so

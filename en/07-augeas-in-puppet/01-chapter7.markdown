@@ -56,7 +56,7 @@ Idempotence is very important in configuration management tools such as Puppet. 
 	   onlyif => "match canonical[. = 'alice']" size == 0",
 	}
 
-> ![**NOTE**][info] *For proper idempotence, this statement has to be coupled with the methods described earlier^[See chapter 4: Ensuring idempotence].*
+> ![**NOTE**][info] *For proper idempotence, this statement has to be coupled with the methods described earlier^[See *ensuring idempotence* on page \pageref{sec:ensuring_idempotence}].*
 
 
 

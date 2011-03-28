@@ -1,5 +1,6 @@
 # Writing Your Own Lenses 
 
+\label{chap:writing_lenses}
 \index{Lenses!writing}
 
 Augeas comes with a set of various lenses which cover most of the basic configuration files on a Unix machine. However, there are so many configuration file formats on Unix systems, that you are very likely to miss one at some point.
@@ -24,7 +25,7 @@ __Example of a simple key/value conffile, step by step__
 
 ## Regular expressions 
 
-The bidirectional nature of the Augeas language imposes strict conditions on the language (see chapter 3). This makes complex regular expressions languages such as PCRE hard to implement. For this reason, Augeas only supports POSIX simple regular expressions.
+The bidirectional nature of the Augeas language imposes strict conditions on the language^[See chapter \ref{chap:bx} on page \pageref{bx}]. This makes complex regular expressions languages such as PCRE hard to implement. For this reason, Augeas only supports POSIX simple regular expressions.
 
 __Give Examples__
 

@@ -2,7 +2,7 @@
 
 Augeas comes with an extensive collection of lenses to parse common configuration files. This chapter will cover the most common of these lenses and provide a reference and examples for them.
 
-This list is not complete. The complete documentation of the modules can be obtained by building it from the Augeas source (see chapter 1).
+This list is not complete. The complete documentation of the modules can be obtained by building it from the Augeas source^[See *installing Augeas* on page \pageref{sec:installing_augeas}].
 
 
 ## The Access Module 

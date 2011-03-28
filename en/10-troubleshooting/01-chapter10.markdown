@@ -1,10 +1,11 @@
 # Troubleshooting Augeas 
 
+\label{chap:troubleshooting}
 \index{Lenses!troubleshooting}
 
-The Augeas tree is built using bidirectional grammars called lenses (see chapter 3). The configuration files will not appear in the Augeas tree if the lens responsible for parsing them fails to do so.
+The Augeas tree is built using bidirectional grammars called lenses^[See chapter \ref{chap:bx} on page \pageref{chap:bx}]. The configuration files will not appear in the Augeas tree if the lens responsible for parsing them fails to do so.
 
-In the other direction (the put direction, see chapter 3), lenses may fail to save a tree back to a configuration file if that tree doesn't fit in the given lens.
+In the other direction^[The `put` direction, see chapter \ref{chap:bx} on page \pageref{chap:bx}], lenses may fail to save a tree back to a configuration file if that tree doesn't fit in the given lens.
 
 Whatever you are trying to troubleshoot, you will most likely benefit from the metadata exposed in the `/augeas` node at the top of the Augeas tree.
 
@@ -32,7 +33,7 @@ There can be several reasons for a file to not appear in the Augeas tree.
 
 ### No lens for the file 
 
-One possibility is that there is no existing lens for this file, or the lens you expect to parse this file has no filter for this file at this location. See chapter 7 for more information on writing lenses.
+One possibility is that there is no existing lens for this file, or the lens you expect to parse this file has no filter for this file at this location. See chapter \ref{chap:writing_lenses} on page \pageref{chap:writing_lenses} for more information on writing lenses.
 
 
 ### UID has no rights to read 

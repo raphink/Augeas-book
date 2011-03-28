@@ -54,6 +54,7 @@ Example:
 
 ## The save node 
 
+\label{sec:save_node}
 \index{Metadata!\slash{}augeas\slash{}save}
 
 The `/augeas/save` node contains the saving mode used by Augeas for the session. The value of this node must be one of the values listed in the `/augeas/version/save/mode` nodes.
@@ -132,7 +133,7 @@ We can now call `load` and list the files in `/files/etc`:
 	augtool> ls /files/etc
 	fstab/ = (none)
 
-> ![**NOTE**][info] *Lenses loaded automatically have a `lens` statement which begins with a `@`, such a `@Fstab`. When you set the lens manually however, you have to specify the lens to use, for example `Fstab.lns`. See chapter 9 for more information on writing lenses.*
+> ![**NOTE**][info] *Lenses loaded automatically have a `lens` statement which begins with a `@`, such a `@Fstab`. When you set the lens manually however, you have to specify the lens to use, for example `Fstab.lns`. See chapter \ref{chap:writing_lenses} on page \pageref{chap:writing_lenses} for more information on writing lenses.*
 
 
 ### Parsing a specific file
@@ -194,7 +195,7 @@ This tree contains several nodes:
 * `lens` is the lens that failed to parse. It is usually the same as as `lens/info` node listed above ;
 * `message` is the error message yielded by Augeas.
 
-For more information on interpreting the error messages, see chapter 10.
+For more information on interpreting the error messages, see chapter \ref{chap:troubleshooting} on page \pageref{chap:troubleshooting}.
 
 
 ### Example
@@ -225,7 +226,7 @@ The parsing of `/etc/ldap.conf` failed on position 9510, which located in beginn
 \index{Metadata!\slash{}augeas\slash{}variables}
 \index{Path expressions!variables!defvar}
 
-When you set variables in Augeas (see chapter 4), the paths of the variables are recorded here.
+When you set variables in Augeas^[See *using variables in paths* on page \pageref{sec:variables}] the paths of the variables are recorded here.
 
 \index{Commands!print}
 \index{Commands!defvar}
@@ -243,10 +244,11 @@ Example:
 
 ## The span node 
 
+\label{sec:span_node}
 \index{Metadata!\slash{}augeas\slash{}span}
 \index{augtool!options!--span}
 \index{Flags!\textsc{aug\_enable\_span}}
 
-The `/augeas/span` node indicates whether the `span` functionality^[See chapter 2: *Locating nodes in files*] is activated in the session.
+The `/augeas/span` node indicates whether the `span` functionality^[See *locating nodes in files* on page \pageref{sec:locating_nodes}] is activated in the session.
 
 
