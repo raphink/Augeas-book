@@ -3,7 +3,7 @@
 \index{augtool}
 \index{augtool!commands|see{Commands}}
 
-While Augeas is a C library with bindings, it also provides a command-line tool called \verb!augtool!, which we will be using in the following examples. In chapter 5, we will see how to use the API and bindings directly.
+While Augeas is a C library with bindings, it also provides a command-line tool called \verb!augtool!, which we will be using in the following examples. In chapter~\ref{chap:api}, we will see how to use the API and bindings directly.
 
 
 \section{Parsing your System Configuration Files}
@@ -164,7 +164,7 @@ Augeas offers two options to preserve the existing files when saving the tree. I
 \item
   ---new will save the modified file with a .augnew extension and leave the original file untouched.
 \end{itemize}
-These options actually modify the value of the \verb!/augeas/save! node in the Augeas tree\footnote{See \emph{the save node} on page \pageref{sec:save_node}}.
+These options actually modify the value of the \verb!/augeas/save! node in the Augeas tree\footnoteref{sec:save_node}.
 
 \section{Locating nodes in files}
 
@@ -172,7 +172,7 @@ These options actually modify the value of the \verb!/augeas/save! node in the A
 
 The span metadata were added in Augeas 0.8.0. For performance reasons, they are not activated by default. This functionality can be activated by the \verb!AUG_ENABLE_SPAN! flag or the \verb!--span! flag in \verb!augtool!.
 
-You can see if the \verb!span! functionality is activated in the current session by looking at the \verb!/augeas/span! node\footnote{See \emph{the span node} on page \pageref{sec:span_node}}:
+You can see if the \verb!span! functionality is activated in the current session by looking at the \verb!/augeas/span! node\footnoteref{sec:span_node}:
 
 \index{Metadata!\slash{}augeas\slash{}span}
 
@@ -209,7 +209,7 @@ Listing \ref{lst:span_ntp} indicates that:
 
 \begin{itemize}
 \item
-  The \verb!driftfile! label was found in the file between positions 67 and 76. This also means that \verb!driftfile! is a dynamic key, not a static label\footnote{See chapter \ref{chap:writing_lenses}} ;
+  The \verb!driftfile! label was found in the file between positions 67 and 76. This also means that \verb!driftfile! is a dynamic key, not a static label\footnoteref{chap:writing_lenses} ;
 \item
   The value of the \verb!driftfile! node was found between positions 77 and 99 in the file ;
 \item

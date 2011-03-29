@@ -172,7 +172,7 @@ fstab/ = (none)
 \end{listing}
 
 \begin{quote}
-\includegraphics{../images/info.png} \emph{Lenses loaded automatically have a \texttt{lens} statement which begins with a \texttt{@}, such a \texttt{@Fstab}. When you set the lens manually however, you have to specify the lens to use, for example \texttt{Fstab.lns}. See chapter \ref{chap:writing_lenses} on page \pageref{chap:writing_lenses} for more information on writing lenses.}
+\includegraphics{../images/info.png} \emph{Lenses loaded automatically have a \texttt{lens} statement which begins with a \texttt{@}, such a \texttt{@Fstab}. When you set the lens manually however, you have to specify the lens to use, for example \texttt{Fstab.lns}. \seeref{chap:writing_lenses} for more information on writing lenses.}
 
 \end{quote}
 \subsection{Parsing a specific file}
@@ -239,7 +239,9 @@ This tree contains several nodes:
 \item
   \verb!message! is the error message yielded by Augeas.
 \end{itemize}
-For more information on interpreting the error messages, see chapter \ref{chap:troubleshooting} on page \pageref{chap:troubleshooting}.
+
+\seeref{chap:troubleshooting} for more information on interpreting the error messages
+
 
 \subsection{Example}
 
@@ -275,7 +277,7 @@ The parsing of \verb!/etc/ldap.conf! failed on position 9510, which located in b
 
 \index{Metadata!\slash{}augeas\slash{}variables} \index{Path expressions!variables!defvar}
 
-When you set variables in Augeas\footnote{See \emph{using variables in paths} on page \pageref{sec:variables}} the paths of the variables are recorded here.
+When you set variables in Augeas\footnoteref{sec:variables} the paths of the variables are recorded here.
 
 \index{Commands!print} \index{Commands!defvar}
 
@@ -300,6 +302,6 @@ augtool> print /augeas/variables/
 
 \label{sec:span_node} \index{Metadata!\slash{}augeas\slash{}span} \index{augtool!options!--span} \index{Flags!\textsc{aug\_enable\_span}}
 
-The \verb!/augeas/span! node indicates whether the \verb!span! functionality\footnote{See \emph{locating nodes in files} on page \pageref{sec:locating_nodes}} is activated in the session.
+The \verb!/augeas/span! node indicates whether the \verb!span! functionality\footnoteref{sec:locating_nodes} is activated in the session.
 
 \index{Metadata|)}
