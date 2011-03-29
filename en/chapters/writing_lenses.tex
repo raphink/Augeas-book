@@ -62,12 +62,14 @@ Many lenses are able to parse this line, and will mostly likely map it the same 
 
 Each lenses may have one and only one autoload statement, involving a lens and a filter, such as the following:
 
-\begin{verbatim}
+\begin{minted}{augeas}
 autoload xfm
 let lns = ...
 let filter = incl "/etc/foo.conf"
 let xfm = transform lns filter
-\end{verbatim}
+\end{minted}
+
+
 \section{Typechecking lenses}
 
 Augeas comes with a command line tool called \verb!augparse! which can be used to typecheck lenses, checking that they meet the conditions to be used as bidirectional transforms.

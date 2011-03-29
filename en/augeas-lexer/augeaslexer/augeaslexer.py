@@ -65,6 +65,33 @@ class AugtoolLexer(RegexLexer):
     }
 
 
+class AugeasLexer(RegexLexer):
+    """
+    Lexer for Augeas modules
+    """
+
+    name = 'Augeas'
+    aliases = ['augeas', 'aug']
+    filenames = ['*.aug']
+    mimetypes = ['text/x-augeas']
+
+    tokens = {
+        'root': [
+            (r'^\s+$', Text),            # empty line
+            (r'\(\*.*', Comment),        # comment
+            (r'.*\*\)', Comment),        # comment
+            (r'[\[\]=]', Operator),
+            (r'\b(autoload|let|test|transform|incl)\b', Keyword),
+            (r'\b(key|value|store|label)\b', Keyword),
+            (r'\b/.*/\b', String.Regex),
+            (r'\b".*"\b', String),
+            (r'(let)(\s+)(\S+)(\s+)(=)(?:(\s+)(.*))',
+             bygroups(Keyword, Whitespace, Name, Whitespace,
+                      Operator, Whitespace, String)),
+        ]
+    }
+
+
 class PuppetAugeasLexer(RegexLexer):
     """
     Lexer for the Puppet Augeas type
@@ -84,7 +111,7 @@ class PuppetAugeasLexer(RegexLexer):
             (r',', Text),
             (r'(\w+)(\s+)({)(\s+)(".*")(:)',
              bygroups(Keyword, Whitespace, Operator,
-                      Whitespace, Name.Namespace, Text)),
+                      Whitespace, Name, Text)),
             (r'(\s*)(context)(\s+)(=>)(\s+)(".*")(,)?',
              bygroups(Whitespace, Keyword, Whitespace, Operator,
                       Whitespace, String, Text)),

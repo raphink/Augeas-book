@@ -9,6 +9,7 @@ entry_points = """
 augtool-shell = augeaslexer.augeaslexer:AugtoolShellLexer
 augtool = augeaslexer.augeaslexer:AugtoolLexer
 puppet-augeas = augeaslexer.augeaslexer:PuppetAugeasLexer
+augeas = augeaslexer.augeaslexer:AugeasLexer
 """
 
 setup(
