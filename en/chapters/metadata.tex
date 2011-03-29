@@ -215,7 +215,7 @@ For each file, the following nodes may be present.
 
 \subsection{The mtime node}
 
-\verb!mtime! is the last modification time of the file when it was read.
+\verb!mtime! is the last modification time of the file when it was read. Augeas uses this information internaly to speed up loading of files. Only the files whose modification time has changed are read again when \verb!aug_load! is called.
 
 \subsection{The lens tree}
 
