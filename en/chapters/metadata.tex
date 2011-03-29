@@ -23,8 +23,8 @@ $ augtool --root fakeroot
 augtool> print /augeas/root
 /augeas/root = "fakeroot/"
   \end{minted}
-  \label{lst:metadata_root}
   \caption{Inspecting /augeas/root}
+  \label{lst:metadata_root}
 \end{listing}
 
 \begin{quote}
@@ -60,8 +60,8 @@ augtool> print /augeas/version/
 /augeas/version/defvar
 /augeas/version/defvar/expr
   \end{minted}
-  \label{lst:metadata_version}
   \caption{Inspecting /augeas/version}
+  \label{lst:metadata_version}
 \end{listing}
 
 
@@ -105,8 +105,8 @@ augtool> print /augeas/load/Pam/
 /augeas/load/Pam/excl[8] = "*.rpmnew"
 /augeas/load/Pam/excl[9] = "*~"
   \end{minted}
-  \label{lst:metadata_load_pam}
   \caption{Listing metadata for the Pam module}
+  \label{lst:metadata_load_pam}
 \end{listing}
 
 
@@ -128,8 +128,8 @@ $ augtool --noautoload
 augtool> print /augeas/load
 /augeas/load
   \end{minted}
-  \label{lst:metadata_noautoload}
   \caption{The effect of --noautoload on /augeas/load}
+  \label{lst:metadata_noautoload}
 \end{listing}
 
 
@@ -153,8 +153,8 @@ augtool> print /augeas/load
 /augeas/load/Fstab/lens = "Fstab.lns"
 /augeas/load/Fstab/incl = "/etc/fstab"
   \end{minted}
-  \label{lst:metadata_setting_lens_manually}
   \caption{Setting the Fstab lens manually in /augeas/load}
+  \label{lst:metadata_setting_lens_manually}
 \end{listing}
 
 We can now call \verb!load! and list the files in \verb!/files/etc!:
@@ -167,8 +167,8 @@ augtool> load
 augtool> ls /files/etc
 fstab/ = (none)
   \end{minted}
-  \label{lst:metadata_call_load}
   \caption{Loading files manually}
+  \label{lst:metadata_call_load}
 \end{listing}
 
 \begin{quote}
@@ -193,8 +193,8 @@ augtool> load
 augtool> ls /files
 foo.json/ = (none)
   \end{minted}
-  \label{lst:metadata_json_lens}
   \caption{Using the Json lens with /augeas/load}
+  \label{lst:metadata_json_lens}
 \end{listing}
 
 \begin{quote}
@@ -261,8 +261,8 @@ augtool> print /augeas/files/etc/ldap.conf/
 /augeas/files/etc/ldap.conf/error/lens = "/usr/share/augeas/lenses/dist/spacevars.aug:37.23-.46:"
 /augeas/files/etc/ldap.conf/error/message = "Iterated lens matched less than it should"
   \end{minted}
-  \label{lst:metadata_ldap_conf}
   \caption{Inspecting ldap.conf metadata}
+  \label{lst:metadata_ldap_conf}
 \end{listing}
 
 In the example above, we see the that \verb!/etc/ldap.conf! uses the \verb!@Spacevars! lens, located in \verb!spacevars.aug! on line 37, between characters 23 et 46.
@@ -288,8 +288,8 @@ augtool> print /augeas/variables/
 /augeas/variables
 /augeas/variables/l = "/augeas/files/etc/ldap.conf"
   \end{minted}
-  \label{lst:metadata_defvar}
   \caption{Defined variables are listed in /augeas/variables}
+  \label{lst:metadata_defvar}
 \end{listing}
 
 \begin{quote}

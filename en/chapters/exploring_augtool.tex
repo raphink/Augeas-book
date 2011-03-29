@@ -122,8 +122,6 @@ The fakeroot option will be useful for us here, in order to modify the files wit
 
 \index{augtool!options!--backup} \index{augtool!options!--root} \index{Commands!rm} \index{Commands!quit} \index{Commands!save} \index{Environment variables!\textsc{augeas\_root}}
 
-Let us change the filesystem options specified on the first line of \verb!/etc/fstab! by removing the third \verb!opt! node:
-
 \begin{listing}
   \begin{minted}{console}
 $ augtool --backup --root myroot
@@ -147,12 +145,12 @@ augtool> quit
 $ diff -u myroot/etc/fstab myroot/etc/fstab.augsave
   \end{minted}
   \inputminted{diff}{listings/fstab_opt.diff}
-  \label{lst:rm_fstab_opt}
   \caption{Removing an option in fstab}
+  \label{lst:rm_fstab_opt}
 \end{listing}
 
 
-The \verb!rm! command in listing \ref{lst:rm_fstab_opt} removed only the \verb!opt! node we specified, and the saved file has only this option removed. The rest of the file and even the rest of this line was left untouched, preserving the original formatting and layout.
+In listing \ref{lst:rm_fstab_opt}, we change the filesystem options specified on the first line of \verb!/etc/fstab! by removing the third \verb!opt! node. The \verb!rm! command removes only the \verb!opt! node we specified, and the saved file has only this option removed. The rest of the file and even the rest of this line was left untouched, preserving the original formatting and layout.
 
 \section{Preserving existing files}
 
@@ -203,8 +201,8 @@ $ head -c100 /etc/ntp.conf  | tail -c+67
 
 driftfile /var/lib/ntp/ntp.drift
   \end{minted}
-  \label{lst:span_ntp}
   \caption{Getting the position of a node with span}
+  \label{lst:span_ntp}
 \end{listing}
 
 Listing \ref{lst:span_ntp} indicates that:

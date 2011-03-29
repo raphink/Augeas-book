@@ -59,10 +59,14 @@ As an example, if the \verb!/etc/foo.conf! configuration file contains an includ
 
 Augeas will not attempt to parse the contents of the files in \verb!/etc/foo.d/*! and add them to the \verb!/etc/foo.conf! tree. Instead, it will provide a tree like the following:
 
-\begin{verbatim}
+\begin{listing}
+  \begin{minted}{augtool-shell}
 /files/etc/foo.conf
 /files/etc/foo.conf/#include = /etc/foo.d/*
-\end{verbatim}
+  \end{minted}
+  \caption{Augeas does not interpret include statements}
+  \label{lst:intro_include_tree}
+\end{listing}
 
 \verb!#include! is just a parameter of the \verb!/etc/foo.conf! configuration file and \verb!/etc/foo.d/*! is the value of the parameter. The contents of \verb!/etc/foo.d/*! will probably appear in the tree if the lens is able to parse them, but in no way will Augeas make a logical link between \verb!/etc/foo.conf! and \verb!/etc/foo.d/*!.
 
@@ -98,13 +102,17 @@ For example, an \verb!/etc/hosts! line like the following:
 
 will be represented by the following tree:
 
-\begin{verbatim}
+\begin{listing}
+  \begin{minted}{augtool-shell}
 /files/etc/hosts
 /files/etc/hosts/1
 /files/etc/hosts/1/ipaddr = "192.168.0.10"
 /files/etc/hosts/1/canonical = "aslan"
 /files/etc/hosts/1/#comment = "Added by NetworkManager"
-\end{verbatim}
+  \end{minted}
+  \caption{/etc/hosts lines are split by parameter in the Augeas tree}
+  \label{lst:intro_hosts_tree}
+\end{listing}
 
 The order of the statements is strictly kept, Augeas does not interpret the configuration files per se, but it labels each of the fields on the line to ease access to individual configuration items.
 
