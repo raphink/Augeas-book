@@ -12,13 +12,14 @@ Puppet provides a native Augeas type since version 0.24.7.
 
 \index{Commands!set} The Augeas type in Puppet takes a list of commands labeled ``changes''. A simple example is the following:
 
-\begin{verbatim}
+\begin{minted}{puppet-augeas}
 augeas { "hosts_alice":
    changes => [
       "set /files/etc/hosts/1/canonical alice",
    ],
 }
-\end{verbatim}
+\end{minted}
+
 The \verb!changes! attribute is an array of Augeas commands, similar to what you would pass to \verb!augtool!.
 
 \begin{quote}
@@ -39,15 +40,15 @@ While quoting in \verb!augtool! is strict, quoting in Puppet can be tricky.
 
 Idempotence is very important in configuration management tools such as Puppet. The Augeas type provides a \verb!onlyif! statement to make it easy to ensure that Augeas is only called when necessary.
 
-\begin{verbatim}
+\begin{minted}{puppet-augeas}
 augeas { "hosts_alice":
    context => "/files/etc/hosts/1",
    changes => [
       "set canonical alice",
    ],
-   onlyif => "match canonical[. = 'alice']" size == 0",
+   onlyif => "match canonical[. = 'alice'] size == 0",
 }
-\end{verbatim}
+\end{minted}
 
 \begin{quote}
 \includegraphics{../images/info.png} \emph{For proper idempotence, this statement has to be coupled with the methods described earlier\footnoteref{sec:ensuring_idempotence}.}

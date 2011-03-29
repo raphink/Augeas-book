@@ -255,23 +255,43 @@ Listing \ref{lst:augtool_wrap} shows an example of a bash script wrapping around
 
 \index{augtool!options!--file} \index{Commands!ls}
 
-\begin{minted}{console}
+\begin{listing}
+  \begin{minted}{console}
 $ cat commands.augtool
+  \end{minted}
+  \begin{minted}{augtool}
 ls "/files"
+  \end{minted}
+  \begin{minted}{console}
 $ augtool --file commands.augtool
+  \end{minted}
+  \begin{minted}{augtool-shell}
 etc/ = (none)
-\end{minted}
+  \end{minted}
+  \caption{\texttt{augtool} takes a command file as argument}
+  \label{lst:augtool_file_arg}
+\end{listing}
 
 This allows to use \verb!augtool! as a script interpreter in a shebang and write self-executable \verb!augtool! scripts:
 
-\begin{minted}{console}
+\begin{listing}
+  \begin{minted}{console}
 $ cat commands.augtool
+  \end{minted}
+  \begin{minted}{augtool}
 #!/usr/bin/augtool -f
 ls "/files"
+  \end{minted}
+  \begin{minted}{console}
 $ chmod +x commands.augtool
 $ ./commands.augtool
+  \end{minted}
+  \begin{minted}{augtool-shell}
 etc/ = (none)
-\end{minted}
+  \end{minted}
+  \caption{Using \texttt{augtool} as an interpreter}
+  \label{lst:augtool_interpreter}
+\end{listing}
 
 \subsection{Dropping into an interactive session}
 
@@ -298,7 +318,11 @@ This option also allows you to make scripts that set up an environment and drop 
 \begin{minted}{console}
 $ cat shell.augtool
 #!/usr/bin/augtool -if
+\end{minted}
+\begin{minted}{augtool}
 set /files/etc/hosts/1/canonical alice
+\end{minted}
+\begin{minted}{console}
 $ chmod +x shell.augtool
 $ ./shell.augtool
 \end{minted}

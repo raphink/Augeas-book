@@ -7,6 +7,8 @@ from setuptools import setup
 entry_points = """
 [pygments.lexers]
 augtool-shell = augeaslexer.augeaslexer:AugtoolShellLexer
+augtool = augeaslexer.augeaslexer:AugtoolLexer
+puppet-augeas = augeaslexer.augeaslexer:PuppetAugeasLexer
 """
 
 setup(
