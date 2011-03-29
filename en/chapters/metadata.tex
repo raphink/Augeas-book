@@ -15,13 +15,17 @@ The \verb!/augeas/root! node contains the root of the Augeas tree. This is the v
 
 Example:
 
-\begin{minted}{console}
+\begin{listing}
+  \begin{minted}{console}
 $ augtool --root fakeroot
-\end{minted}
-\begin{minted}{augtool-shell}
+  \end{minted}
+  \begin{minted}{augtool-shell}
 augtool> print /augeas/root
 /augeas/root = "fakeroot/"
-\end{minted}
+  \end{minted}
+  \label{lst:metadata_root}
+  \caption{Inspecting /augeas/root}
+\end{listing}
 
 \begin{quote}
 \includegraphics{../images/info.png} \emph{As of Augeas 0.8.0, this node is purely informative: changing its value has no effect on the way Augeas works.}
@@ -43,9 +47,9 @@ augtool> print /augeas/root
 \end{itemize}
 \index{Commands!print}
 
-Example:
 
-\begin{minted}{augtool-shell}
+\begin{listing}
+  \begin{minted}{augtool-shell}
 augtool> print /augeas/version/
 /augeas/version = "0.8.0"
 /augeas/version/save
@@ -55,7 +59,10 @@ augtool> print /augeas/version/
 /augeas/version/save/mode[4] = "overwrite"
 /augeas/version/defvar
 /augeas/version/defvar/expr
-\end{minted}
+  \end{minted}
+  \label{lst:metadata_version}
+  \caption{Inspecting /augeas/version}
+\end{listing}
 
 
 \section{The save node}
@@ -82,9 +89,8 @@ The \verb!/augeas/load! tree contains the lenses metadata. For each lens loaded 
 \end{itemize}
 \index{Commands!print}
 
-Example:
-
-\begin{minted}{augtool-shell}
+\begin{listing}
+  \begin{minted}{augtool-shell}
 augtool> print /augeas/load/Pam/
 /augeas/load/Pam
 /augeas/load/Pam/lens = "@Pam"
@@ -98,7 +104,11 @@ augtool> print /augeas/load/Pam/
 /augeas/load/Pam/excl[7] = "*.rpmsave"
 /augeas/load/Pam/excl[8] = "*.rpmnew"
 /augeas/load/Pam/excl[9] = "*~"
-\end{minted}
+  \end{minted}
+  \label{lst:metadata_load_pam}
+  \caption{Listing metadata for the Pam module}
+\end{listing}
+
 
 This tree can be manipulated to fine tune the lenses known by Augeas for a session, as well as the files parsed in the session. When the \verb!/augeas/load! tree is modified, you have to call \verb!load! again for the changes to take effect.
 
@@ -110,13 +120,17 @@ It is common to use Augeas to modify only one file. In that case you know exactl
 
 \index{augtool!options!--noautoload}
 
-\begin{minted}{console}
+\begin{listing}
+  \begin{minted}{console}
 $ augtool --noautoload
-\end{minted}
-\begin{minted}{augtool-shell}
+  \end{minted}
+  \begin{minted}{augtool-shell}
 augtool> print /augeas/load
 /augeas/load
-\end{minted}
+  \end{minted}
+  \label{lst:metadata_noautoload}
+  \caption{The effect of --noautoload on /augeas/load}
+\end{listing}
 
 
 \index{Flags!\textsc{aug\_no\_modl\_autoload}}
@@ -129,7 +143,8 @@ The \verb!print! command shows us that no lenses are known in the session. We ca
 
 \index{Commands!set} \index{Commands!print}
 
-\begin{minted}{augtool-shell}
+\begin{listing}
+  \begin{minted}{augtool-shell}
 augtool> set /augeas/load/Fstab/lens "Fstab.lns"
 augtool> set /augeas/load/Fstab/incl "/etc/fstab"
 augtool> print /augeas/load
@@ -137,17 +152,24 @@ augtool> print /augeas/load
 /augeas/load/Fstab
 /augeas/load/Fstab/lens = "Fstab.lns"
 /augeas/load/Fstab/incl = "/etc/fstab"
-\end{minted}
+  \end{minted}
+  \label{lst:metadata_setting_lens_manually}
+  \caption{Setting the Fstab lens manually in /augeas/load}
+\end{listing}
 
 We can now call \verb!load! and list the files in \verb!/files/etc!:
 
 \index{Commands!load} \index{Commands!ls}
 
-\begin{minted}{augtool-shell}
+\begin{listing}
+  \begin{minted}{augtool-shell}
 augtool> load
 augtool> ls /files/etc
 fstab/ = (none)
-\end{minted}
+  \end{minted}
+  \label{lst:metadata_call_load}
+  \caption{Loading files manually}
+\end{listing}
 
 \begin{quote}
 \includegraphics{../images/info.png} \emph{Lenses loaded automatically have a \texttt{lens} statement which begins with a \texttt{@}, such a \texttt{@Fstab}. When you set the lens manually however, you have to specify the lens to use, for example \texttt{Fstab.lns}. See chapter \ref{chap:writing_lenses} on page \pageref{chap:writing_lenses} for more information on writing lenses.}
@@ -161,15 +183,19 @@ So how do you go about using the \verb!Json! lens on a JSON file? You can modify
 
 \index{augtool!options!--root} \index{Commands!set} \index{Commands!load} \index{Commands!ls}
 
-\begin{minted}{console}
+\begin{listing}
+  \begin{minted}{console}
 $ augtool --root .
-\end{minted}
-\begin{minted}{augtool-shell}
+  \end{minted}
+  \begin{minted}{augtool-shell}
 augtool> set /augeas/load/Json/incl "/foo.json"
 augtool> load
 augtool> ls /files
 foo.json/ = (none)
-\end{minted}
+  \end{minted}
+  \label{lst:metadata_json_lens}
+  \caption{Using the Json lens with /augeas/load}
+\end{listing}
 
 \begin{quote}
 \includegraphics{../images/info.png} \emph{This technique can be combined with the above to load only the \texttt{Json} module}
@@ -217,10 +243,11 @@ For more information on interpreting the error messages, see chapter \ref{chap:t
 
 \subsection{Example}
 
-\begin{minted}{console}
+\begin{listing}
+  \begin{minted}{console}
 $ augtool 
-\end{minted}
-\begin{minted}{augtool-shell}
+  \end{minted}
+  \begin{minted}{augtool-shell}
 augtool> print /augeas/files/etc/ldap.conf/
 /augeas/files/etc/ldap.conf
 /augeas/files/etc/ldap.conf/path = "/files/etc/ldap.conf"
@@ -233,7 +260,10 @@ augtool> print /augeas/files/etc/ldap.conf/
 /augeas/files/etc/ldap.conf/error/char = "0"
 /augeas/files/etc/ldap.conf/error/lens = "/usr/share/augeas/lenses/dist/spacevars.aug:37.23-.46:"
 /augeas/files/etc/ldap.conf/error/message = "Iterated lens matched less than it should"
-\end{minted}
+  \end{minted}
+  \label{lst:metadata_ldap_conf}
+  \caption{Inspecting ldap.conf metadata}
+\end{listing}
 
 In the example above, we see the that \verb!/etc/ldap.conf! uses the \verb!@Spacevars! lens, located in \verb!spacevars.aug! on line 37, between characters 23 et 46.
 
@@ -251,12 +281,16 @@ When you set variables in Augeas\footnote{See \emph{using variables in paths} on
 
 Example:
 
-\begin{minted}{augtool-shell}
+\begin{listing}
+  \begin{minted}{augtool-shell}
 augtool> defvar l /augeas/files/etc/ldap.conf/
 augtool> print /augeas/variables/
 /augeas/variables
 /augeas/variables/l = "/augeas/files/etc/ldap.conf"
-\end{minted}
+  \end{minted}
+  \label{lst:metadata_defvar}
+  \caption{Defined variables are listed in /augeas/variables}
+\end{listing}
 
 \begin{quote}
 \includegraphics{../images/info.png} \emph{As of Augeas 0.8.0, this node is purely informative: changing its value has no effect on the way Augeas works.}

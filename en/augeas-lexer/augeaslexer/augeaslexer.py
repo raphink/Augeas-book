@@ -32,12 +32,12 @@ class AugtoolShellLexer(RegexLexer):
             (r'^(rm\s+:.*)', Text),                 # removed nodes
             (r'^(Saved.*)', Text),      # saved
             (r'^(augtool\>)(\s+)(\S+)(?:(\s+)(.*))?$',   # augtool prompt
-             bygroups(Generic.Prompt, Text, Keyword, Text, String)),
+             bygroups(Generic.Prompt, Whitespace, Keyword, Whitespace, String)),
             (r'^([^=]+)(?:(\s+)(=)(\s+)(.*))?$',    # ls/get/print
-             bygroups(String, Text, Operator, Text, String)),
+             bygroups(String, Whitespace, Operator, Whitespace, String)),
             (r'^(\S+)(\s+)(label)(=)(\S+)(\s+)(value)(=)(\S+)(\s+)(span)(=)(\S+)$',  # span output
-             bygroups(String, Text, Keyword, Operator, String, Text,
-                                    Keyword, Operator, String, Text,
+             bygroups(String, Whitespace, Keyword, Operator, String, Whitespace,
+                                    Keyword, Operator, String, Whitespace,
                                     Keyword, Operator, String)),
         ]
     }
