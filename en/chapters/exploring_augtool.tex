@@ -299,13 +299,17 @@ When \verb!augtool! takes commands from the command line, STDIN or a file, it do
 
 \index{augtool!piping} \index{Commands!get} \index{augtool!options!--interactive}
 
-\begin{minted}{console}
+\begin{listing}
+  \begin{minted}{console}
 $ echo "set /files/etc/hosts/1/canonical alice" | augtool --interactive
-\end{minted}
-\begin{minted}{augtool-shell}
+  \end{minted}
+  \begin{minted}{augtool-shell}
 augtool> get /files/etc/hosts/1/canonical
 /files/etc/hosts/1/canonical = alice
-\end{minted}
+  \end{minted}
+  \caption{Setting a single value in \texttt{augtool}}
+  \label{lst:augtool_set_single}
+\end{listing}
 
 \begin{quote}
 \includegraphics{../images/info.png} \emph{The \texttt{--interactive} option only works for STDIN and file input.}
