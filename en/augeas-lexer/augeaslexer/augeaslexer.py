@@ -84,7 +84,7 @@ class PuppetAugeasLexer(RegexLexer):
             (r',', Text),
             (r'(\w+)(\s+)({)(\s+)(".*")(:)',
              bygroups(Keyword, Whitespace, Operator,
-                      Whitespace, String, Text)),
+                      Whitespace, Name.Namespace, Text)),
             (r'(\s*)(context)(\s+)(=>)(\s+)(".*")(,)?',
              bygroups(Whitespace, Keyword, Whitespace, Operator,
                       Whitespace, String, Text)),
