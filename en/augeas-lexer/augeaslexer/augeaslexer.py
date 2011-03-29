@@ -28,13 +28,11 @@ class AugtoolShellLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'\s+', Text),
             (r'[;#].*?$', Comment),
-            (r'=', Operator),
+            (r'^(rm\s+:.*)', Text),                 # removed nodes
+            (r'^(Saved.*)', Text),      # saved
             (r'^(augtool\>)(\s+)(\S+)(?:(\s+)(.*))?$',   # augtool prompt
              bygroups(Generic.Prompt, Text, Keyword, Text, String)),
-            (r'^(Saved \d file\(s\))$', Text),      # saved
-            (r'^(rm\s+:.*)', Text),                 # removed nodes
             (r'^([^=]+)(?:(\s+)(=)(\s+)(.*))?$',    # ls/get/print
              bygroups(String, Text, Operator, Text, String)),
             (r'^(\S+)(\s+)(label)(=)(\S+)(\s+)(value)(=)(\S+)(\s+)(span)(=)(\S+)$',  # span output

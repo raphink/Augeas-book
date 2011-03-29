@@ -146,13 +146,13 @@ augtool> quit
   \begin{minted}{console}
 $ diff -u myroot/etc/fstab myroot/etc/fstab.augsave
   \end{minted}
-  \inputminted[linenos,frame=leftline]{diff}{listings/fstab_opt.diff}
+  \inputminted{diff}{listings/fstab_opt.diff}
   \label{lst:rm_fstab_opt}
   \caption{Removing an option in fstab}
 \end{listing}
 
 
-The \verb!rm! command in listing \ref{lst:rm_fstab_opt} removed only the \verb!opt! node we specified, and the saved file has only this option removed. The rest of the file and even this line was left untouched, preserving the original formatting and layout.
+The \verb!rm! command in listing \ref{lst:rm_fstab_opt} removed only the \verb!opt! node we specified, and the saved file has only this option removed. The rest of the file and even the rest of this line was left untouched, preserving the original formatting and layout.
 
 \section{Preserving existing files}
 

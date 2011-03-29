@@ -15,11 +15,14 @@ The \verb!/augeas/root! node contains the root of the Augeas tree. This is the v
 
 Example:
 
-\begin{verbatim}
+\begin{minted}{console}
 $ augtool --root fakeroot
+\end{minted}
+\begin{minted}{augtool-shell}
 augtool> print /augeas/root
 /augeas/root = "fakeroot/"
-\end{verbatim}
+\end{minted}
+
 \begin{quote}
 \includegraphics{../images/info.png} \emph{As of Augeas 0.8.0, this node is purely informative: changing its value has no effect on the way Augeas works.}
 
@@ -42,7 +45,7 @@ augtool> print /augeas/root
 
 Example:
 
-\begin{verbatim}
+\begin{minted}{augtool-shell}
 augtool> print /augeas/version/
 /augeas/version = "0.8.0"
 /augeas/version/save
@@ -52,7 +55,9 @@ augtool> print /augeas/version/
 /augeas/version/save/mode[4] = "overwrite"
 /augeas/version/defvar
 /augeas/version/defvar/expr
-\end{verbatim}
+\end{minted}
+
+
 \section{The save node}
 
 \label{sec:save_node} \index{Metadata!\slash{}augeas\slash{}save}
@@ -79,7 +84,7 @@ The \verb!/augeas/load! tree contains the lenses metadata. For each lens loaded 
 
 Example:
 
-\begin{verbatim}
+\begin{minted}{augtool-shell}
 augtool> print /augeas/load/Pam/
 /augeas/load/Pam
 /augeas/load/Pam/lens = "@Pam"
@@ -93,7 +98,8 @@ augtool> print /augeas/load/Pam/
 /augeas/load/Pam/excl[7] = "*.rpmsave"
 /augeas/load/Pam/excl[8] = "*.rpmnew"
 /augeas/load/Pam/excl[9] = "*~"
-\end{verbatim}
+\end{minted}
+
 This tree can be manipulated to fine tune the lenses known by Augeas for a session, as well as the files parsed in the session. When the \verb!/augeas/load! tree is modified, you have to call \verb!load! again for the changes to take effect.
 
 Let us look at some use cases.
@@ -104,11 +110,15 @@ It is common to use Augeas to modify only one file. In that case you know exactl
 
 \index{augtool!options!--noautoload}
 
-\begin{verbatim}
+\begin{minted}{console}
 $ augtool --noautoload
+\end{minted}
+\begin{minted}{augtool-shell}
 augtool> print /augeas/load
 /augeas/load
-\end{verbatim}
+\end{minted}
+
+
 \index{Flags!\textsc{aug\_no\_modl\_autoload}}
 
 \begin{quote}
@@ -119,7 +129,7 @@ The \verb!print! command shows us that no lenses are known in the session. We ca
 
 \index{Commands!set} \index{Commands!print}
 
-\begin{verbatim}
+\begin{minted}{augtool-shell}
 augtool> set /augeas/load/Fstab/lens "Fstab.lns"
 augtool> set /augeas/load/Fstab/incl "/etc/fstab"
 augtool> print /augeas/load
@@ -127,16 +137,18 @@ augtool> print /augeas/load
 /augeas/load/Fstab
 /augeas/load/Fstab/lens = "Fstab.lns"
 /augeas/load/Fstab/incl = "/etc/fstab"
-\end{verbatim}
+\end{minted}
+
 We can now call \verb!load! and list the files in \verb!/files/etc!:
 
 \index{Commands!load} \index{Commands!ls}
 
-\begin{verbatim}
+\begin{minted}{augtool-shell}
 augtool> load
 augtool> ls /files/etc
 fstab/ = (none)
-\end{verbatim}
+\end{minted}
+
 \begin{quote}
 \includegraphics{../images/info.png} \emph{Lenses loaded automatically have a \texttt{lens} statement which begins with a \texttt{@}, such a \texttt{@Fstab}. When you set the lens manually however, you have to specify the lens to use, for example \texttt{Fstab.lns}. See chapter \ref{chap:writing_lenses} on page \pageref{chap:writing_lenses} for more information on writing lenses.}
 
@@ -149,13 +161,16 @@ So how do you go about using the \verb!Json! lens on a JSON file? You can modify
 
 \index{augtool!options!--root} \index{Commands!set} \index{Commands!load} \index{Commands!ls}
 
-\begin{verbatim}
+\begin{minted}{console}
 $ augtool --root .
+\end{minted}
+\begin{minted}{augtool-shell}
 augtool> set /augeas/load/Json/incl "/foo.json"
 augtool> load
 augtool> ls /files
 foo.json/ = (none)
-\end{verbatim}
+\end{minted}
+
 \begin{quote}
 \includegraphics{../images/info.png} \emph{This technique can be combined with the above to load only the \texttt{Json} module}
 
@@ -202,8 +217,10 @@ For more information on interpreting the error messages, see chapter \ref{chap:t
 
 \subsection{Example}
 
-\begin{verbatim}
+\begin{minted}{console}
 $ augtool 
+\end{minted}
+\begin{minted}{augtool-shell}
 augtool> print /augeas/files/etc/ldap.conf/
 /augeas/files/etc/ldap.conf
 /augeas/files/etc/ldap.conf/path = "/files/etc/ldap.conf"
@@ -216,7 +233,8 @@ augtool> print /augeas/files/etc/ldap.conf/
 /augeas/files/etc/ldap.conf/error/char = "0"
 /augeas/files/etc/ldap.conf/error/lens = "/usr/share/augeas/lenses/dist/spacevars.aug:37.23-.46:"
 /augeas/files/etc/ldap.conf/error/message = "Iterated lens matched less than it should"
-\end{verbatim}
+\end{minted}
+
 In the example above, we see the that \verb!/etc/ldap.conf! uses the \verb!@Spacevars! lens, located in \verb!spacevars.aug! on line 37, between characters 23 et 46.
 
 The parsing of \verb!/etc/ldap.conf! failed on position 9510, which located in beginning of line 310. The error message indicates that the file could not be fully parsed.
@@ -233,12 +251,13 @@ When you set variables in Augeas\footnote{See \emph{using variables in paths} on
 
 Example:
 
-\begin{verbatim}
+\begin{minted}{augtool-shell}
 augtool> defvar l /augeas/files/etc/ldap.conf/
 augtool> print /augeas/variables/
 /augeas/variables
 /augeas/variables/l = "/augeas/files/etc/ldap.conf"
-\end{verbatim}
+\end{minted}
+
 \begin{quote}
 \includegraphics{../images/info.png} \emph{As of Augeas 0.8.0, this node is purely informative: changing its value has no effect on the way Augeas works.}
 

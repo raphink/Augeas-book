@@ -12,18 +12,20 @@ A simple way to list all known errors in an augtool session is to type:
 
 \index{Commands!print} \index{Metadata!\slash{}augeas\slash{}error}
 
-\begin{verbatim}
-> print /augeas//error
-\end{verbatim}
+\begin{minted}{augtool-shell}
+augtool> print /augeas//error
+\end{minted}
+
 The double slash tells Augeas to search for all subnodes under \verb!/augeas! whose label matches ``error''. The print command will return all subnodes of the matching nodes, given you the details of the errors.
 
 If you want to see the error on a specific file, you can use the path to that file in the expression. For example, to see the error on \verb!/etc/fstab!, you can use:
 
 \index{Commands!print} \index{Metadata!\slash{}augeas\slash{}error}
 
-\begin{verbatim}
-> print /augeas/files/etc/fstab/error
-\end{verbatim}
+\begin{minted}{augtool-shell}
+augtool> print /augeas/files/etc/fstab/error
+\end{minted}
+
 \section{Files don't appear in the tree}
 
 There can be several reasons for a file to not appear in the Augeas tree.
@@ -38,10 +40,11 @@ Another possibility is that the Unix UID you are using has no right to see the f
 
 \index{Metadata!\slash{}augeas\slash{}error}
 
-\begin{verbatim}
+\begin{minted}{augtool-shell}
 /augeas/files/etc/sudoers/error = "read_failed"
 /augeas/files/etc/sudoers/error/message = "Permission denied"
-\end{verbatim}
+\end{minted}
+
 \subsection{Parsing failed}
 
 The last possibility is that the lens failed to parse part of the file, or the whole file.
@@ -58,10 +61,11 @@ Parsing errors are quite common, and there can be several reasons for them:
 \end{itemize}
 In the last two cases, it is important to check that the configuration file is indeed valid. When available, use a command line tool provided with the application owning the configuration file, such as apachectl or visudo:
 
-\begin{verbatim}
+\begin{minted}{console}
 $ apachectl configtest
 $ visudo -c
-\end{verbatim}
+\end{minted}
+
 Note that when the application owning the configuration file is happy with the file and Augeas is not, it is always safer to consider that Augeas is wrong and that the lens has to be modified, since other users are likely to be in the same situation.
 
 \section{Save failed}
