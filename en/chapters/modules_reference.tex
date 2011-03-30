@@ -80,7 +80,7 @@ See \verb!man fstab! for more information on these fields.
 
 \subsection{Sample tree}
 
-\begin{verbatim}
+\begin{minted}[fontsize=\scriptsize]{augtool-shell}
 /files/etc/fstab
 /files/etc/fstab/#comment[1] = "/etc/fstab: static file system information."
 /files/etc/fstab/#comment[2] = "Use 'blkid -o value -s UUID' to print the universally unique identifier"
@@ -112,22 +112,26 @@ See \verb!man fstab! for more information on these fields.
 /files/etc/fstab/3/opt = "rw"
 /files/etc/fstab/3/dump = "0"
 /files/etc/fstab/3/passno = "0"
-\end{verbatim}
+\end{minted}
+
 \subsection{Examples of path expressions}
 
-\begin{verbatim}
+\begin{minted}[fontsize=\scriptsize]{augtool}
 match '/files/etc/fstab/*[label() != "#comment"]'
-\end{verbatim}
+\end{minted}
+
 matches all lines except comment lines.
 
-\begin{verbatim}
+\begin{minted}[fontsize=\scriptsize]{augtool}
 match '/files/etc/fstab/*[file = "/"]/spec'
-\end{verbatim}
+\end{minted}
+
 matches the \verb!spec! node for the filesystem mounted on ``/''.
 
-\begin{verbatim}
+\begin{minted}[fontsize=\scriptsize]{augtool}
 rm '/files/etc/fstab/*/opt[. = "nosuid"]'
-\end{verbatim}
+\end{minted}
+
 removes all \verb!opt! nodes whose value is \verb!nosuid!.
 
 \section{The Group Module}
