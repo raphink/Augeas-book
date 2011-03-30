@@ -9,7 +9,7 @@ BOOKLET_PS=$(BOOK_NAME).booklet.ps
 BOOKLET_TMP_PS=$(BOOK_NAME).booklet.tmp.ps
 LATEX_TEMPLATE=latex.template
 PANDOC_OPTS=--toc
-TEXINPUTS=minted:
+TEXINPUTS=../minted:
 
 all:
 
