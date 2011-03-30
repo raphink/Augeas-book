@@ -39,9 +39,9 @@ augtool> print /augeas/root
 
 \begin{itemize}
 \item
-  The top node has the version of Augeas as its value ;
+  The top node has the version of Augeas as its value;
 \item
-  The \verb!save! node contains \verb!mode! nodes which list the known saving modes for this version of Augeas ;
+  The \verb!save! node contains \verb!mode! nodes which list the known saving modes for this version of Augeas;
 \item
   The \verb!defvar! node contains \textbf{what exactly??}.
 \end{itemize}
@@ -81,9 +81,9 @@ The \nolinkurl{/augeas/load} tree contains the lenses metadata. For each lens lo
 
 \begin{itemize}
 \item
-  a \verb!lens! node, which specifies the name of the module used by this lens ;
+  a \verb!lens! node, which specifies the name of the module used by this lens;
 \item
-  \verb!incl! nodes for each inclusion path to files recognized by this lens ;
+  \verb!incl! nodes for each inclusion path to files recognized by this lens;
 \item
   \verb!excl! nodes for each path to be excluded from this lens.
 \end{itemize}
@@ -229,13 +229,13 @@ This tree contains several nodes:
 
 \begin{itemize}
 \item
-  \verb!pos! is the position in the file, relative to the beginning, where Augeas failed to parse ;
+  \verb!pos! is the position in the file, relative to the beginning, where Augeas failed to parse;
 \item
-  \verb!line! is the line in the file where Augeas failed to parse ;
+  \verb!line! is the line in the file where Augeas failed to parse;
 \item
-  \verb!char! is the character of the line where Augeas failed to parse ;
+  \verb!char! is the character of the line where Augeas failed to parse;
 \item
-  \verb!lens! is the lens that failed to parse. It is usually the same as as \verb!lens/info! node listed above ;
+  \verb!lens! is the lens that failed to parse. It is usually the same as as \verb!lens/info! node listed above;
 \item
   \verb!message! is the error message yielded by Augeas.
 \end{itemize}
