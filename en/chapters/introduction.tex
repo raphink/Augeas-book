@@ -60,13 +60,13 @@ Augeas does not attempt to provide an abstraction layer from the native configur
 
 As an example, if the \nolinkurl{/etc/foo.conf} configuration file contains an include statement such as the following:
 
-\begin{minted}[fontsize=\scriptsize]{bash}
+\begin{minted}[fontsize=\footnotesize]{bash}
 #include /etc/foo.d/*
 \end{minted}
 
 Augeas will not attempt to parse the contents of the files in \nolinkurl{/etc/foo.d/*} and add them to the \nolinkurl{/etc/foo.conf} tree. Instead, it will provide a tree like the following:
 
-\begin{minted}[fontsize=\scriptsize]{augtool-shell}
+\begin{minted}[fontsize=\footnotesize]{augtool-shell}
 /files/etc/foo.conf
 /files/etc/foo.conf/#include = /etc/foo.d/*
 \end{minted}
@@ -99,13 +99,13 @@ Augeas does not attempt to understand or otherwise interprete configuration file
 
 For example, an \nolinkurl{/etc/hosts} line like the following:
 
-\begin{minted}[fontsize=\scriptsize]{bash}
+\begin{minted}[fontsize=\footnotesize]{bash}
 192.168.0.10    aslan   # Added by NetworkManager
 \end{minted}
 
 will be represented by the following tree:
 
-\begin{minted}[fontsize=\scriptsize]{augtool-shell}
+\begin{minted}[fontsize=\footnotesize]{augtool-shell}
 /files/etc/hosts
 /files/etc/hosts/1
 /files/etc/hosts/1/ipaddr = "192.168.0.10"
@@ -131,14 +131,14 @@ You can find the latest source code on the Augeas website:
 
 Next, install the necessary dependencies to build Augeas. The minimal dependencies you will need are the readline headers. You can use one of these commands to install them:
 
-\begin{minted}[fontsize=\scriptsize]{console}
+\begin{minted}[fontsize=\footnotesize]{console}
 $ sudo yum install readline-devel
 $ sudo apt-get install libreadline-dev
 \end{minted}
 
 Then, extract, compile and install:
 
-\begin{minted}[fontsize=\scriptsize]{console}
+\begin{minted}[fontsize=\footnotesize]{console}
 $ tar xvzf augeas-0.8.0.tar.gz
 $ cd augeas-0.8.0
 $ ./configure
@@ -155,15 +155,15 @@ Most distributions provide Augeas packages, often split up into the shared libra
 
 On Red Hat or Fedora derivatives, you can install the \verb!augeas! package using yum:
 
-\mint[fontsize=\scriptsize]{console}/$ sudo yum install augeas/
+\mint[fontsize=\footnotesize]{console}/$ sudo yum install augeas/
 
 Or on Debian and Ubuntu systems, you can install the Augeas library and the augtool command-line interface with the following:
 
-\mint[fontsize=\scriptsize]{console}/$ sudo apt-get install augeas-tool/
+\mint[fontsize=\footnotesize]{console}/$ sudo apt-get install augeas-tool/
 
 You might also want to install the documentation package with:
 
-\mint[fontsize=\scriptsize]{console}/$ sudo apt-get install augeas-doc/
+\mint[fontsize=\footnotesize]{console}/$ sudo apt-get install augeas-doc/
 
 \subsection{Installing from the Development Head}
 
@@ -173,7 +173,7 @@ Augeas is maintained in a public repository which can be cloned and used to test
 
 If you wish to build and install from the development head, you will need \verb!git! (provided by the \verb!git-core! package on Debian-based distributions), \verb!autoconf!, \verb!automake! and \verb!libtool!, as well as the normal dependencies to build Augeas from source. Then follow these instructions:
 
-\begin{minted}[fontsize=\scriptsize]{console}
+\begin{minted}[fontsize=\footnotesize]{console}
 $ git clone git://git.fedorahosted.org/augeas.git
 $ ./autogen.sh
 $ ./configure

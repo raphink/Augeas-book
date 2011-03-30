@@ -27,7 +27,7 @@ While Augeas is a C library with bindings, it also provides a command-line tool 
 
 The first thing you might want to do is to see how Augeas sees your system configuration files. Fire up \verb!augtool!:
 
-\begin{minted}[fontsize=\scriptsize]{console}
+\begin{minted}[fontsize=\footnotesize]{console}
 $ augtool
 \end{minted}
 
@@ -35,7 +35,7 @@ This will give you an interactive shell which passes commands to Augeas. Augeas 
 
 \index{Commands!ls}
 
-\begin{minted}[fontsize=\scriptsize]{augtool-shell}
+\begin{minted}[fontsize=\footnotesize]{augtool-shell}
 augtool> ls /
 augeas/ = (none)
 files/ = (none)
@@ -47,7 +47,7 @@ What does that mean? We see the two nodes at the top of the Augeas tree, and we 
 
 You can see which files (or directories containing files) were successfully parsed by Augeas in \nolinkurl{/etc} by typing \verb!ls /files/etc!:
 
-\begin{minted}[fontsize=\scriptsize]{augtool-shell}
+\begin{minted}[fontsize=\footnotesize]{augtool-shell}
 augtool> ls /files/etc
 nsswitch.conf/ = (none)
 odbc.ini = (none)
@@ -66,7 +66,7 @@ crypttab/ = (none)
 
 Let's inspect the contents of the first line of \nolinkurl{/etc/fstab} in the Augeas tree. We can use the \verb!print! command to inspect nodes and their values recursively:
 
-\begin{minted}[fontsize=\scriptsize]{augtool-shell}
+\begin{minted}[fontsize=\footnotesize]{augtool-shell}
 augtool> print /files/etc/fstab/1
 /files/etc/fstab/1
 /files/etc/fstab/1/spec = "proc"
@@ -85,7 +85,7 @@ What if we only wanted to find the \verb!opt! nodes of this first line? The \ver
 
 \index{Commands!match}
 
-\begin{minted}[fontsize=\scriptsize]{augtool-shell}
+\begin{minted}[fontsize=\footnotesize]{augtool-shell}
 augtool> match /files/etc/fstab/1/opt
 /files/etc/fstab/1/opt[1] = nodev
 /files/etc/fstab/1/opt[2] = noexec
@@ -94,7 +94,7 @@ augtool> match /files/etc/fstab/1/opt
 
 Now, we might want to get the value of the single node matching an expression, and make sure that this node is unique. For example, if we want the value of the first \verb!opt! node of this first line, we could use the \verb!get! command:
 
-\begin{minted}[fontsize=\scriptsize]{augtool-shell}
+\begin{minted}[fontsize=\footnotesize]{augtool-shell}
 augtool> get /files/etc/fstab/1/opt[1]
 /files/etc/fstab/1/opt[1] = nodev
 \end{minted}
@@ -103,7 +103,7 @@ augtool> get /files/etc/fstab/1/opt[1]
 
 To leave the \verb!augtool! session, you can type \verb!quit! or \verb!^D!:
 
-\begin{minted}[fontsize=\scriptsize]{augtool-shell}
+\begin{minted}[fontsize=\footnotesize]{augtool-shell}
 augtool> quit
 \end{minted}
 
@@ -116,7 +116,7 @@ It is often useful to play with \verb!augtool! when you want to understand the A
 
 In \verb!augtool! you can set this fakeroot by using the \verb!--root! option:
 
-\begin{minted}[fontsize=\scriptsize]{console}
+\begin{minted}[fontsize=\footnotesize]{console}
 $ mkdir -p myroot/etc
 $ rsync -av /etc/ myroot/etc
 $ augtool -r myroot
@@ -124,7 +124,7 @@ $ augtool -r myroot
 
 In general, you can also set the location of this fakeroot with the \verb!AUGEAS_ROOT! environment variable:
 
-\begin{minted}[fontsize=\scriptsize]{console}
+\begin{minted}[fontsize=\footnotesize]{console}
 $ export AUGEAS_ROOT="$(pwd)/myroot"
 $ augtool
 \end{minted}
@@ -140,10 +140,10 @@ The fakeroot option will be useful for us here, in order to modify the files wit
 \index{augtool!options!--backup} \index{augtool!options!--root} \index{Commands!rm} \index{Commands!quit} \index{Commands!save} \index{Environment variables!\textsc{augeas\_root}}
 
 \begin{listing}
-  \begin{minted}[fontsize=\scriptsize]{console}
+  \begin{minted}[fontsize=\footnotesize]{console}
 $ augtool --backup --root myroot
   \end{minted}
-  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
+  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
 augtool> rm /files/etc/fstab/1/opt[3]
 rm : /files/etc/fstab/1/opt[3] 1
 augtool> print /files/etc/fstab/1
@@ -158,10 +158,10 @@ augtool> save
 Saved 1 file(s)
 augtool> quit
   \end{minted}
-  \begin{minted}[fontsize=\scriptsize]{console}
+  \begin{minted}[fontsize=\footnotesize]{console}
 $ diff -u myroot/etc/fstab myroot/etc/fstab.augsave
   \end{minted}
-  \inputminted[fontsize=\scriptsize]{diff}{../listings/fstab_opt.diff}
+  \inputminted[fontsize=\footnotesize]{diff}{../listings/fstab_opt.diff}
   \caption{Removing an option in fstab}
   \label{lst:rm_fstab_opt}
 \end{listing}
@@ -193,7 +193,7 @@ You can see if the \verb!span! functionality is activated in the current session
 
 \index{Metadata!\slash{}augeas\slash{}span}
 
-\begin{minted}[fontsize=\scriptsize]{augtool-shell}
+\begin{minted}[fontsize=\footnotesize]{augtool-shell}
 augtool> get /augeas/span
 /augeas/span = enable
 \end{minted}
@@ -203,17 +203,17 @@ The data are then available via the \verb!span! command in \verb!augtool!:
 \index{Commands!span}
 
 \begin{listing}
-  \begin{minted}[fontsize=\scriptsize]{console}
+  \begin{minted}[fontsize=\footnotesize]{console}
 $ augtool --span
   \end{minted}
-  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
+  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
 augtool> get /files/etc/ntp.conf/driftfile
 /files/etc/ntp.conf/driftfile = /var/lib/ntp/ntp.drift
 augtool> span /files/etc/ntp.conf/driftfile
 /etc/ntp.conf label=(67:76) value=(77:99) span=(67,100)
 augtool> quit
   \end{minted}
-  \begin{minted}[fontsize=\scriptsize]{console}
+  \begin{minted}[fontsize=\footnotesize]{console}
 $ head -c100 /etc/ntp.conf  | tail -c+67
 
 driftfile /var/lib/ntp/ntp.drift
@@ -240,7 +240,7 @@ In addition to running as an interactive shell, \verb!augtool! can take commands
 
 \index{Commands!ls} \index{augtool!piping}
 
-\begin{minted}[fontsize=\scriptsize]{console}
+\begin{minted}[fontsize=\footnotesize]{console}
 $ augtool ls /files
 etc/ = (none)
 $ echo "ls /files/" | augtool
@@ -252,7 +252,7 @@ This allows to write shell scripts that send commands to \verb!augtool!.
 \index{Commands!set} \index{Commands!save} \index{augtool!piping}
 
 \begin{listing}[H]
-  \inputminted[linenos,frame=leftline,fontsize=\scriptsize]{bash}{../listings/augtool_wrap.sh}
+  \inputminted[linenos,frame=leftline,fontsize=\footnotesize]{bash}{../listings/augtool_wrap.sh}
   \caption{Piping commands to augtool in a bash script}
   \label{lst:augtool_wrap}
 \end{listing}
@@ -273,16 +273,16 @@ Listing \ref{lst:augtool_wrap} shows an example of a bash script wrapping around
 \index{augtool!options!--file} \index{Commands!ls}
 
 \begin{listing}
-  \begin{minted}[fontsize=\scriptsize]{console}
+  \begin{minted}[fontsize=\footnotesize]{console}
 $ cat commands.augtool
   \end{minted}
-  \begin{minted}[fontsize=\scriptsize]{augtool}
+  \begin{minted}[fontsize=\footnotesize]{augtool}
 ls "/files"
   \end{minted}
-  \begin{minted}[fontsize=\scriptsize]{console}
+  \begin{minted}[fontsize=\footnotesize]{console}
 $ augtool --file commands.augtool
   \end{minted}
-  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
+  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
 etc/ = (none)
   \end{minted}
   \caption{\texttt{augtool} takes a command file as argument}
@@ -292,18 +292,18 @@ etc/ = (none)
 This allows to use \verb!augtool! as a script interpreter in a shebang and write self-executable \verb!augtool! scripts:
 
 \begin{listing}
-  \begin{minted}[fontsize=\scriptsize]{console}
+  \begin{minted}[fontsize=\footnotesize]{console}
 $ cat commands.augtool
   \end{minted}
-  \begin{minted}[fontsize=\scriptsize]{augtool}
+  \begin{minted}[fontsize=\footnotesize]{augtool}
 #!/usr/bin/augtool -f
 ls "/files"
   \end{minted}
-  \begin{minted}[fontsize=\scriptsize]{console}
+  \begin{minted}[fontsize=\footnotesize]{console}
 $ chmod +x commands.augtool
 $ ./commands.augtool
   \end{minted}
-  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
+  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
 etc/ = (none)
   \end{minted}
   \caption{Using \texttt{augtool} as an interpreter}
@@ -317,10 +317,10 @@ When \verb!augtool! takes commands from the command line, STDIN or a file, it do
 \index{augtool!piping} \index{Commands!get} \index{augtool!options!--interactive}
 
 \begin{listing}
-  \begin{minted}[fontsize=\scriptsize]{console}
+  \begin{minted}[fontsize=\footnotesize]{console}
 $ echo "set /files/etc/hosts/1/canonical alice" | augtool --interactive
   \end{minted}
-  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
+  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
 augtool> get /files/etc/hosts/1/canonical
 /files/etc/hosts/1/canonical = alice
   \end{minted}
@@ -336,18 +336,18 @@ This option also allows you to make scripts that set up an environment and drop 
 
 \index{augtool!options!--file} \index{Commands!get} \index{Commands!set} \index{Commands!quit}
 
-\begin{minted}[fontsize=\scriptsize]{console}
+\begin{minted}[fontsize=\footnotesize]{console}
 $ cat shell.augtool
 #!/usr/bin/augtool -if
 \end{minted}
-\begin{minted}[fontsize=\scriptsize]{augtool}
+\begin{minted}[fontsize=\footnotesize]{augtool}
 set /files/etc/hosts/1/canonical alice
 \end{minted}
-\begin{minted}[fontsize=\scriptsize]{console}
+\begin{minted}[fontsize=\footnotesize]{console}
 $ chmod +x shell.augtool
 $ ./shell.augtool
 \end{minted}
-\begin{minted}[fontsize=\scriptsize]{augtool-shell}
+\begin{minted}[fontsize=\footnotesize]{augtool-shell}
 augtool> get /files/etc/hosts/1/canonical
 /files/etc/hosts/1/canonical = alice
 augtool> quit

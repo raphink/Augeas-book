@@ -81,7 +81,7 @@ See \verb!man fstab! for more information on these fields.
 \subsection{Sample tree}
 
 \begin{listing}
-  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
+  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
 /files/etc/fstab
 /files/etc/fstab/#comment[1] = "/etc/fstab: static file system information."
 /files/etc/fstab/1
@@ -118,19 +118,19 @@ Listing \ref{lst:ref_fstab_sample} shows a sample tree of the Fstab lens.
 
 \subsection{Examples of path expressions}
 
-\begin{minted}[fontsize=\scriptsize]{augtool}
+\begin{minted}[fontsize=\footnotesize]{augtool}
 match '/files/etc/fstab/*[label() != "#comment"]'
 \end{minted}
 
 matches all lines except comment lines.
 
-\begin{minted}[fontsize=\scriptsize]{augtool}
+\begin{minted}[fontsize=\footnotesize]{augtool}
 match '/files/etc/fstab/*[file = "/"]/spec'
 \end{minted}
 
 matches the \verb!spec! node for the filesystem mounted on ``/''.
 
-\begin{minted}[fontsize=\scriptsize]{augtool}
+\begin{minted}[fontsize=\footnotesize]{augtool}
 rm '/files/etc/fstab/*/opt[. = "nosuid"]'
 \end{minted}
 
