@@ -86,7 +86,7 @@ class AugeasLexer(RegexLexer):
             (r'\b/.*/\b', String.Regex),
             (r'\b".*"\b', String),
             (r'(let)(\s+)(\S+)(\s+)(=)(?:(\s+)(.*))',
-             bygroups(Keyword, Whitespace, Name, Whitespace,
+             bygroups(Keyword, Whitespace, Name.Namespace, Whitespace,
                       Operator, Whitespace, String)),
         ]
     }
@@ -111,7 +111,7 @@ class PuppetAugeasLexer(RegexLexer):
             (r',', Text),
             (r'(\w+)(\s+)({)(\s+)(".*")(:)',
              bygroups(Keyword, Whitespace, Operator,
-                      Whitespace, Name, Text)),
+                      Whitespace, Name.Namespace, Text)),
             (r'(\s*)(context)(\s+)(=>)(\s+)(".*")(,)?',
              bygroups(Whitespace, Keyword, Whitespace, Operator,
                       Whitespace, String, Text)),
