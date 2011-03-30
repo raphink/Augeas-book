@@ -260,7 +260,7 @@ This allows to write shell scripts that send commands to \verb!augtool!.
 \index{augtool!options!--autosave}
 
 \begin{quote}
-\includegraphics{../images/info.png} \emph{The \texttt{--autosave} option in \texttt{augtool} allows you to ommit the \texttt{save} command.}
+\info{The \texttt{--autosave} option in \texttt{augtool} allows you to ommit the \texttt{save} command.}
 \end{quote}
 
 Listing \ref{lst:augtool_wrap} shows an example of a bash script wrapping around \verb!augtool!. Lines 2 through 5 define the wrapping function \verb!do_augtool! which is then called on line 7. Commands are separated with \verb!\n! so they get passed line by line to \verb!augtool! through \verb!echo -e!.
@@ -329,7 +329,7 @@ augtool> get /files/etc/hosts/1/canonical
 \end{listing}
 
 \begin{quote}
-\includegraphics{../images/info.png} \emph{The \texttt{--interactive} option only works for STDIN and file input.}
+\info{The \texttt{--interactive} option only works for STDIN and file input.}
 
 \end{quote}
 This option also allows you to make scripts that set up an environment and drop you in an interactive shell:
@@ -354,5 +354,5 @@ augtool> quit
 \end{minted}
 
 \begin{quote}
-\includegraphics{../images/info.png} \emph{Only concatenated short options can be used in shebangs, hence the use of \texttt{-if}.}
+\info{Only concatenated short options can be used in shebangs, hence the use of \texttt{-if}.}
 \end{quote}

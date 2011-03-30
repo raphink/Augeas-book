@@ -28,7 +28,7 @@ augtool> print /augeas/root
 \end{listing}
 
 \begin{quote}
-\includegraphics{../images/info.png} \emph{As of Augeas 0.8.0, this node is purely informative: changing its value has no effect on the way Augeas works.}
+\info{As of Augeas 0.8.0, this node is purely informative: changing its value has no effect on the way Augeas works.}
 
 \end{quote}
 \section{The version tree}
@@ -136,7 +136,7 @@ augtool> print /augeas/load
 \index{Flags!\textsc{aug\_no\_modl\_autoload}}
 
 \begin{quote}
-\includegraphics{../images/info.png} \emph{This can also be achieved using the \texttt{AUG\_NO\_MODL\_AUTOLOAD} flag with the API}
+\info{This can also be achieved using the \texttt{AUG\_NO\_MODL\_AUTOLOAD} flag with the API}
 
 \end{quote}
 The \verb!print! command shows us that no lenses are known in the session. We can now tell Augeas to load the \verb!Fstab! lens and to include \nolinkurl{/etc/fstab} for it:
@@ -172,7 +172,7 @@ fstab/ = (none)
 \end{listing}
 
 \begin{quote}
-\includegraphics{../images/info.png} \emph{Lenses loaded automatically have a \texttt{lens} statement which begins with a \texttt{@}, such a \texttt{@Fstab}. When you set the lens manually however, you have to specify the lens to use, for example \texttt{Fstab.lns}. \seeref{chap:writing_lenses} for more information on writing lenses.}
+\info{Lenses loaded automatically have a \texttt{lens} statement which begins with a \texttt{@}, such a \texttt{@Fstab}. When you set the lens manually however, you have to specify the lens to use, for example \texttt{Fstab.lns}. \seeref{chap:writing_lenses} for more information on writing lenses.}
 
 \end{quote}
 \subsection{Parsing a specific file}
@@ -198,7 +198,7 @@ foo.json/ = (none)
 \end{listing}
 
 \begin{quote}
-\includegraphics{../images/info.png} \emph{This technique can be combined with the above to load only the \texttt{Json} module}
+\info{This technique can be combined with the above to load only the \texttt{Json} module}
 
 \end{quote}
 \section{The files tree}
@@ -292,7 +292,7 @@ augtool> print /augeas/variables/
 \end{listing}
 
 \begin{quote}
-\includegraphics{../images/info.png} \emph{As of Augeas 0.8.0, this node is purely informative: changing its value has no effect on the way Augeas works.}
+\info{As of Augeas 0.8.0, this node is purely informative: changing its value has no effect on the way Augeas works.}
 
 \end{quote}
 \section{The span node}
