@@ -66,14 +66,10 @@ As an example, if the \nolinkurl{/etc/foo.conf} configuration file contains an i
 
 Augeas will not attempt to parse the contents of the files in \nolinkurl{/etc/foo.d/*} and add them to the \nolinkurl{/etc/foo.conf} tree. Instead, it will provide a tree like the following:
 
-\begin{listing}
-  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
+\begin{minted}[fontsize=\scriptsize]{augtool-shell}
 /files/etc/foo.conf
 /files/etc/foo.conf/#include = /etc/foo.d/*
-  \end{minted}
-  \caption{Augeas does not interpret include statements}
-  \label{lst:intro_include_tree}
-\end{listing}
+\end{minted}
 
 \verb!#include! is just a parameter of the \nolinkurl{/etc/foo.conf} configuration file and \nolinkurl{/etc/foo.d/*} is the value of the parameter. The contents of \nolinkurl{/etc/foo.d/*} will probably appear in the tree if the lens is able to parse them, but in no way will Augeas make a logical link between \nolinkurl{/etc/foo.conf} and \nolinkurl{/etc/foo.d/*}.
 
@@ -109,17 +105,13 @@ For example, an \nolinkurl{/etc/hosts} line like the following:
 
 will be represented by the following tree:
 
-\begin{listing}
-  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
+\begin{minted}[fontsize=\scriptsize]{augtool-shell}
 /files/etc/hosts
 /files/etc/hosts/1
 /files/etc/hosts/1/ipaddr = "192.168.0.10"
 /files/etc/hosts/1/canonical = "aslan"
 /files/etc/hosts/1/#comment = "Added by NetworkManager"
-  \end{minted}
-  \caption{\texttt{/etc/hosts} lines are split by parameter in the Augeas tree}
-  \label{lst:intro_hosts_tree}
-\end{listing}
+\end{minted}
 
 The order of the statements is strictly kept, Augeas does not interpret the configuration files per se, but it labels each of the fields on the line to ease access to individual configuration items.
 

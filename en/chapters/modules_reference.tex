@@ -64,15 +64,15 @@ Each of the \verb!seq! nodes correspond to a line in the file, and has the follo
 
 \begin{itemize}
 \item
-  A \verb!spec! node, the block special device or remote filesystem to be mounted ;
+  A \verb!spec! node, the block special device or remote filesystem to be mounted~;
 \item
-  A \verb!file! node, the mount point for the file system ;
+  A \verb!file! node, the mount point for the file system~;
 \item
-  A \verb!vfstype! node, the type of filesystem ;
+  A \verb!vfstype! node, the type of filesystem~;
 \item
-  One or more \verb!opt! nodes, the mount options associated with the filesystem ;
+  One or more \verb!opt! nodes, the mount options associated with the filesystem~;
 \item
-  An optional \verb!dump! node, the parameter for the \verb!dump(8)! command ;
+  An optional \verb!dump! node, the parameter for the \verb!dump(8)! command~;
 \item
   An optional \verb!passno! node, the parameter for the \verb!fsck(8)! command.
 \end{itemize}
@@ -80,13 +80,10 @@ See \verb!man fstab! for more information on these fields.
 
 \subsection{Sample tree}
 
-\begin{minted}[fontsize=\scriptsize]{augtool-shell}
+\begin{listing}
+  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
 /files/etc/fstab
 /files/etc/fstab/#comment[1] = "/etc/fstab: static file system information."
-/files/etc/fstab/#comment[2] = "Use 'blkid -o value -s UUID' to print the universally unique identifier"
-/files/etc/fstab/#comment[3] = "for a device; this may be used with UUID= as a more robust way to name"
-/files/etc/fstab/#comment[4] = "devices that works even if disks are added and removed. See fstab(5)."
-/files/etc/fstab/#comment[5] = "<file system> <mount point>   <type>  <options>       <dump>  <pass>"
 /files/etc/fstab/1
 /files/etc/fstab/1/spec = "proc"
 /files/etc/fstab/1/file = "/proc"
@@ -112,7 +109,12 @@ See \verb!man fstab! for more information on these fields.
 /files/etc/fstab/3/opt = "rw"
 /files/etc/fstab/3/dump = "0"
 /files/etc/fstab/3/passno = "0"
-\end{minted}
+  \end{minted}
+  \caption{Sample tree for the Fstab lens}
+  \label{lst:ref_fstab_sample}
+\end{listing}
+
+Listing \ref{lst:ref_fstab_sample} shows a sample tree of the Fstab lens.
 
 \subsection{Examples of path expressions}
 
