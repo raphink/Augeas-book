@@ -27,19 +27,17 @@ While Augeas is a C library with bindings, it also provides a command-line tool 
 
 The first thing you might want to do is to see how Augeas sees your system configuration files. Fire up \verb!augtool!:
 
-\begin{minted}[fontsize=\footnotesize]{console}
-$ augtool
-\end{minted}
+\consolecode/$ augtool/
 
 This will give you an interactive shell which passes commands to Augeas. Augeas transforms your configuration files into a tree, which has two nodes at its root: \nolinkurl{/augeas} and \nolinkurl{/files}. The \nolinkurl{/augeas} node contains metadata, which we will be looking at later on, while \nolinkurl{/files} contains the representation of the files Augeas was able to parse. You can see these two nodes by typing \verb!ls /!:
 
 \index{Commands!ls}
 
-\begin{minted}[fontsize=\footnotesize]{augtool-shell}
+\begin{augtoolsh}
 augtool> ls /
 augeas/ = (none)
 files/ = (none)
-\end{minted}
+\end{augtoolsh}
 
 What does that mean? We see the two nodes at the top of the Augeas tree, and we see that neither of them has a value. In the Augeas tree, each node can have children and a value associated with it.
 
@@ -47,7 +45,7 @@ What does that mean? We see the two nodes at the top of the Augeas tree, and we 
 
 You can see which files (or directories containing files) were successfully parsed by Augeas in \nolinkurl{/etc} by typing \verb!ls /files/etc!:
 
-\begin{minted}[fontsize=\footnotesize]{augtool-shell}
+\begin{augtoolsh}
 augtool> ls /files/etc
 nsswitch.conf/ = (none)
 odbc.ini = (none)
@@ -60,13 +58,13 @@ samba/ = (none)
 securetty/ = (none)
 crypttab/ = (none)
 ...
-\end{minted}
+\end{augtoolsh}
 
 \index{Commands!print}
 
 Let's inspect the contents of the first line of \nolinkurl{/etc/fstab} in the Augeas tree. We can use the \verb!print! command to inspect nodes and their values recursively:
 
-\begin{minted}[fontsize=\footnotesize]{augtool-shell}
+\begin{augtoolsh}
 augtool> print /files/etc/fstab/1
 /files/etc/fstab/1
 /files/etc/fstab/1/spec = "proc"
@@ -77,7 +75,7 @@ augtool> print /files/etc/fstab/1
 /files/etc/fstab/1/opt[3] = "nosuid"
 /files/etc/fstab/1/dump = "0"
 /files/etc/fstab/1/passno = "0"
-\end{minted}
+\end{augtoolsh}
 
 Each of the child nodes beneath the \verb!1! node refers to a part of a single line in the \nolinkurl{/etc/fstab} file. The filesystem options are further split into separate nodes under the \verb!opt! node so they can be managed individually.
 
@@ -85,27 +83,25 @@ What if we only wanted to find the \verb!opt! nodes of this first line? The \ver
 
 \index{Commands!match}
 
-\begin{minted}[fontsize=\footnotesize]{augtool-shell}
+\begin{augtoolsh}
 augtool> match /files/etc/fstab/1/opt
 /files/etc/fstab/1/opt[1] = nodev
 /files/etc/fstab/1/opt[2] = noexec
 /files/etc/fstab/1/opt[3] = nosuid
-\end{minted}
+\end{augtoolsh}
 
 Now, we might want to get the value of the single node matching an expression, and make sure that this node is unique. For example, if we want the value of the first \verb!opt! node of this first line, we could use the \verb!get! command:
 
-\begin{minted}[fontsize=\footnotesize]{augtool-shell}
+\begin{augtoolsh}
 augtool> get /files/etc/fstab/1/opt[1]
 /files/etc/fstab/1/opt[1] = nodev
-\end{minted}
+\end{augtoolsh}
 
 \index{Commands!quit}
 
 To leave the \verb!augtool! session, you can type \verb!quit! or \verb!^D!:
 
-\begin{minted}[fontsize=\footnotesize]{augtool-shell}
-augtool> quit
-\end{minted}
+\augtoolshcode/augtool> quit/
 
 
 \section{Using a Fakeroot}
@@ -116,18 +112,18 @@ It is often useful to play with \verb!augtool! when you want to understand the A
 
 In \verb!augtool! you can set this fakeroot by using the \verb!--root! option:
 
-\begin{minted}[fontsize=\footnotesize]{console}
+\begin{console}
 $ mkdir -p myroot/etc
 $ rsync -av /etc/ myroot/etc
 $ augtool -r myroot
-\end{minted}
+\end{console}
 
 In general, you can also set the location of this fakeroot with the \verb!AUGEAS_ROOT! environment variable:
 
-\begin{minted}[fontsize=\footnotesize]{console}
+\begin{console}
 $ export AUGEAS_ROOT="$(pwd)/myroot"
 $ augtool
-\end{minted}
+\end{console}
 
 This option can also let you modify files inside a chroot for example.
 
@@ -140,28 +136,10 @@ The fakeroot option will be useful for us here, in order to modify the files wit
 \index{augtool!options!--backup} \index{augtool!options!--root} \index{Commands!rm} \index{Commands!quit} \index{Commands!save} \index{Environment variables!\textsc{augeas\_root}}
 
 \begin{listing}
-  \begin{minted}[fontsize=\footnotesize]{console}
-$ augtool --backup --root myroot
-  \end{minted}
-  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
-augtool> rm /files/etc/fstab/1/opt[3]
-rm : /files/etc/fstab/1/opt[3] 1
-augtool> print /files/etc/fstab/1
-/files/etc/fstab/1 /files/etc/fstab/1/spec = "proc"
-/files/etc/fstab/1/file = "/proc"
-/files/etc/fstab/1/vfstype = "proc"
-/files/etc/fstab/1/opt[1] = "nodev"
-/files/etc/fstab/1/opt[2] = "noexec"
-/files/etc/fstab/1/dump = "0"
-/files/etc/fstab/1/passno = "0"
-augtool> save
-Saved 1 file(s)
-augtool> quit
-  \end{minted}
-  \begin{minted}[fontsize=\footnotesize]{console}
-$ diff -u myroot/etc/fstab myroot/etc/fstab.augsave
-  \end{minted}
-  \inputminted[fontsize=\footnotesize]{diff}{../listings/fstab_opt.diff}
+  \consolecode|$ augtool --backup --root myroot|
+  \myinputminted{augtool-shell}{rm_fstab_opt.augtoolshell}
+  \consolecode|$ diff -u myroot/etc/fstab myroot/etc/fstab.augsave|
+  \myinputminted{diff}{fstab_opt.diff}
   \caption{Removing an option in fstab}
   \label{lst:rm_fstab_opt}
 \end{listing}
