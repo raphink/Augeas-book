@@ -16,10 +16,10 @@ The \nolinkurl{/augeas/root} node contains the root of the Augeas tree. This is 
 Example:
 
 \begin{listing}
-  \begin{minted}{console}
+  \begin{minted}[fontsize=\scriptsize]{console}
 $ augtool --root fakeroot
   \end{minted}
-  \begin{minted}{augtool-shell}
+  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
 augtool> print /augeas/root
 /augeas/root = "fakeroot/"
   \end{minted}
@@ -49,7 +49,7 @@ augtool> print /augeas/root
 
 
 \begin{listing}
-  \begin{minted}{augtool-shell}
+  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
 augtool> print /augeas/version/
 /augeas/version = "0.8.0"
 /augeas/version/save
@@ -90,7 +90,7 @@ The \nolinkurl{/augeas/load} tree contains the lenses metadata. For each lens lo
 \index{Commands!print}
 
 \begin{listing}
-  \begin{minted}{augtool-shell}
+  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
 augtool> print /augeas/load/Pam/
 /augeas/load/Pam
 /augeas/load/Pam/lens = "@Pam"
@@ -121,10 +121,10 @@ It is common to use Augeas to modify only one file. In that case you know exactl
 \index{augtool!options!--noautoload}
 
 \begin{listing}
-  \begin{minted}{console}
+  \begin{minted}[fontsize=\scriptsize]{console}
 $ augtool --noautoload
   \end{minted}
-  \begin{minted}{augtool-shell}
+  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
 augtool> print /augeas/load
 /augeas/load
   \end{minted}
@@ -144,7 +144,7 @@ The \verb!print! command shows us that no lenses are known in the session. We ca
 \index{Commands!set} \index{Commands!print}
 
 \begin{listing}
-  \begin{minted}{augtool-shell}
+  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
 augtool> set /augeas/load/Fstab/lens "Fstab.lns"
 augtool> set /augeas/load/Fstab/incl "/etc/fstab"
 augtool> print /augeas/load
@@ -162,7 +162,7 @@ We can now call \verb!load! and list the files in \nolinkurl{/files/etc}:
 \index{Commands!load} \index{Commands!ls}
 
 \begin{listing}
-  \begin{minted}{augtool-shell}
+  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
 augtool> load
 augtool> ls /files/etc
 fstab/ = (none)
@@ -184,10 +184,10 @@ So how do you go about using the \verb!Json! lens on a JSON file? You can modify
 \index{augtool!options!--root} \index{Commands!set} \index{Commands!load} \index{Commands!ls}
 
 \begin{listing}
-  \begin{minted}{console}
+  \begin{minted}[fontsize=\scriptsize]{console}
 $ augtool --root .
   \end{minted}
-  \begin{minted}{augtool-shell}
+  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
 augtool> set /augeas/load/Json/incl "/foo.json"
 augtool> load
 augtool> ls /files
@@ -281,7 +281,7 @@ When you set variables in Augeas\footnoteref{sec:variables} the paths of the var
 Example:
 
 \begin{listing}
-  \begin{minted}{augtool-shell}
+  \begin{minted}[fontsize=\scriptsize]{augtool-shell}
 augtool> defvar l /augeas/files/etc/ldap.conf/
 augtool> print /augeas/variables/
 /augeas/variables

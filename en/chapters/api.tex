@@ -57,7 +57,7 @@ So far, our examples have been done using \verb!augtool!, the CLI interface to A
 
 Synopsis:
 
-\begin{minted}{python}
+\begin{minted}[fontsize=\scriptsize]{python}
     def __init__(self, root=None, loadpath=None, flags=NONE)
 \end{minted}
 
@@ -71,7 +71,7 @@ Use \verb!root! as the filesystem root. If \verb!root! is None, use the value of
 
 Example:
 
-\begin{minted}{python}
+\begin{minted}[fontsize=\scriptsize]{python}
     import augeas
     a = augeas.Augeas(root="fakeroot")
 \end{minted}
@@ -80,7 +80,7 @@ Example:
 
 Synopsis:
 
-\begin{minted}{python}
+\begin{minted}[fontsize=\scriptsize]{python}
     def get(self, path)
 \end{minted}
 
@@ -88,7 +88,7 @@ Lookup the value associated with \verb!path!. Returns the value at the path spec
 
 Example:
 
-\begin{minted}{python}
+\begin{minted}[fontsize=\scriptsize]{python}
     val = a.get("/files/etc/ftab/1/canonical")
 \end{minted}
 

@@ -54,7 +54,7 @@ Augeas lenses are put together by assembling regular expressions with combinatio
 
 Augeas lenses need to specify which files they apply to. If they didn't, Augeas would have no way to know which lens to apply to which files. Trying to guess would be a really bad idea. For example, consider a file whose only content is the following:
 
-\begin{minted}{bash}
+\begin{minted}[fontsize=\scriptsize]{bash}
 # this is a comment
 \end{minted}
 
@@ -62,7 +62,7 @@ Many lenses are able to parse this line, and will mostly likely map it the same 
 
 Each lenses may have one and only one autoload statement, involving a lens and a filter, such as the following:
 
-\begin{minted}{augeas}
+\begin{minted}[fontsize=\scriptsize]{augeas}
 autoload xfm
 let lns = ...
 let filter = incl "/etc/foo.conf"
@@ -132,7 +132,7 @@ In order to ignore the default search path for lenses, you can use the \verb!--n
 
 Directories containing additional lenses can be added to the search path by using the \verb!--include! option in \verb!augtool!, or the \verb!AUGEAS_LENS_LIB! environment variable:
 
-\begin{minted}{console}
+\begin{minted}[fontsize=\scriptsize]{console}
 $ augtool --include mylenses
 \end{minted}
 
