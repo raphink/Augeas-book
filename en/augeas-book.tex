@@ -32,10 +32,22 @@
 \usepackage{makeidx}
 \makeindex
 
+
+%% minted conf
+
 % Use minted for syntax highlighting
 \usepackage{minted}
 % See pygmentize -L styles for the list of styles
 %\usemintedstyle{pastie}
+
+% Make nice looking line numbers
+\renewcommand{\theFancyVerbLine}{\sffamily
+\textcolor[rgb]{0.5,0.5,1.0}{\scriptsize
+\oldstylenums{\arabic{FancyVerbLine}}}}
+
+% Code bg color
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+
 
 % Define macros
 \newcommand{\seeref}[1]{See~\emph{\nameref{#1}} on page~\pageref{#1}}
