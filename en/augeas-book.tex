@@ -1,12 +1,28 @@
 % Use koma?
-\documentclass{scrbook}
+\documentclass[a4paper,12pt]{scrbook}
 %\documentclass{book}
+\usepackage[english]{babel} %language selection
+\selectlanguage{english}
+\pagenumbering{arabic}
+
 \usepackage{amsmath}
 \usepackage[mathletters]{ucs}
 \usepackage[utf8x]{inputenc}
 \usepackage{fancyvrb}
 \usepackage{graphicx}
 \usepackage[breaklinks=true,unicode=true]{hyperref}
+\hypersetup{colorlinks, 
+           citecolor=black,
+           filecolor=black,
+           linkcolor=black,
+           urlcolor=black,
+           bookmarksopen=true,
+           pdftex}
+\usepackage{url}
+\usepackage[activate={true,nocompatibility}]{microtype}
+
+\hfuzz = .6pt % avoid black boxes
+
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setcounter{secnumdepth}{0}
@@ -32,6 +48,8 @@
 \begin{document}
 \maketitle
 
+\include{license}
+
 \tableofcontents
 
 \include{chapters/introduction}
@@ -45,6 +63,10 @@
 \include{chapters/writing_lenses}
 \include{chapters/troubleshooting}
 \include{chapters/contact}
+
+%GFDL
+\appendix
+\include{fdl-1.3}
 
 \printindex
 

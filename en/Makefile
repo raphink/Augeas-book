@@ -37,7 +37,7 @@ booklet: $(BOOKLET_PS)
 
 
 clean:
-	rm -f *.pdf *.ps *.aux *.log *.out
+	rm -f *.pdf *.ps *.aux *.log *.out *.lol
 	rm -f *.idx *.ind *.ilg *.toc *.dvi
 	rm -f chapters/*.aux
 

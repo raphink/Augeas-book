@@ -8,6 +8,7 @@
 in some accounts a son of Helios, \\
 in others of Poseidon, \\
 and in still others of Phorbas.'' \\
+\bigskip
 \small{-- Apollodorus, The Library 2.88}
 \end{verse}
 
@@ -51,13 +52,13 @@ Before we dive into what Augeas can do for you, it is important to note the foll
 
 Augeas does not attempt to provide an abstraction layer from the native configuration format. The organization of the Augeas tree mirrors closely that of the configuration files it represents.
 
-As an example, if the \verb!/etc/foo.conf! configuration file contains an include statement such as the following:
+As an example, if the \nolinkurl{/etc/foo.conf} configuration file contains an include statement such as the following:
 
 \begin{minted}{bash}
 #include /etc/foo.d/*
 \end{minted}
 
-Augeas will not attempt to parse the contents of the files in \verb!/etc/foo.d/*! and add them to the \verb!/etc/foo.conf! tree. Instead, it will provide a tree like the following:
+Augeas will not attempt to parse the contents of the files in \nolinkurl{/etc/foo.d/*} and add them to the \nolinkurl{/etc/foo.conf} tree. Instead, it will provide a tree like the following:
 
 \begin{listing}
   \begin{minted}{augtool-shell}
@@ -68,7 +69,7 @@ Augeas will not attempt to parse the contents of the files in \verb!/etc/foo.d/*
   \label{lst:intro_include_tree}
 \end{listing}
 
-\verb!#include! is just a parameter of the \verb!/etc/foo.conf! configuration file and \verb!/etc/foo.d/*! is the value of the parameter. The contents of \verb!/etc/foo.d/*! will probably appear in the tree if the lens is able to parse them, but in no way will Augeas make a logical link between \verb!/etc/foo.conf! and \verb!/etc/foo.d/*!.
+\verb!#include! is just a parameter of the \nolinkurl{/etc/foo.conf} configuration file and \nolinkurl{/etc/foo.d/*} is the value of the parameter. The contents of \nolinkurl{/etc/foo.d/*} will probably appear in the tree if the lens is able to parse them, but in no way will Augeas make a logical link between \nolinkurl{/etc/foo.conf} and \nolinkurl{/etc/foo.d/*}.
 
 Other software provide this kind of abstraction layer. This is the case of Config::Model, which can use Augeas as a backend, and is able to understand the logic of a configuration files, such as include statements, or the link between several statements in a configuration file.
 
@@ -76,9 +77,9 @@ Another consequence of this non-goal is that the statements in the Augeas tree w
 
 \subsection{Not a cross-platform abstraction layer}
 
-For a similar reason, Augeas does not attempt to be a cross-platform abstraction layer. When Augeas finds Apache configuration files in \verb!/etc/httpd/httpd.conf! on some operating systems and in \verb!/etc/apache2/apache2.conf! in others, these files will be represented in the tree as \verb!/files/etc/httpd/httpd.conf! and \verb!/files/etc/apache2/apache2.conf! respectively.
+For a similar reason, Augeas does not attempt to be a cross-platform abstraction layer. When Augeas finds Apache configuration files in \nolinkurl{/etc/httpd/httpd.conf} on some operating systems and in \nolinkurl{/etc/apache2/apache2.conf} in others, these files will be represented in the tree as \nolinkurl{/files/etc/httpd/httpd.conf} and \nolinkurl{/files/etc/apache2/apache2.conf} respectively.
 
-Similarly, some operating systems provide their network configuration in \verb!/etc/sysconfig/network! while others use \verb!/etc/network/interfaces!. Augeas will represent these two files in different parts of the tree, and the tree will mirror the way each of these files is organized, without attempting to provide a unified way to configure network interfaces across these operating systems.
+Similarly, some operating systems provide their network configuration in \nolinkurl{/etc/sysconfig/network} while others use \nolinkurl{/etc/network/interfaces}. Augeas will represent these two files in different parts of the tree, and the tree will mirror the way each of these files is organized, without attempting to provide a unified way to configure network interfaces across these operating systems.
 
 Other projects such as netcf, based on Augeas, provide a cross-platform abstraction layer to manage network interfaces regardless of the operating system, but it is not Augeas' goal.
 
@@ -94,7 +95,7 @@ Puppet is an example of configuration management tool which supports Augeas as a
 
 Augeas does not attempt to understand or otherwise interprete configuration files. As stated before, Augeas does not attempt to provide an abstraction layer, but it provides a light modelling, although very close to the organization of the configuration files.
 
-For example, an \verb!/etc/hosts! line like the following:
+For example, an \nolinkurl{/etc/hosts} line like the following:
 
 \begin{minted}{bash}
 192.168.0.10    aslan   # Added by NetworkManager
@@ -128,9 +129,7 @@ You might want to install Augeas from source if your distribution does not provi
 
 You can find the latest source code on the Augeas website:
 
-\begin{verbatim}
-http://augeas.net/download/
-\end{verbatim}
+	\url{http://augeas.net/download/}
 
 Next, install the necessary dependencies to build Augeas. The minimal dependencies you will need are the readline headers. You can use one of these commands to install them:
 
