@@ -6,7 +6,7 @@ The Augeas tree is built using bidirectional grammars called lenses\footnoteref{
 
 In the other direction\footnote{The \verb!put! direction ; \seeref{chap:bx}}, lenses may fail to save a tree back to a configuration file if that tree doesn't fit in the given lens.
 
-Whatever you are trying to troubleshoot, you will most likely benefit from the metadata exposed in the \verb!/augeas! node at the top of the Augeas tree.
+Whatever you are trying to troubleshoot, you will most likely benefit from the metadata exposed in the \nolinkurl{/augeas} node at the top of the Augeas tree.
 
 A simple way to list all known errors in an augtool session is to type:
 
@@ -16,9 +16,9 @@ A simple way to list all known errors in an augtool session is to type:
 augtool> print /augeas//error
 \end{minted}
 
-The double slash tells Augeas to search for all subnodes under \verb!/augeas! whose label matches ``error''. The print command will return all subnodes of the matching nodes, given you the details of the errors.
+The double slash tells Augeas to search for all subnodes under \nolinkurl{/augeas} whose label matches ``error''. The print command will return all subnodes of the matching nodes, given you the details of the errors.
 
-If you want to see the error on a specific file, you can use the path to that file in the expression. For example, to see the error on \verb!/etc/fstab!, you can use:
+If you want to see the error on a specific file, you can use the path to that file in the expression. For example, to see the error on \nolinkurl{/etc/fstab}, you can use:
 
 \index{Commands!print} \index{Metadata!\slash{}augeas\slash{}error}
 
@@ -36,7 +36,7 @@ One possibility is that there is no existing lens for this file, or the lens you
 
 \subsection{UID has no rights to read}
 
-Another possibility is that the Unix UID you are using has no right to see the file. The ``error'' node in the \verb!/augeas! tree will tell you so, with a message such as:
+Another possibility is that the Unix UID you are using has no right to see the file. The ``error'' node in the \nolinkurl{/augeas} tree will tell you so, with a message such as:
 
 \index{Metadata!\slash{}augeas\slash{}error}
 

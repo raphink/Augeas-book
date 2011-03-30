@@ -16,26 +16,26 @@ When you write XPath expressions, you might want to match generic nodes or nodes
 \item
   \verb!*! as a node name matches any node ;
 \item
-  \verb!//! matches on any sublevel of the tree.
+  \nolinkurl{//} matches on any sublevel of the tree.
 \end{itemize}
 Examples:
 
 \begin{verbatim}
 /files/etc/hosts/*
 \end{verbatim}
-will match all children nodes of the \verb!/files/etc/hosts! node.
+will match all children nodes of the \nolinkurl{/files/etc/hosts} node.
 
 \begin{verbatim}
 /files/etc/hosts//canonical
 \end{verbatim}
-will match all \verb!canonical! nodes under the \verb!/files/etc/hosts! node, at any sublevel.
+will match all \verb!canonical! nodes under the \nolinkurl{/files/etc/hosts} node, at any sublevel.
 
 \index{Metadata!\slash{}augeas\slash{}error}
 
 \begin{verbatim}
 /augeas//error
 \end{verbatim}
-will match all \verb!error! nodes at any sublevel under the \verb!/augeas! node.
+will match all \verb!error! nodes at any sublevel under the \nolinkurl{/augeas} node.
 
 \section{Conditionals}
 
@@ -46,12 +46,12 @@ Examples:
 \begin{verbatim}
 /files/etc/hosts/*[canonical = "alice"]
 \end{verbatim}
-will match the children nodes of \verb!/files/etc/hosts! that have a \verb!canonical! subnode with value \verb!alice!.
+will match the children nodes of \nolinkurl{/files/etc/hosts} that have a \verb!canonical! subnode with value \verb!alice!.
 
 \begin{verbatim}
 /files/etc/hosts/*/canonical[. = "alice"]
 \end{verbatim}
-will match \verb!canonical! nodes two levels under the \verb!/files/etc/hosts! node that have value \verb!alice!.
+will match \verb!canonical! nodes two levels under the \nolinkurl{/files/etc/hosts} node that have value \verb!alice!.
 
 \begin{quote}
 \includegraphics{../images/info.png} \emph{In contrast to most XML trees, the Augeas tree contains no attributes, but only nodes with values and children. For this reason, it doesn't use conditional syntaxes featuring the \texttt{@} prefix, which is common to many standard XPath queries.}
@@ -62,7 +62,7 @@ Conditionals can be combined. See these examples:
 \begin{verbatim}
 /files/etc/hosts/*[ipaddr = "127.0.0.1"][canonical = "alice"]
 \end{verbatim}
-will match the children nodes of \verb!/files/etc/hosts! that have both a \verb!ipaddr! sudnode with value \verb!127.0.0.1! and a \verb!canonical! subnode with value \verb!alice!.
+will match the children nodes of \nolinkurl{/files/etc/hosts} that have both a \verb!ipaddr! sudnode with value \verb!127.0.0.1! and a \verb!canonical! subnode with value \verb!alice!.
 
 \section{Union of paths}
 
@@ -71,7 +71,7 @@ You can use \verb!|! to achieve the union of two paths:
 \begin{verbatim}
 augtool> match '/files/etc/fstab | /files/etc/hosts'
 \end{verbatim}
-will return the nodes matching \verb!/files/etc/fstab! as well as the ones matching \verb!/files/etc/hosts!.
+will return the nodes matching \nolinkurl{/files/etc/fstab} as well as the ones matching \nolinkurl{/files/etc/hosts}.
 
 \section{Functions}
 

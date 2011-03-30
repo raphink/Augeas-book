@@ -3,13 +3,13 @@
 \index{Metadata|(}
 \index{Tree!\slash{}augeas|see{Metadata}}
 
-We have seen earlier that the \verb!/augeas! top node exposes Augeas metadata which can be parsed and modified in the same fashion as the \verb!/files! data. This chapter will focus on documenting the various parts of the \verb!/augeas! tree and their functions.
+We have seen earlier that the \nolinkurl{/augeas} top node exposes Augeas metadata which can be parsed and modified in the same fashion as the \nolinkurl{/files} data. This chapter will focus on documenting the various parts of the \nolinkurl{/augeas} tree and their functions.
 
 \section{The root node}
 
 \index{Metadata!\slash{}augeas\slash{}root} \index{augtool!options!--root} \index{Environment variables!\textsc{augeas\_root}}
 
-The \verb!/augeas/root! node contains the root of the Augeas tree. This is the variable which can be set via either the \verb!AUGEAS_ROOT! environment variable or the \verb!--root! option to \verb!augtool!.
+The \nolinkurl{/augeas/root} node contains the root of the Augeas tree. This is the variable which can be set via either the \verb!AUGEAS_ROOT! environment variable or the \verb!--root! option to \verb!augtool!.
 
 \index{Commands!print}
 
@@ -35,7 +35,7 @@ augtool> print /augeas/root
 
 \index{Metadata!\slash{}augeas\slash{}version}
 
-\verb!/augeas/version! is a tree which contains several informations:
+\nolinkurl{/augeas/version} is a tree which contains several informations:
 
 \begin{itemize}
 \item
@@ -69,7 +69,7 @@ augtool> print /augeas/version/
 
 \label{sec:save_node} \index{Metadata!\slash{}augeas\slash{}save}
 
-The \verb!/augeas/save! node contains the saving mode used by Augeas for the session. The value of this node must be one of the values listed in the \verb!/augeas/version/save/mode! nodes.
+The \nolinkurl{/augeas/save} node contains the saving mode used by Augeas for the session. The value of this node must be one of the values listed in the \nolinkurl{/augeas/version/save/mode} nodes.
 
 If this node is modified during the session, it will affect the behaviour of the \verb!save! call whenever it is executed.
 
@@ -77,7 +77,7 @@ If this node is modified during the session, it will affect the behaviour of the
 
 \index{Metadata!\slash{}augeas\slash{}load}
 
-The \verb!/augeas/load! tree contains the lenses metadata. For each lens loaded in the Augeas session, it lists 3 types of nodes:
+The \nolinkurl{/augeas/load} tree contains the lenses metadata. For each lens loaded in the Augeas session, it lists 3 types of nodes:
 
 \begin{itemize}
 \item
@@ -110,13 +110,13 @@ augtool> print /augeas/load/Pam/
 \end{listing}
 
 
-This tree can be manipulated to fine tune the lenses known by Augeas for a session, as well as the files parsed in the session. When the \verb!/augeas/load! tree is modified, you have to call \verb!load! again for the changes to take effect.
+This tree can be manipulated to fine tune the lenses known by Augeas for a session, as well as the files parsed in the session. When the \nolinkurl{/augeas/load} tree is modified, you have to call \verb!load! again for the changes to take effect.
 
 Let us look at some use cases.
 
 \subsection{Using only one lens}
 
-It is common to use Augeas to modify only one file. In that case you know exactly which lens you want to use and on which file. For performance reasons, you might want to narrow the lenses and files Augeas knows about. For example, if you want to only modify \verb!/etc/fstab!, using the \verb!Fstab! lens. In order to do that, we can start \verb!augtool! without loading any lenses:
+It is common to use Augeas to modify only one file. In that case you know exactly which lens you want to use and on which file. For performance reasons, you might want to narrow the lenses and files Augeas knows about. For example, if you want to only modify \nolinkurl{/etc/fstab}, using the \verb!Fstab! lens. In order to do that, we can start \verb!augtool! without loading any lenses:
 
 \index{augtool!options!--noautoload}
 
@@ -139,7 +139,7 @@ augtool> print /augeas/load
 \includegraphics{../images/info.png} \emph{This can also be achieved using the \texttt{AUG\_NO\_MODL\_AUTOLOAD} flag with the API}
 
 \end{quote}
-The \verb!print! command shows us that no lenses are known in the session. We can now tell Augeas to load the \verb!Fstab! lens and to include \verb!/etc/fstab! for it:
+The \verb!print! command shows us that no lenses are known in the session. We can now tell Augeas to load the \verb!Fstab! lens and to include \nolinkurl{/etc/fstab} for it:
 
 \index{Commands!set} \index{Commands!print}
 
@@ -157,7 +157,7 @@ augtool> print /augeas/load
   \label{lst:metadata_setting_lens_manually}
 \end{listing}
 
-We can now call \verb!load! and list the files in \verb!/files/etc!:
+We can now call \verb!load! and list the files in \nolinkurl{/files/etc}:
 
 \index{Commands!load} \index{Commands!ls}
 
@@ -177,9 +177,9 @@ fstab/ = (none)
 \end{quote}
 \subsection{Parsing a specific file}
 
-Augeas lenses have hardcoded lists of files they know about. For example the \verb!Fstab! lens has an include statement for \verb!/etc/fstab! hardcoded in \verb!fstab.aug!. While Augeas attempts to cover the most common needs for inclusions, it cannot know about all files you are using. Some lenses don't even have default include statements because no common files are known to use them. This is the case of the \verb!Json! lens, which is useful but applies to no common configuration file.
+Augeas lenses have hardcoded lists of files they know about. For example the \verb!Fstab! lens has an include statement for \nolinkurl{/etc/fstab} hardcoded in \verb!fstab.aug!. While Augeas attempts to cover the most common needs for inclusions, it cannot know about all files you are using. Some lenses don't even have default include statements because no common files are known to use them. This is the case of the \verb!Json! lens, which is useful but applies to no common configuration file.
 
-So how do you go about using the \verb!Json! lens on a JSON file? You can modify the \verb!/augeas/load! tree for that. For example if you have a \verb!foo.json! file in your current directory, you could do the following:
+So how do you go about using the \verb!Json! lens on a JSON file? You can modify the \nolinkurl{/augeas/load} tree for that. For example if you have a \verb!foo.json! file in your current directory, you could do the following:
 
 \index{augtool!options!--root} \index{Commands!set} \index{Commands!load} \index{Commands!ls}
 
@@ -205,13 +205,13 @@ foo.json/ = (none)
 
 \index{Metadata!\slash{}augeas\slash{}files|(}
 
-The \verb!/augeas/files! provides metadata about the files parsed by Augeas. The paths in this tree mirror thoses of the \verb!/files! tree.
+The \nolinkurl{/augeas/files} provides metadata about the files parsed by Augeas. The paths in this tree mirror thoses of the \nolinkurl{/files} tree.
 
 For each file, the following nodes may be present.
 
 \subsection{The path node}
 
-\verb!path! is the path to the file data in the \verb!/files! tree.
+\verb!path! is the path to the file data in the \nolinkurl{/files} tree.
 
 \subsection{The mtime node}
 
@@ -219,7 +219,7 @@ For each file, the following nodes may be present.
 
 \subsection{The lens tree}
 
-The \verb!lens! tree indicates the lens used to parse this file, as specified in the \verb!/augeas/load! tree (see above). The \verb!lens/info! node gives the path to the lens module (physically), as well as the position of the lens declaration in the file.
+The \verb!lens! tree indicates the lens used to parse this file, as specified in the \nolinkurl{/augeas/load} tree (see above). The \verb!lens/info! node gives the path to the lens module (physically), as well as the position of the lens declaration in the file.
 
 \subsection{The error tree}
 
@@ -267,9 +267,9 @@ augtool> print /augeas/files/etc/ldap.conf/
   \label{lst:metadata_ldap_conf}
 \end{listing}
 
-In the example above, we see the that \verb!/etc/ldap.conf! uses the \verb!@Spacevars! lens, located in \verb!spacevars.aug! on line 37, between characters 23 et 46.
+In the example above, we see the that \nolinkurl{/etc/ldap.conf} uses the \verb!@Spacevars! lens, located in \verb!spacevars.aug! on line 37, between characters 23 et 46.
 
-The parsing of \verb!/etc/ldap.conf! failed on position 9510, which located in beginning of line 310. The error message indicates that the file could not be fully parsed.
+The parsing of \nolinkurl{/etc/ldap.conf} failed on position 9510, which located in beginning of line 310. The error message indicates that the file could not be fully parsed.
 
 \index{Metadata!\slash{}augeas\slash{}files|)}
 
@@ -302,6 +302,6 @@ augtool> print /augeas/variables/
 
 \label{sec:span_node} \index{Metadata!\slash{}augeas\slash{}span} \index{augtool!options!--span} \index{Flags!\textsc{aug\_enable\_span}}
 
-The \verb!/augeas/span! node indicates whether the \verb!span! functionality\footnoteref{sec:locating_nodes} is activated in the session.
+The \nolinkurl{/augeas/span} node indicates whether the \verb!span! functionality\footnoteref{sec:locating_nodes} is activated in the session.
 
 \index{Metadata|)}
