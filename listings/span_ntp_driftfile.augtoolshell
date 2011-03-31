@@ -1,0 +1,5 @@
+augtool> get /files/etc/ntp.conf/driftfile
+/files/etc/ntp.conf/driftfile = /var/lib/ntp/ntp.drift
+augtool> span /files/etc/ntp.conf/driftfile
+/etc/ntp.conf label=(67:76) value=(77:99) span=(67,100)
+augtool> quit
