@@ -31,7 +31,6 @@
 %\documentclass[paper=152mm:229mm,pagesize=pdftex,12pt]{scrbook}
 \usepackage[english]{babel} %language selection
 \selectlanguage{english}
-\pagenumbering{arabic}
 
 \usepackage{amsmath}
 \usepackage[mathletters]{ucs}
@@ -86,6 +85,8 @@
 \title{Augeas: A Configuration API}
 \author{Raphaël Pinson}
 
+\pagenumbering{roman}
+
 \begin{document}
 \maketitle
 
@@ -94,6 +95,9 @@
 \tableofcontents
 
 \include{chapters/introduction}
+
+\pagenumbering{arabic}
+
 \include{chapters/exploring_augtool}
 \include{chapters/bx}
 \include{chapters/path_expressions}
@@ -106,6 +110,7 @@
 \include{chapters/contact}
 
 %GFDL
+\pagenumbering{Roman}
 \appendix
 \include{fdl-1.3}
 
