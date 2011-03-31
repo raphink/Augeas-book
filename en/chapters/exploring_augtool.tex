@@ -173,7 +173,7 @@ augtool> get /augeas/span
 /augeas/span = enable
 \end{augtoolsh}
 
-The data are then available via the \verb!span! command in \verb!augtool!:
+The data are then available via the \verb!span! command in \verb!augtool!.
 
 \index{Commands!span}
 
@@ -182,22 +182,27 @@ The data are then available via the \verb!span! command in \verb!augtool!:
   \myinputminted[linenos,firstnumber=2]{augtool-shell}{span_ntp_driftfile.augtoolshell}
   \begin{console}[linenos,firstnumber=7]
 $ head -c100 /etc/ntp.conf  | tail -c+67
+
 driftfile /var/lib/ntp/ntp.drift
   \end{console}
   \caption{Getting the position of a node with span}
   \label{lst:span_ntp}
 \end{listing}
 
-Listing \refandpage{lst:span_ntp} indicates that:
+Line 5 in listing \refandpage{lst:span_ntp} indicates that:
 
 \begin{itemize}
 \item
-  The \verb!driftfile! label was found in the file between positions 67 and 76. This also means that \verb!driftfile! is a dynamic key, not a static label\footnoteref{chap:writing_lenses};
+  The \verb!driftfile! label was found in the file between positions 67 and 76. This also means that \verb!driftfile! is a dynamic key, not a static label\footnote{It was declared with the \verb!key! keyword, not with \verb!label!. See chapter \refandpage{chap:writing_lenses}};
 \item
   The value of the \verb!driftfile! node was found between positions 77 and 99 in the file;
 \item
   The whole span of the node is between positions 67 and 100 in the file. The span is one character further than the value, since the \verb!\n! character is considered part of the lens matching the node, but is excluded from the value.
 \end{itemize}
+
+We verify on line 9 that the data located between positions 67 and 100 in the file correspond to the \verb!driftfile! key and the value returned by the \verb!get! command on line 3.
+
+
 \section{Scripting with augtool}
 
 \index{augtool!scripting}
