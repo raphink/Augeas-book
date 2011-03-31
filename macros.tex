@@ -1,0 +1,39 @@
+% Define macros
+\newcommand{\seeref}[1]{See~\emph{\nameref{#1}} on page~\pageref{#1}}
+\newcommand{\footnoteref}[1]{\footnote{\seeref{#1}.}}
+\newcommand{\info}[1]{\includegraphics{../images/info.png} \emph{#1}}
+
+% minted environments
+
+\newenvironment{myminted}[1]
+{\VerbatimEnvironment
+\begin{minted}[fontsize=\footnotesize,bgcolor=bg]{#1}}
+{\end{minted}}
+
+\newenvironment{bash}
+{\VerbatimEnvironment
+\begin{myminted}{bash}}
+{\end{myminted}}
+
+\newenvironment{augtoolsh}
+{\VerbatimEnvironment
+\begin{myminted}{augtool-shell}}
+{\end{myminted}}
+
+\newenvironment{console}
+{\VerbatimEnvironment
+\begin{myminted}{console}}
+{\end{myminted}}
+
+
+% minted commands
+
+\newcommand{\mymint}[2]{\mint[fontsize=\footnotesize,bgcolor=bg]{#1}#2}
+\newcommand{\consolecode}[1]{\mymint{console}#1}
+\newcommand{\augtoolshcode}[1]{\mymint{augtool-shell}#1}
+
+% inputminted
+
+\newcommand{\myinputminted}[2]{\inputminted[fontsize=\footnotesize,bgcolor=bg]{#1}{../listings/#2}}
+
+
