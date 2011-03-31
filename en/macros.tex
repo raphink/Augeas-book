@@ -31,35 +31,42 @@
 
 % minted environments
 
-\newenvironment{myminted}[1]
+\newenvironment{myminted}[2][]
 {\VerbatimEnvironment
-\begin{minted}[fontsize=\footnotesize,bgcolor=bg]{#1}}
+\begin{minted}[fontsize=\footnotesize,bgcolor=bg,#1]{#2}}
 {\end{minted}}
 
-\newenvironment{bash}
+\newenvironment{bash}[1][]
 {\VerbatimEnvironment
-\begin{myminted}{bash}}
+\begin{myminted}[#1]{bash}}
 {\end{myminted}}
 
-\newenvironment{augtoolsh}
+\newenvironment{augtoolsh}[1][]
 {\VerbatimEnvironment
-\begin{myminted}{augtool-shell}}
+\begin{myminted}[#1]{augtool-shell}}
 {\end{myminted}}
 
-\newenvironment{console}
+\newenvironment{augtool}[1][]
 {\VerbatimEnvironment
-\begin{myminted}{console}}
+\begin{myminted}[#1]{augtool}}
+{\end{myminted}}
+
+\newenvironment{console}[1][]
+{\VerbatimEnvironment
+\begin{myminted}[#1]{console}}
 {\end{myminted}}
 
 
 % minted commands
 
-\newcommand{\mymint}[2]{\mint[fontsize=\footnotesize,bgcolor=bg]{#1}#2}
-\newcommand{\consolecode}[1]{\mymint{console}#1}
-\newcommand{\augtoolshcode}[1]{\mymint{augtool-shell}#1}
+\newcommand{\mymint}[3][]{\mint[fontsize=\footnotesize,bgcolor=bg,#1]{#2}#3}
+\newcommand{\consolecode}[2][]{\mymint[#1]{console}#2}
+\newcommand{\augtoolshcode}[2][]{\mymint[#1]{augtool-shell}#2}
+\newcommand{\augtoolcode}[2][]{\mymint[#1]{augtool}#2}
 
 % inputminted
 
-\newcommand{\myinputminted}[2]{\inputminted[fontsize=\footnotesize,bgcolor=bg]{#1}{../listings/#2}}
+\newcommand{\myinputminted}[3][]{\inputminted[fontsize=\footnotesize,bgcolor=bg,#1]{#2}{../listings/#3}}
+
 
 

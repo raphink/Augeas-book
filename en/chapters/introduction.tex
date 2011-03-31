@@ -52,13 +52,13 @@ Augeas does not attempt to provide an abstraction layer from the native configur
 
 As an example, if the \nolinkurl{/etc/foo.conf} configuration file contains an include statement such as the following:
 
-\begin{bash}
+\begin{bash}[]
 #include /etc/foo.d/*
 \end{bash}
 
 Augeas will not attempt to parse the contents of the files in \nolinkurl{/etc/foo.d/*} and add them to the \nolinkurl{/etc/foo.conf} tree. Instead, it will provide a tree like the following:
 
-\begin{augtoolsh}
+\begin{augtoolsh}[]
 /files/etc/foo.conf
 /files/etc/foo.conf/#include = /etc/foo.d/*
 \end{augtoolsh}
@@ -91,13 +91,13 @@ Augeas does not attempt to understand or otherwise interprete configuration file
 
 For example, an \nolinkurl{/etc/hosts} line like the following:
 
-\begin{bash}
+\begin{bash}[]
 192.168.0.10    aslan   # Added by NetworkManager
 \end{bash}
 
 will be represented by the following tree:
 
-\begin{augtoolsh}
+\begin{augtoolsh}[]
 /files/etc/hosts
 /files/etc/hosts/1
 /files/etc/hosts/1/ipaddr = "192.168.0.10"
@@ -123,14 +123,14 @@ You can find the latest source code on the Augeas website:
 
 Next, install the necessary dependencies to build Augeas. The minimal dependencies you will need are the readline headers. You can use one of these commands to install them:
 
-\begin{console}
+\begin{console}[]
 $ sudo yum install readline-devel
 $ sudo apt-get install libreadline-dev
 \end{console}
 
 Then, extract, compile and install:
 
-\begin{console}
+\begin{console}[]
 $ tar xvzf augeas-0.8.0.tar.gz
 $ cd augeas-0.8.0
 $ ./configure
@@ -165,7 +165,7 @@ Augeas is maintained in a public repository which can be cloned and used to test
 
 If you wish to build and install from the development head, you will need \verb!git! (provided by the \verb!git-core! package on Debian-based distributions), \verb!autoconf!, \verb!automake! and \verb!libtool!, as well as the normal dependencies to build Augeas from source. Then follow these instructions:
 
-\begin{console}
+\begin{console}[]
 $ git clone git://git.fedorahosted.org/augeas.git
 $ ./autogen.sh
 $ ./configure
