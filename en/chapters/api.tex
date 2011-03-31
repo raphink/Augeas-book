@@ -50,9 +50,9 @@ So far, our examples have been done using \verb!augtool!, the CLI interface to A
 
 Synopsis:
 
-\begin{minted}[fontsize=\footnotesize]{python}
+\begin{python}[]
     def __init__(self, root=None, loadpath=None, flags=NONE)
-\end{minted}
+\end{python}
 
 Initialize the library.
 
@@ -64,26 +64,26 @@ Use \verb!root! as the filesystem root. If \verb!root! is None, use the value of
 
 Example:
 
-\begin{minted}[fontsize=\footnotesize]{python}
+\begin{python}[]
     import augeas
     a = augeas.Augeas(root="fakeroot")
-\end{minted}
+\end{python}
 
 \subsubsection{The get method}
 
 Synopsis:
 
-\begin{minted}[fontsize=\footnotesize]{python}
+\begin{python}[]
     def get(self, path)
-\end{minted}
+\end{python}
 
 Lookup the value associated with \verb!path!. Returns the value at the path specified. It is an error if more than one node matches \verb!path!.
 
 Example:
 
-\begin{minted}[fontsize=\footnotesize]{python}
+\begin{python}[]
     val = a.get("/files/etc/ftab/1/canonical")
-\end{minted}
+\end{python}
 
 \subsection{Ruby Bindings}
 

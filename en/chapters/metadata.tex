@@ -16,13 +16,9 @@ The \nolinkurl{/augeas/root} node contains the root of the Augeas tree. This is 
 Example:
 
 \begin{listing}
-  \begin{minted}[fontsize=\footnotesize]{console}
-$ augtool --root fakeroot
-  \end{minted}
-  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
-augtool> print /augeas/root
-/augeas/root = "fakeroot/"
-  \end{minted}
+  \consolecode|$ augtool --root fakeroot|
+  \augtoolshcode|augtool> print /augeas/root|
+  \augtoolshcode|/augeas/root = "fakeroot/"|
   \caption{Inspecting /augeas/root}
   \label{lst:metadata_root}
 \end{listing}
@@ -49,7 +45,7 @@ augtool> print /augeas/root
 
 
 \begin{listing}
-  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
+  \begin{augtoolsh}[]
 augtool> print /augeas/version/
 /augeas/version = "0.8.0"
 /augeas/version/save
@@ -59,7 +55,7 @@ augtool> print /augeas/version/
 /augeas/version/save/mode[4] = "overwrite"
 /augeas/version/defvar
 /augeas/version/defvar/expr
-  \end{minted}
+  \end{augtoolsh}
   \caption{Inspecting /augeas/version}
   \label{lst:metadata_version}
 \end{listing}
@@ -90,7 +86,7 @@ The \nolinkurl{/augeas/load} tree contains the lenses metadata. For each lens lo
 \index{Commands!print}
 
 \begin{listing}
-  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
+  \begin{augtoolsh}[]
 augtool> print /augeas/load/Pam/
 /augeas/load/Pam
 /augeas/load/Pam/lens = "@Pam"
@@ -104,7 +100,7 @@ augtool> print /augeas/load/Pam/
 /augeas/load/Pam/excl[7] = "*.rpmsave"
 /augeas/load/Pam/excl[8] = "*.rpmnew"
 /augeas/load/Pam/excl[9] = "*~"
-  \end{minted}
+  \end{augtoolsh}
   \caption{Listing metadata for the Pam module}
   \label{lst:metadata_load_pam}
 \end{listing}
@@ -121,13 +117,9 @@ It is common to use Augeas to modify only one file. In that case you know exactl
 \index{augtool!options!--noautoload}
 
 \begin{listing}
-  \begin{minted}[fontsize=\footnotesize]{console}
-$ augtool --noautoload
-  \end{minted}
-  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
-augtool> print /augeas/load
-/augeas/load
-  \end{minted}
+  \consolecode|$ augtool --noautoload|
+  \augtoolshcode|augtool> print /augeas/load|
+  \augtoolshcode|/augeas/load|
   \caption{The effect of --noautoload on /augeas/load}
   \label{lst:metadata_noautoload}
 \end{listing}
@@ -144,7 +136,7 @@ The \verb!print! command shows us that no lenses are known in the session. We ca
 \index{Commands!set} \index{Commands!print}
 
 \begin{listing}
-  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
+  \begin{augtoolsh}[]
 augtool> set /augeas/load/Fstab/lens "Fstab.lns"
 augtool> set /augeas/load/Fstab/incl "/etc/fstab"
 augtool> print /augeas/load
@@ -152,7 +144,7 @@ augtool> print /augeas/load
 /augeas/load/Fstab
 /augeas/load/Fstab/lens = "Fstab.lns"
 /augeas/load/Fstab/incl = "/etc/fstab"
-  \end{minted}
+  \end{augtoolsh}
   \caption{Setting the Fstab lens manually in /augeas/load}
   \label{lst:metadata_setting_lens_manually}
 \end{listing}
@@ -162,11 +154,11 @@ We can now call \verb!load! and list the files in \nolinkurl{/files/etc}:
 \index{Commands!load} \index{Commands!ls}
 
 \begin{listing}
-  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
+  \begin{augtoolsh}[]
 augtool> load
 augtool> ls /files/etc
 fstab/ = (none)
-  \end{minted}
+  \end{augtoolsh}
   \caption{Loading files manually}
   \label{lst:metadata_call_load}
 \end{listing}
@@ -184,15 +176,13 @@ So how do you go about using the \verb!Json! lens on a JSON file? You can modify
 \index{augtool!options!--root} \index{Commands!set} \index{Commands!load} \index{Commands!ls}
 
 \begin{listing}
-  \begin{minted}[fontsize=\footnotesize]{console}
-$ augtool --root .
-  \end{minted}
-  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
+  \consolecode|$ augtool --root .|
+  \begin{augtoolsh}[]
 augtool> set /augeas/load/Json/incl "/foo.json"
 augtool> load
 augtool> ls /files
 foo.json/ = (none)
-  \end{minted}
+  \end{augtoolsh}
   \caption{Using the Json lens with /augeas/load}
   \label{lst:metadata_json_lens}
 \end{listing}
@@ -246,7 +236,7 @@ This tree contains several nodes:
 \subsection{Example}
 
 \begin{listing}
-  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
+  \begin{augtoolsh}[]
 augtool> print /augeas/files/etc/ldap.conf/
 /augeas/files/etc/ldap.conf
 /augeas/files/etc/ldap.conf/path = "/files/etc/ldap.conf"
@@ -262,7 +252,7 @@ augtool> print /augeas/files/etc/ldap.conf/
    "/usr/share/augeas/lenses/dist/spacevars.aug:37.23-.46:"
 /augeas/files/etc/ldap.conf/error/message = \
    "Iterated lens matched less than it should"
-  \end{minted}
+  \end{augtoolsh}
   \caption{Inspecting ldap.conf metadata}
   \label{lst:metadata_ldap_conf}
 \end{listing}
@@ -284,12 +274,12 @@ When you set variables in Augeas\footnoteref{sec:variables} the paths of the var
 Example:
 
 \begin{listing}
-  \begin{minted}[fontsize=\footnotesize]{augtool-shell}
+  \begin{augtoolsh}[]
 augtool> defvar l /augeas/files/etc/ldap.conf/
 augtool> print /augeas/variables/
 /augeas/variables
 /augeas/variables/l = "/augeas/files/etc/ldap.conf"
-  \end{minted}
+  \end{augtoolsh}
   \caption{Defined variables are listed in /augeas/variables}
   \label{lst:metadata_defvar}
 \end{listing}

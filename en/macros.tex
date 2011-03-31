@@ -51,18 +51,36 @@
 \begin{myminted}[#1]{augtool}}
 {\end{myminted}}
 
+\newenvironment{augeas}[1][]
+{\VerbatimEnvironment
+\begin{myminted}[#1]{augeas}}
+{\end{myminted}}
+
 \newenvironment{console}[1][]
 {\VerbatimEnvironment
 \begin{myminted}[#1]{console}}
+{\end{myminted}}
+
+\newenvironment{puppet-augeas}[1][]
+{\VerbatimEnvironment
+\begin{myminted}[#1]{puppet-augeas}}
+{\end{myminted}}
+
+\newenvironment{python}[1][]
+{\VerbatimEnvironment
+\begin{myminted}[#1]{python}}
 {\end{myminted}}
 
 
 % minted commands
 
 \newcommand{\mymint}[3][]{\mint[fontsize=\footnotesize,bgcolor=bg,#1]{#2}#3}
+\newcommand{\bashcode}[2][]{\mymint[#1]{bash}#2}
 \newcommand{\consolecode}[2][]{\mymint[#1]{console}#2}
 \newcommand{\augtoolshcode}[2][]{\mymint[#1]{augtool-shell}#2}
 \newcommand{\augtoolcode}[2][]{\mymint[#1]{augtool}#2}
+\newcommand{\augeascode}[2][]{\mymint[#1]{augeas}#2}
+\newcommand{\pythoncode}[2][]{\mymint[#1]{python}#2}
 
 % inputminted
 
