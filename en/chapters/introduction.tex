@@ -185,7 +185,7 @@ If you want to build this documentation, begin with the instructions in section 
 
 In order to build the PDF documentation, you will need to install \verb!pdflatex! on your system, with one of the following commands:
 
-\consolecode|$ sudo yum install whichpackageforpdflatex??|
+\consolecode|$ sudo yum install texlive-latex|
 \consolecode|$ sudo apt-get install texlive-latex-base|
 
 Then add the \texttt{--with\allowbreak-pdfdocs} flag to the \texttt{./configure} call and call \texttt{make}:
@@ -204,7 +204,7 @@ The NaturalDocs documentation covers the inline documentation for the C API and 
 
 In order to build this documentation, you need to install \verb!naturaldocs! on your system, using one of these commands:
 
-\consolecode|$ sudo yum install whichpackagefornaturaldocs??|
+\consolecode|$ sudo yum install NaturalDocs|
 \consolecode|$ sudo apt-get install naturaldocs|
 
 You can then build the documentation by calling \texttt{./configure} with the \texttt{--with\allowbreak-naturaldocs=HTML} or \texttt{--with\allowbreak-naturaldocs=FramedHTML} flags. The first flag will include the HTML header in each generated file, while the second flag will generate HTML frames to read the documentation:
