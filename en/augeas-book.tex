@@ -50,6 +50,12 @@
 \usepackage[activate={true,nocompatibility}]{microtype}
 \usepackage{courier} % Useful monospace font (= has \bfseries).
 
+% Make nice chapter numbers
+\usepackage{lmodern}
+\renewcommand*{\chapterformat}{%
+  \fontsize{80}{88}\selectfont\thechapter\autodot\enskip}
+
+
 \hfuzz = .6pt % avoid black boxes
 
 \setlength{\parindent}{0pt}
