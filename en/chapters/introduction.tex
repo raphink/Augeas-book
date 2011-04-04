@@ -14,17 +14,24 @@ In the world of Unix systems, there is no standard way to store configuration. C
 \begin{center}
   \begin{tabular}{l|l}
     \rowcolor{gray!50}
-    Configuration file & Format \\
+    \textsc{Configuration file} & \textsc{Format} \\
+    \hline \hline
     \verb!/etc/default/*! & shell variables \\
-    \verb!/etc/fstab! & fstab format \\
-    \verb!/etc/mtab! & fstab format \\
+    \hline
+    \verb!/etc/fstab! & \multirow{2}{*}{fstab format} \\
+    \verb!/etc/mtab! &  \\
+    \hline
     \verb!/etc/hosts! & hosts format \\
-    \verb!/etc/passwd! & passwd format \\
-    \verb!/etc/shadow! & passwd format \\
-    \verb!php.ini! & INI file \\
-    \verb!my.cnf! & INI file\\
-    \verb!gdm.conf! & INI file \\
-    \verb!puppet.conf! & INI file \\
+    \hline
+    \verb!/etc/passwd! & \multirow{2}{*}{passwd format} \\
+    \verb!/etc/shadow! & \\
+    \hline
+    \verb!php.ini! & \multirow{4}{*}{INI file} \\
+    \verb!my.cnf! & \\
+    \verb!gdm.conf! &  \\
+    \verb!puppet.conf! &  \\
+    \hline
+    \verb!ntp.conf! & NTP format \\
   \end{tabular}
   \legend{Some common configuration files and their format}
 \end{center}
