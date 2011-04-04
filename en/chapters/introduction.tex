@@ -8,7 +8,28 @@ in some accounts a son of Helios,\\
 in others of Poseidon,\\
 and in still others of Phorbas.}{The Library 2.88}{Apollodorus}
 
-In the world of Unix systems, there is no standard way to store configuration. Countless formats can be found, from standard INI files to complex, specific, multi-level formats, making the infamous /etc directory a sort of digital Augean stable.
+In the world of Unix systems, there is no standard way to store configuration. Countless formats can be found, from simple shell variables files to complex, specific, multi-level formats, making the infamous /etc directory a sort of digital Augean stable.
+
+\begin{table}
+\begin{center}
+  \begin{tabular}{l|l}
+    \rowcolor{gray!50}
+    Configuration file & Format \\
+    \verb!/etc/default/*! & shell variables \\
+    \verb!/etc/fstab! & fstab format \\
+    \verb!/etc/mtab! & fstab format \\
+    \verb!/etc/hosts! & hosts format \\
+    \verb!/etc/passwd! & passwd format \\
+    \verb!/etc/shadow! & passwd format \\
+    \verb!php.ini! & INI file \\
+    \verb!my.cnf! & INI file\\
+    \verb!gdm.conf! & INI file \\
+    \verb!puppet.conf! & INI file \\
+  \end{tabular}
+  \legend{Some common configuration files and their format}
+\end{center}
+\end{table}
+
 
 Augeas provides a way to cleanly manage these configuration files through a unified API.
 
@@ -24,15 +45,21 @@ While most programming languages provide modules to edit at least the most commo
 
 Configuration management tools such as Cfengine provide tools (like AppendIfNoSuchLine) to achieve keyhole approaches, but the problems are similar to using string editing tools: you have no guarantee that the result will be a valid configuration file, and you have to write the regexps yourself.
 
+\todo{Provide examples of using sed or awk}
+
 Augeas is particularly useful to ease and secure this kind of approach.
 
 \subsection{Greenfield approaches}
 
 When you are the main system administrator of a machine and you wish to control all the parameters of the machine, you may want to provide the configuration files entirely. In this case, it is common to set a repository of configuration files, or a database, which will contain the whole configuration as will be deployed to the machines.
 
+\todo{Maybe provide an example such organization or schema}
+
 \subsection{Templating}
 
 If you wish to control whole configuration files but you need a fine-grained mechanism to generate these files, templating is probably the best approach. There are lots of options to achieve this. Puppet, for example, provides ERB templates that let you easily generate configuration files from exported variables.
+
+\todo{Given an example of an ERB template for Puppet for example}
 
 \section{A Unified Configuration API}
 
@@ -73,7 +100,7 @@ For a similar reason, Augeas does not attempt to be a cross-platform abstraction
 
 Similarly, some operating systems provide their network configuration in \nolinkurl{/etc/sysconfig/network} while others use \nolinkurl{/etc/network/interfaces}. Augeas will represent these two files in different parts of the tree, and the tree will mirror the way each of these files is organized, without attempting to provide a unified way to configure network interfaces across these operating systems.
 
-Other projects such as netcf, based on Augeas, provide a cross-platform abstraction layer to manage network interfaces regardless of the operating system, but it is not Augeas' goal.
+Other projects such as netcf\footnote{\url{https://fedorahosted.org/netcf}}, based on Augeas, provide a cross-platform abstraction layer to manage network interfaces regardless of the operating system, but it is not Augeas' goal.
 
 \subsection{No remote management support}
 
@@ -81,11 +108,11 @@ When you are dealing with a whole fleet of servers and wish to set a parameter f
 
 Remote access to the Augeas API are meant to be added on top of it, not in it.
 
-Puppet is an example of configuration management tool which supports Augeas as a native type and provides remote management functionality.
+Puppet\footnote{\url{http://www.puppetlabs.com}} is an example of configuration management tool which supports Augeas as a native type and provides remote management functionality.
 
 \subsection{Very little modelling}
 
-Augeas does not attempt to understand or otherwise interprete configuration files. As stated before, Augeas does not attempt to provide an abstraction layer, but it provides a light modelling, although very close to the organization of the configuration files.
+The goal of Augeas is not to understand or otherwise interpret configuration files. As stated before, Augeas does not attempt to provide an abstraction layer, but it provides a light modelling, although very close to the organization of the configuration files.
 
 For example, an \nolinkurl{/etc/hosts} line like the following:
 
@@ -103,18 +130,18 @@ will be represented by the following tree:
 /files/etc/hosts/1/#comment = "Added by NetworkManager"
 \end{augtoolsh}
 
-The order of the statements is strictly kept, Augeas does not interpret the configuration files per se, but it labels each of the fields on the line to ease access to individual configuration items.
+The order of the statements is strictly kept; Augeas does not interpret the configuration files per se, but it labels each of the fields on the line to ease access to individual configuration items.
 
 \section{Installing Augeas}
 
 \label{sec:installing_augeas} \index{Installation}
 
-\subsection{Installing from Source}
+\subsection{Installing from source}
 
 \index{Installation!from source}
 \label{sec:installing_from_source}
 
-You might want to install Augeas from source if your distribution does not provide any binary packages, if you simply want to use the latest version of Augeas or tune compilation parameters.
+You might want to install Augeas from source if your distribution does not provide any binary packages, if you simply want to use the latest version of Augeas, or tune compilation parameters.
 
 You can find the latest source code on the Augeas website:
 
@@ -133,16 +160,18 @@ Then, extract, compile and install:
 $ tar xvzf augeas-0.8.0.tar.gz
 $ cd augeas-0.8.0
 $ ./configure
-$ make && make install
+$ make && sudo make install
 \end{console}
 
 
 
-\subsection{Installing from Binary Packages}
+\subsection{Installing from binary packages}
 
 \index{Installation!from packages}
 
-Most distributions provide Augeas packages, often split up into the shared library, the provided Augeas lenses and the command-line tools.
+\label{sec:installing_from_packages}
+
+Most distributions provide Augeas packages, often split up into the shared library, the lenses provided with Augeas and the command-line tools.
 
 On Red Hat or Fedora derivatives, you can install the \verb!augeas! package using yum:
 
@@ -156,13 +185,13 @@ You might also want to install the documentation package with:
 
 \consolecode/$ sudo apt-get install augeas-doc/
 
-\subsection{Installing from the Development Head}
+\subsection{Installing from the development head}
 
 \index{Installation!from development head}
 
-Augeas is maintained in a public repository which can be cloned and used to test the latest features and fixes before they are released.
+Augeas' code is maintained in a public repository which can be cloned and used to test the latest features and fixes before they are released.
 
-If you wish to build and install from the development head, you will need \verb!git! (provided by the \verb!git-core! package on Debian-based distributions), \verb!autoconf!, \verb!automake! and \verb!libtool!, as well as the normal dependencies to build Augeas from source. Then follow these instructions:
+If you wish to build and install from the development head, you will need \verb!git! \footnote{provided by the \verb!git-core! package on Debian-based distributions}, \verb!autoconf!, \verb!automake! and \verb!libtool!, as well as the normal dependencies to build Augeas from source. Then follow these instructions:
 
 \begin{console}[]
 $ git clone git://git.fedorahosted.org/augeas.git
@@ -178,6 +207,8 @@ Augeas provides documentation in the form of \LaTeX~files and inline documentati
 
 If you want to build this documentation, begin with the instructions in section \Nameref{sec:installing_from_source} to retrieve the source code.
 
+On Ubuntu, you can find this documentation already built in the `augeas-doc` package\footnoteref{sec:installing_from_packages}.
+
 
 \subsubsection{Building the PDF documentation}
 
@@ -191,7 +222,7 @@ Then add the \texttt{--with\allowbreak-pdfdocs} flag to the \texttt{./configure}
 \consolecode|$ ./configure --with-pdfdocs|
 \consolecode|$ make|
 
-This will generate PDF files in the \verb!doc! directory.
+This will generate PDF files in the \verb!doc! directory, which contain mostly theorical information on lenses and their implementation in Augeas\seeref{chap:bx}.
 
 
 \subsubsection{Building the NaturalDocs documentation}
@@ -210,7 +241,7 @@ You can then build the documentation by calling \texttt{./configure} with the \t
 \consolecode|$ ./configure --with-naturaldocs=HTML|
 \consolecode|$ make|
 
-This will produce HTML files in the \verb!doc/naturaldocs/output! directory. You can open the \verb!index.html! file to access the full documentation.
+This will produce HTML files in the \verb!doc/naturaldocs/output! directory. The \verb!c_api! directory will contain the generated documentation for the C API. The \verb!lenses! directory will be the documentation for the lenses provided with Augeas. You can open the \verb!index.html! file of one of these directories to access the full documentation.
 
 
 \subsection{Conventions}
@@ -224,4 +255,5 @@ This book uses the following conventions:
 \end{itemize}
 
 
+\todo{Refine conventions}
 

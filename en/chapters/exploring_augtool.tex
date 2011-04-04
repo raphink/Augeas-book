@@ -11,16 +11,16 @@ others again by the fair vineyards of Buprasium,\\
 and yet others, look you, hereabout;\\
 and each flock hath his several fold builded.}{Idyll 25.7}{Theocritus}
 
-While Augeas is a C library with bindings, it also provides a command-line tool called \verb!augtool!, which we will be using in the following examples. In chapter~\ref{chap:api}, we will see how to use the API and bindings directly.
+Augeas is primarily a C library with bindings but it also provides a command-line tool called \verb!augtool!, which we will be using in the following examples. In chapter~\ref{chap:api}, we will see how to use the API and bindings directly.
 
 
 \section{Parsing your System Configuration Files}
 
-The first thing you might want to do is to see how Augeas sees your system configuration files. Fire up \verb!augtool!:
+The first thing we might want to do is to see how Augeas sees your system configuration files. Fire up \verb!augtool!:
 
 \consolecode/$ augtool/
 
-This will give you an interactive shell which passes commands to Augeas. Augeas transforms your configuration files into a tree, which has two nodes at its root: \nolinkurl{/augeas} and \nolinkurl{/files}. The \nolinkurl{/augeas} node contains metadata, which we will be looking at later on, while \nolinkurl{/files} contains the representation of the files Augeas was able to parse. You can see these two nodes by typing \verb!ls /!:
+This will give you an interactive shell which passes commands to Augeas. Augeas transforms your configuration files into a tree, which has two nodes at its root: \nolinkurl{/augeas} and \nolinkurl{/files}. The \nolinkurl{/augeas} node contains metadata, which we will be looking at in chapter~\ref{chap:metadata}, while \nolinkurl{/files} contains the representation of the files Augeas was able to parse. You can see these two nodes by typing \verb!ls /!:
 
 \index{Commands!ls}
 
