@@ -263,7 +263,7 @@ This allows to use \verb!augtool! as a script interpreter in a shebang and write
 
 \subsection{Dropping into an interactive session}
 
-When \verb!augtool! takes commands from the command line, STDIN or a file, it doesn't start an interactive session. If you wish to pass commands to \verb!augtool! for preprocessing and run an interactive command afterwards, you can use the \verb!--interactive! flag:
+When \verb!augtool! takes commands from the command line, \verb!stdin! or a file, it doesn't start an interactive session. If you wish to pass commands to \verb!augtool! for preprocessing and run an interactive command afterwards, you can use the \verb!--interactive! flag:
 
 \index{augtool!piping} \index{Commands!get} \index{augtool!options!--interactive}
 
@@ -276,7 +276,7 @@ When \verb!augtool! takes commands from the command line, STDIN or a file, it do
 \end{listing}
 
 \begin{quote}
-\info{The \texttt{--interactive} option only works for STDIN and file input.}
+\info{The \texttt{--interactive} option only works for \texttt{stdin} and file input.}
 
 \end{quote}
 This option also allows you to make scripts that set up an environment and drop you in an interactive shell:
