@@ -1,0 +1,72 @@
+\ProvidesPackage{augeas}
+
+\usepackage{amsmath}
+\usepackage[mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{fancyvrb}
+\usepackage{graphicx}
+\usepackage[breaklinks=true,unicode=true]{hyperref}
+\hypersetup{colorlinks, 
+           citecolor=black,
+           filecolor=black,
+           linkcolor=black,
+           urlcolor=black,
+           bookmarksopen=true,
+           pdftex}
+\usepackage{url}
+\usepackage[activate={true,nocompatibility}]{microtype}
+\usepackage{courier} % Useful monospace font (= has \bfseries).
+
+% Colors for tables
+\usepackage[table]{xcolor}    % loads also »colortbl«
+%\rowcolors{2}{gray!25}{white}
+\usepackage{multirow}
+
+\usepackage{ccaption}
+
+
+% Make nice chapter numbers
+\usepackage{lmodern}
+\renewcommand*{\chapterformat}{%
+  \fontsize{80}{88}\selectfont\thechapter\autodot\enskip}
+
+% Quotes
+\usepackage{epigraph}
+
+% TODO notes
+\usepackage{todonotes}
+
+
+\hfuzz = .6pt % avoid black boxes
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setcounter{secnumdepth}{0}
+\VerbatimFootnotes % allows verbatim text in footnotes
+
+% Make indexes
+\usepackage{makeidx}
+\makeindex
+
+
+%% minted conf
+
+% Use minted for syntax highlighting
+\usepackage{minted}
+% See pygmentize -L styles for the list of styles
+%\usemintedstyle{pastie}
+
+% Make nice looking line numbers
+\renewcommand{\theFancyVerbLine}{\sffamily
+\textcolor[rgb]{0.5,0.5,1.0}{\scriptsize
+\oldstylenums{\arabic{FancyVerbLine}}}}
+
+% Code bg color
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+
+
+\include{macros}
+
+% Number listings within chapters
+\numberwithin{listing}{chapter}
+
