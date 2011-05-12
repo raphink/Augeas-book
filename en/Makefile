@@ -1,8 +1,5 @@
 BOOK_NAME=augeas-book
-BOOK_TEX=$(BOOK_NAME).tex
 BOOK_PDF=$(BOOK_NAME).pdf
-BOOK_IDX=$(BOOK_NAME).idx
-BOOK_IND=$(BOOK_NAME).ind
 BOOK_PS=$(BOOK_NAME).ps
 BOOKLET_PDF=$(BOOK_NAME).booklet.pdf
 BOOKLET_PS=$(BOOK_NAME).booklet.ps
@@ -11,21 +8,28 @@ LATEX_TEMPLATE=latex.template
 PANDOC_OPTS=--toc
 TEXINPUTS=../minted:
 
-all:
-
-$(BOOK_IDX): $(BOOK_TEX)
-	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $(BOOK_TEX)
-	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $(BOOK_TEX)
-
-$(BOOK_IND): $(BOOK_IDX)
-	makeindex $(BOOK_IDX)
+all: pdf
 
 pdf: $(BOOK_PDF)
-$(BOOK_PDF): $(BOOK_IND)
-	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $(BOOK_TEX)
 
-$(BOOK_PS): $(BOOK_PDF)
-	pdftops $(BOOK_PDF) $(BOOK_PS)
+ebooks: mobi epub
+
+mobi: $(BOOK_NAME).mobi
+
+epub: $(BOOK_NAME).epub
+
+%.idx: %.tex
+	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $<
+	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $<
+
+%.ind: %.idx
+	makeindex $<
+
+%.pdf: %.ind
+	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $*
+
+%.ps: %.pdf
+	pdftops $< $@
 
 $(BOOKLET_PS): $(BOOK_PS)
 	psbook $(BOOK_PS) $(BOOKLET_TMP_PS)
@@ -35,6 +39,16 @@ $(BOOKLET_PS): $(BOOK_PS)
 booklet: $(BOOKLET_PS)
 	ps2pdf $(BOOKLET_PS) $(BOOKLET_PDF)
 
+%.html: %.tex
+	TEXINPUTS=$(TEXINPUTS) htlatex $< \
+	   'xhtml,charset=utf-8' ' -cunihtf -utf8 -cvalidate' '' '-shell-escape'
+	./cleanuphtml.sh $@
+
+%.epub: %.html
+	ebook-convert $< $@
+
+%.mobi: %.html
+	ebook-convert $< $@
 
 clean:
 	rm -f *.pdf *.ps *.aux *.log *.out *.lol
