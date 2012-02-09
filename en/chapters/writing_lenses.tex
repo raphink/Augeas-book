@@ -138,5 +138,44 @@ Directories containing additional lenses can be added to the search path by usin
 Talk about using NaturalDocs to document modules
 
 
+\section{Lens optimization}
+
+Augeas lenses are compiled into regular expressions.
+Some of these regular expressions can become very complex and typechecking them
+can exhaust both your CPU and memory.
+
+These are simple rules to optimize your lenses.
+
+
+\subsection{Use standard constructions}
+
+Many configuration files have similar syntaxes.
+It is recommended to use the standard libraries to build new lenses.
+
+
+\subsection{Avoid regexp "substractions"}
+
+Substractions of regexps are very costly, since they generate very complex regexps.
+
+
+\subsection{Group keys in blocks}
+
+
+The union of two similar blocks is usually more costly than a single merged block.
+
+For example, the following:
+
+\begin{augeas}[]
+let entry = Build.key_value kw1 Sep.equal (store Rx.word)
+          | Build.key_value kw2 Sep.equal (store Rx.word)
+\end{augeas}
+
+
+will certainly be more efficient as:
+
+\begin{augeas}[]
+let entry = Build.key_value (kw1 | kw2) Sep.equal (store Rx.word)
+\end{augeas}
+
 
 
