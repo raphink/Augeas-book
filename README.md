@@ -14,7 +14,7 @@ Building the book
 
 In order to build this book, you need:
  
-* PDFLaTeX (I recommend using the latest TeXLive distribution);
+* LuaLaTeX (I recommend using the latest TeXLive distribution);
 * Pygments (``sudo apt-get install python-pygments`` on Debian/Ubuntu).
 
 
