@@ -6,8 +6,20 @@
 \newcommand{\seeref}[1]{See~\emph{\nameref{#1}} on page~\pageref{#1}}
 \newcommand{\footnoteref}[1]{\footnote{\seeref{#1}.}}
 
+\usepackage{mdframed}
+
 % Info box
-\newcommand{\info}[1]{\includegraphics{../images/info.png} \emph{#1}}
+\newenvironment{infoenv}
+  {\par\begin{mdframed}[linewidth=1pt,linecolor=red]%
+    \begin{minipage}{0.15\textwidth}
+    \includegraphics[width=10px]{../images/webmichl_light_bulb.pdf}
+    \end{minipage}
+    \begin{minipage}{0.85\textwidth}}
+  {\end{minipage}\end{mdframed}\par}
+
+% wrapper
+\newcommand{\info}[1]{\begin{infoenv}#1\end{infoenv}}
+
 
 % Quotes
 
