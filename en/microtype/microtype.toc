@@ -1,0 +1,113 @@
+\contentsline {section}{\numberline {1}Micro-typography with pdf\kern .05em\textoractual {T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m }{TeX}}{3}{section.1}
+\contentsline {section}{\numberline {2}Getting started}{4}{section.2}
+\contentsline {section}{\numberline {3}Options}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Enabling the micro-typographic features}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Character protrusion}{6}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Font expansion}{7}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Tracking}{8}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Miscellaneous options}{8}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Changing options later}{9}{subsection.3.6}
+\contentsline {section}{\numberline {4}Selecting fonts for micro-typography}{9}{section.4}
+\contentsline {paragraph}{The set of fonts}{9}{section*.5}
+\contentsline {section}{\numberline {5}Micro fine tuning}{11}{section.5}
+\contentsline {subsection}{\numberline {5.1}Character protrusion}{12}{subsection.5.1}
+\contentsline {paragraph}{The protrusion settings}{12}{section*.6}
+\contentsline {paragraph}{Options:}{13}{section*.7}
+\contentsline {subsection}{\numberline {5.2}Font expansion}{14}{subsection.5.2}
+\contentsline {paragraph}{The expansion settings}{14}{section*.8}
+\contentsline {paragraph}{Options:}{14}{section*.9}
+\contentsline {subsection}{\numberline {5.3}Tracking}{15}{subsection.5.3}
+\contentsline {paragraph}{The tracking amount}{15}{section*.10}
+\contentsline {paragraph}{Options:}{15}{section*.11}
+\contentsline {subsection}{\numberline {5.4}Additional kerning}{18}{subsection.5.4}
+\contentsline {paragraph}{The kerning settings}{18}{section*.12}
+\contentsline {paragraph}{Options:}{18}{section*.13}
+\contentsline {subsection}{\numberline {5.5}Interword spacing}{19}{subsection.5.5}
+\contentsline {paragraph}{The spacing settings}{19}{section*.14}
+\contentsline {paragraph}{Options:}{19}{section*.15}
+\contentsline {subsection}{\numberline {5.6}Character inheritance}{20}{subsection.5.6}
+\contentsline {subsection}{\numberline {5.7}Configuration files}{20}{subsection.5.7}
+\contentsline {section}{\numberline {6}Context-sensitive setup}{22}{section.6}
+\contentsline {section}{\numberline {7}Letterspacing revisited}{23}{section.7}
+\contentsline {section}{\numberline {8}Disabling ligatures}{25}{section.8}
+\contentsline {section}{\numberline {9}Hints and caveats}{25}{section.9}
+\contentsline {paragraph}{Use settings that match your font.}{25}{section*.16}
+\contentsline {paragraph}{Don't use too large a value for expansion.}{25}{section*.17}
+\contentsline {paragraph}{Don't use font expansion for web documents (with older pdf\kern .05em\textoractual {T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor \@m }{TeX}\ versions).}{25}{section*.18}
+\contentsline {paragraph}{You might want to disable protrusion in the Table of Contents.}{26}{section*.19}
+\contentsline {paragraph}{You might want to disable protrusion in \texttt {verbatim} environments.}{26}{section*.20}
+\contentsline {paragraph}{Settings for Greek/Thai/Armenian etc. encodings are not yet included.}{26}{section*.21}
+\contentsline {paragraph}{Only employ kerning adjustment if it is customary in the language's typographic tradition.}{26}{section*.22}
+\contentsline {paragraph}{Adjustment of interword spacing is still experimental.}{26}{section*.23}
+\contentsline {paragraph}{Compatibility and interaction with other packages:}{27}{section*.24}
+\contentsline {paragraph}{Possible error messages and how to get rid of them:}{27}{section*.25}
+\contentsline {section}{\numberline {10}Contributions}{28}{section.10}
+\contentsline {section}{\numberline {11}Acknowledgments}{28}{section.11}
+\contentsline {section}{\numberline {12}References}{29}{section.12}
+\contentsline {section}{\numberline {13}Short history}{29}{section.13}
+\contentsline {section}{\numberline {14}Implementation}{33}{section.14}
+\contentsline {subsection}{\numberline {14.1}Preliminaries}{34}{subsection.14.1}
+\contentsline {subsubsection}{\numberline {14.1.1}Debugging}{35}{subsubsection.14.1.1}
+\contentsline {subsubsection}{\numberline {14.1.2}Requirements}{37}{subsubsection.14.1.2}
+\contentsline {subsubsection}{\numberline {14.1.3}Declarations}{41}{subsubsection.14.1.3}
+\contentsline {subsubsection}{\numberline {14.1.4}Auxiliary macros}{42}{subsubsection.14.1.4}
+\contentsline {subsubsection}{\numberline {14.1.5}Compatibility}{50}{subsubsection.14.1.5}
+\contentsline {subsection}{\numberline {14.2}Font setup}{55}{subsection.14.2}
+\contentsline {paragraph}{Here's the promised dirty trick}{57}{section*.27}
+\contentsline {subsubsection}{\numberline {14.2.1}Protrusion}{60}{subsubsection.14.2.1}
+\contentsline {subsubsection}{\numberline {14.2.2}Expansion}{68}{subsubsection.14.2.2}
+\contentsline {subsubsection}{\numberline {14.2.3}Interword spacing (glue)}{70}{subsubsection.14.2.3}
+\contentsline {subsubsection}{\numberline {14.2.4}Additional kerning}{72}{subsubsection.14.2.4}
+\contentsline {subsubsection}{\numberline {14.2.5}\lsstyle Tracking}{73}{subsubsection.14.2.5}
+\contentsline {subsubsection}{\numberline {14.2.6}Disabling ligatures}{83}{subsubsection.14.2.6}
+\contentsline {subsubsection}{\numberline {14.2.7}Loading the configuration}{84}{subsubsection.14.2.7}
+\contentsline {subsubsection}{\numberline {14.2.8}Translating characters into slots}{88}{subsubsection.14.2.8}
+\contentsline {subsubsection}{\numberline {14.2.9}Hook into \LaTeX 's font selection}{95}{subsubsection.14.2.9}
+\contentsline {subsubsection}{\numberline {14.2.10}Context-sensitive setup}{98}{subsubsection.14.2.10}
+\contentsline {subsection}{\numberline {14.3}Configuration}{100}{subsection.14.3}
+\contentsline {subsubsection}{\numberline {14.3.1}Font sets}{100}{subsubsection.14.3.1}
+\contentsline {subsubsection}{\numberline {14.3.2}Variants and aliases}{106}{subsubsection.14.3.2}
+\contentsline {subsubsection}{\numberline {14.3.3}Disabling ligatures}{107}{subsubsection.14.3.3}
+\contentsline {subsubsection}{\numberline {14.3.4}Interaction with \pkg {babel}}{108}{subsubsection.14.3.4}
+\contentsline {subsubsection}{\numberline {14.3.5}Fine tuning}{108}{subsubsection.14.3.5}
+\contentsline {subsubsection}{\numberline {14.3.6}Character inheritance}{115}{subsubsection.14.3.6}
+\contentsline {subsubsection}{\numberline {14.3.7}Permutation}{117}{subsubsection.14.3.7}
+\contentsline {subsection}{\numberline {14.4}Package options}{120}{subsection.14.4}
+\contentsline {subsubsection}{\numberline {14.4.1}Declaring the options}{120}{subsubsection.14.4.1}
+\contentsline {subsubsection}{\numberline {14.4.2}Loading the definition file}{124}{subsubsection.14.4.2}
+\contentsline {subsubsection}{\numberline {14.4.3}Reading the configuration file}{125}{subsubsection.14.4.3}
+\contentsline {subsubsection}{\numberline {14.4.4}Hook for other packages}{126}{subsubsection.14.4.4}
+\contentsline {subsubsection}{\numberline {14.4.5}Changing options later}{127}{subsubsection.14.4.5}
+\contentsline {subsubsection}{\numberline {14.4.6}Processing the options}{129}{subsubsection.14.4.6}
+\contentsline {section}{\numberline {15}Configuration files}{138}{section.15}
+\contentsline {subsection}{\numberline {15.1}Font sets}{138}{subsection.15.1}
+\contentsline {subsection}{\numberline {15.2}Font variants and aliases}{139}{subsection.15.2}
+\contentsline {subsection}{\numberline {15.3}Interaction with \pkg {babel}}{141}{subsection.15.3}
+\contentsline {subsection}{\numberline {15.4}Note on admissible characters}{141}{subsection.15.4}
+\contentsline {subsection}{\numberline {15.5}Character inheritance}{141}{subsection.15.5}
+\contentsline {subsubsection}{\numberline {15.5.1}\acronym {OT1}}{142}{subsubsection.15.5.1}
+\contentsline {subsubsection}{\numberline {15.5.2}\acronym {T1}}{142}{subsubsection.15.5.2}
+\contentsline {subsubsection}{\numberline {15.5.3}\acronym {LY1}}{143}{subsubsection.15.5.3}
+\contentsline {subsubsection}{\numberline {15.5.4}\acronym {OT4}}{143}{subsubsection.15.5.4}
+\contentsline {subsubsection}{\numberline {15.5.5}\acronym {QX}}{144}{subsubsection.15.5.5}
+\contentsline {subsubsection}{\numberline {15.5.6}\acronym {T5}}{144}{subsubsection.15.5.6}
+\contentsline {subsubsection}{\numberline {15.5.7}Euro symbols}{146}{subsubsection.15.5.7}
+\contentsline {subsection}{\numberline {15.6}Tracking}{146}{subsection.15.6}
+\contentsline {subsection}{\numberline {15.7}Font expansion}{146}{subsection.15.7}
+\contentsline {subsection}{\numberline {15.8}Character protrusion}{149}{subsection.15.8}
+\contentsline {subsubsection}{\numberline {15.8.1}Normal}{149}{subsubsection.15.8.1}
+\contentsline {subsubsection}{\numberline {15.8.2}Italics}{159}{subsubsection.15.8.2}
+\contentsline {subsubsection}{\numberline {15.8.3}Small caps}{169}{subsubsection.15.8.3}
+\contentsline {subsubsection}{\numberline {15.8.4}Italic small caps}{172}{subsubsection.15.8.4}
+\contentsline {subsubsection}{\numberline {15.8.5}Text companion}{174}{subsubsection.15.8.5}
+\contentsline {subsubsection}{\numberline {15.8.6}Computer Modern math}{179}{subsubsection.15.8.6}
+\contentsline {subsubsection}{\numberline {15.8.7}\acronym {AMS} symbols}{183}{subsubsection.15.8.7}
+\contentsline {subsubsection}{\numberline {15.8.8}Euler}{187}{subsubsection.15.8.8}
+\contentsline {subsubsection}{\numberline {15.8.9}Euro symbols}{191}{subsubsection.15.8.9}
+\contentsline {subsection}{\numberline {15.9}Interword spacing}{192}{subsection.15.9}
+\contentsline {subsubsection}{\numberline {15.9.1}Nonfrenchspacing}{194}{subsubsection.15.9.1}
+\contentsline {subsection}{\numberline {15.10}Additional kerning}{195}{subsection.15.10}
+\contentsline {subsubsection}{\numberline {15.10.1}French}{196}{subsubsection.15.10.1}
+\contentsline {subsubsection}{\numberline {15.10.2}Turkish}{196}{subsubsection.15.10.2}
+\contentsline {section}{\numberline {16}Auxiliary file for micro fine tuning}{197}{section.16}
+\contentsline {section}{\numberline {A}The \LaTeX \ Project Public License}{200}{appendix.A}

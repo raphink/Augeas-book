@@ -1,0 +1,98 @@
+\def \pdfoutline {\ORIGpdfoutline attr{/F 01}}
+\BOOKMARK [1][]{toc.1}{Contents}{}% 1
+\let \pdfoutline \ORIGpdfoutline 
+\def \pdfoutline {\ORIGpdfoutline attr{/F 01}}
+\BOOKMARK [1][]{lot.1}{List of Tables}{}% 2
+\let \pdfoutline \ORIGpdfoutline 
+\BOOKMARK [1][]{section.1}{Micro-typography with pdfTeX}{}% 3
+\BOOKMARK [1][]{section.2}{Getting started}{}% 4
+\BOOKMARK [1][]{section.3}{Options}{}% 5
+\BOOKMARK [2][]{subsection.3.1}{Enabling the micro-typographic features}{section.3}% 6
+\BOOKMARK [2][]{subsection.3.2}{Character protrusion}{section.3}% 7
+\BOOKMARK [2][]{subsection.3.3}{Font expansion}{section.3}% 8
+\BOOKMARK [2][]{subsection.3.4}{Tracking}{section.3}% 9
+\BOOKMARK [2][]{subsection.3.5}{Miscellaneous options}{section.3}% 10
+\BOOKMARK [2][]{subsection.3.6}{Changing options later}{section.3}% 11
+\BOOKMARK [1][]{section.4}{Selecting fonts for micro-typography}{}% 12
+\BOOKMARK [1][]{section.5}{Micro fine tuning}{}% 13
+\BOOKMARK [2][]{subsection.5.1}{Character protrusion}{section.5}% 14
+\BOOKMARK [2][]{subsection.5.2}{Font expansion}{section.5}% 15
+\BOOKMARK [2][]{subsection.5.3}{Tracking}{section.5}% 16
+\BOOKMARK [2][]{subsection.5.4}{Additional kerning}{section.5}% 17
+\BOOKMARK [2][]{subsection.5.5}{Interword spacing}{section.5}% 18
+\BOOKMARK [2][]{subsection.5.6}{Character inheritance}{section.5}% 19
+\BOOKMARK [2][]{subsection.5.7}{Configuration files}{section.5}% 20
+\BOOKMARK [1][]{section.6}{Context-sensitive setup}{}% 21
+\BOOKMARK [1][]{section.7}{Letterspacing revisited}{}% 22
+\BOOKMARK [1][]{section.8}{Disabling ligatures}{}% 23
+\BOOKMARK [1][]{section.9}{Hints and caveats}{}% 24
+\BOOKMARK [1][]{section.10}{Contributions}{}% 25
+\BOOKMARK [1][]{section.11}{Acknowledgments}{}% 26
+\BOOKMARK [1][]{section.12}{References}{}% 27
+\BOOKMARK [1][]{section.13}{Short history}{}% 28
+\BOOKMARK [1][-]{section.14}{Implementation}{}% 29
+\BOOKMARK [2][-]{subsection.14.1}{Preliminaries}{section.14}% 30
+\BOOKMARK [3][-]{subsubsection.14.1.1}{Debugging}{subsection.14.1}% 31
+\BOOKMARK [3][-]{subsubsection.14.1.2}{Requirements}{subsection.14.1}% 32
+\BOOKMARK [3][-]{subsubsection.14.1.3}{Declarations}{subsection.14.1}% 33
+\BOOKMARK [3][-]{subsubsection.14.1.4}{Auxiliary macros}{subsection.14.1}% 34
+\BOOKMARK [3][-]{subsubsection.14.1.5}{Compatibility}{subsection.14.1}% 35
+\BOOKMARK [2][-]{subsection.14.2}{Font setup}{section.14}% 36
+\BOOKMARK [3][-]{subsubsection.14.2.1}{Protrusion}{subsection.14.2}% 37
+\BOOKMARK [3][-]{subsubsection.14.2.2}{Expansion}{subsection.14.2}% 38
+\BOOKMARK [3][-]{subsubsection.14.2.3}{Interword spacing \(glue\)}{subsection.14.2}% 39
+\BOOKMARK [3][-]{subsubsection.14.2.4}{Additional kerning}{subsection.14.2}% 40
+\BOOKMARK [3][-]{subsubsection.14.2.5}{Tracking}{subsection.14.2}% 41
+\BOOKMARK [3][-]{subsubsection.14.2.6}{Disabling ligatures}{subsection.14.2}% 42
+\BOOKMARK [3][-]{subsubsection.14.2.7}{Loading the configuration}{subsection.14.2}% 43
+\BOOKMARK [3][-]{subsubsection.14.2.8}{Translating characters into slots}{subsection.14.2}% 44
+\BOOKMARK [3][-]{subsubsection.14.2.9}{Hook into LaTeX's font selection}{subsection.14.2}% 45
+\BOOKMARK [3][-]{subsubsection.14.2.10}{Context-sensitive setup}{subsection.14.2}% 46
+\BOOKMARK [2][-]{subsection.14.3}{Configuration}{section.14}% 47
+\BOOKMARK [3][-]{subsubsection.14.3.1}{Font sets}{subsection.14.3}% 48
+\BOOKMARK [3][-]{subsubsection.14.3.2}{Variants and aliases}{subsection.14.3}% 49
+\BOOKMARK [3][-]{subsubsection.14.3.3}{Disabling ligatures}{subsection.14.3}% 50
+\BOOKMARK [3][-]{subsubsection.14.3.4}{Interaction with babel}{subsection.14.3}% 51
+\BOOKMARK [3][-]{subsubsection.14.3.5}{Fine tuning}{subsection.14.3}% 52
+\BOOKMARK [3][-]{subsubsection.14.3.6}{Character inheritance}{subsection.14.3}% 53
+\BOOKMARK [3][-]{subsubsection.14.3.7}{Permutation}{subsection.14.3}% 54
+\BOOKMARK [2][-]{subsection.14.4}{Package options}{section.14}% 55
+\BOOKMARK [3][-]{subsubsection.14.4.1}{Declaring the options}{subsection.14.4}% 56
+\BOOKMARK [3][-]{subsubsection.14.4.2}{Loading the definition file}{subsection.14.4}% 57
+\BOOKMARK [3][-]{subsubsection.14.4.3}{Reading the configuration file}{subsection.14.4}% 58
+\BOOKMARK [3][-]{subsubsection.14.4.4}{Hook for other packages}{subsection.14.4}% 59
+\BOOKMARK [3][-]{subsubsection.14.4.5}{Changing options later}{subsection.14.4}% 60
+\BOOKMARK [3][-]{subsubsection.14.4.6}{Processing the options}{subsection.14.4}% 61
+\BOOKMARK [1][-]{section.15}{Configuration files}{}% 62
+\BOOKMARK [2][-]{subsection.15.1}{Font sets}{section.15}% 63
+\BOOKMARK [2][-]{subsection.15.2}{Font variants and aliases}{section.15}% 64
+\BOOKMARK [2][-]{subsection.15.3}{Interaction with babel}{section.15}% 65
+\BOOKMARK [2][-]{subsection.15.4}{Note on admissible characters}{section.15}% 66
+\BOOKMARK [2][-]{subsection.15.5}{Character inheritance}{section.15}% 67
+\BOOKMARK [3][-]{subsubsection.15.5.1}{OT1}{subsection.15.5}% 68
+\BOOKMARK [3][-]{subsubsection.15.5.2}{T1}{subsection.15.5}% 69
+\BOOKMARK [3][-]{subsubsection.15.5.3}{LY1}{subsection.15.5}% 70
+\BOOKMARK [3][-]{subsubsection.15.5.4}{OT4}{subsection.15.5}% 71
+\BOOKMARK [3][-]{subsubsection.15.5.5}{QX}{subsection.15.5}% 72
+\BOOKMARK [3][-]{subsubsection.15.5.6}{T5}{subsection.15.5}% 73
+\BOOKMARK [3][-]{subsubsection.15.5.7}{Euro symbols}{subsection.15.5}% 74
+\BOOKMARK [2][-]{subsection.15.6}{Tracking}{section.15}% 75
+\BOOKMARK [2][-]{subsection.15.7}{Font expansion}{section.15}% 76
+\BOOKMARK [2][-]{subsection.15.8}{Character protrusion}{section.15}% 77
+\BOOKMARK [3][-]{subsubsection.15.8.1}{Normal}{subsection.15.8}% 78
+\BOOKMARK [3][-]{subsubsection.15.8.2}{Italics}{subsection.15.8}% 79
+\BOOKMARK [3][-]{subsubsection.15.8.3}{Small caps}{subsection.15.8}% 80
+\BOOKMARK [3][-]{subsubsection.15.8.4}{Italic small caps}{subsection.15.8}% 81
+\BOOKMARK [3][-]{subsubsection.15.8.5}{Text companion}{subsection.15.8}% 82
+\BOOKMARK [3][-]{subsubsection.15.8.6}{Computer Modern math}{subsection.15.8}% 83
+\BOOKMARK [3][-]{subsubsection.15.8.7}{AMS symbols}{subsection.15.8}% 84
+\BOOKMARK [3][-]{subsubsection.15.8.8}{Euler}{subsection.15.8}% 85
+\BOOKMARK [3][-]{subsubsection.15.8.9}{Euro symbols}{subsection.15.8}% 86
+\BOOKMARK [2][-]{subsection.15.9}{Interword spacing}{section.15}% 87
+\BOOKMARK [3][-]{subsubsection.15.9.1}{Nonfrenchspacing}{subsection.15.9}% 88
+\BOOKMARK [2][-]{subsection.15.10}{Additional kerning}{section.15}% 89
+\BOOKMARK [3][-]{subsubsection.15.10.1}{French}{subsection.15.10}% 90
+\BOOKMARK [3][-]{subsubsection.15.10.2}{Turkish}{subsection.15.10}% 91
+\BOOKMARK [1][-]{section.16}{Auxiliary file for micro fine tuning}{}% 92
+\def \pdfoutline {\ORIGpdfoutline attr{/F 01}}
+\BOOKMARK [1][-]{appendix.A}{The LaTeX Project Public License}{}% 93
