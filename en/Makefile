@@ -6,7 +6,7 @@ BOOKLET_PS=$(BOOK_NAME).booklet.ps
 BOOKLET_TMP_PS=$(BOOK_NAME).booklet.tmp.ps
 LATEX_TEMPLATE=latex.template
 PANDOC_OPTS=--toc
-TEXINPUTS=../minted:
+TEXINPUTS=../minted:microtype:
 
 all: pdf
 
@@ -19,14 +19,14 @@ mobi: $(BOOK_NAME).mobi
 epub: $(BOOK_NAME).epub
 
 %.idx: %.tex
-	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $<
-	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $<
+	TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=batchmode $<
+	TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=batchmode $<
 
 %.ind: %.idx
 	makeindex $<
 
 %.pdf: %.ind
-	TEXINPUTS=$(TEXINPUTS) pdflatex -shell-escape -interaction=batchmode $*
+	TEXINPUTS=$(TEXINPUTS) lualatex -shell-escape -interaction=batchmode $*
 
 %.ps: %.pdf
 	pdftops $< $@
