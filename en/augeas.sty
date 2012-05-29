@@ -15,7 +15,7 @@
            pdftex}
 \usepackage{url}
 \usepackage[activate={true,nocompatibility}]{microtype}
-\usepackage{courier} % Useful monospace font (= has \bfseries).
+%\usepackage{courier} % Useful monospace font (= has \bfseries).
 
 % Colors for tables
 \usepackage[table]{xcolor}    % loads also »colortbl«
@@ -24,9 +24,20 @@
 
 \usepackage{ccaption}
 
+\usepackage{lipsum}
+
+% fonts
+\usepackage{fontspec}
+%\defaultfontfeatures{Mapping=tex-text}
+\defaultfontfeatures{Ligatures=TeX}
+%\setmainfont{Minion Pro}
+\setmainfont{Linux Libertine O}
+\setsansfont{Linux Biolinum O}
+\setmonofont{Inconsolata}
+
 
 % Make nice chapter numbers
-\usepackage{lmodern}
+%\usepackage{lmodern}
 \renewcommand*{\chapterformat}{%
   \fontsize{80}{88}\selectfont\thechapter\autodot\enskip}
 
