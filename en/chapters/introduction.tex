@@ -115,7 +115,7 @@ When you are dealing with a whole fleet of servers and wish to set a parameter f
 
 Remote access to the Augeas API are meant to be added on top of it, not in it.
 
-Puppet\footnote{\url{http://www.puppetlabs.com}} is an example of configuration management tool which supports Augeas as a native type and provides remote management functionality.
+Puppet\footnote{\url{http://www.puppetlabs.com}} is an example of configuration management tool which supports Augeas as a native type and provides remote management functionality\footnote{\seeref{chap:puppet}.}. Mcollective with the \texttt{augeasquery} agent also provides a remote access to Augeas.
 
 \subsection{Very little modelling}
 
@@ -154,18 +154,18 @@ You can find the latest source code on the Augeas website:
 
 	\url{http://augeas.net/download/}
 
-Next, install the necessary dependencies to build Augeas. The minimal dependencies you will need are the readline headers. You can use one of these commands to install them:
+Next, install the necessary dependencies to build Augeas. The minimal dependencies you will need are the readline and libxml headers. You can use one of these commands to install them:
 
 \begin{console}[]
-$ sudo yum install readline-devel
-$ sudo apt-get install libreadline-dev
+$ sudo yum install readline-devel libxml2-devel
+$ sudo apt-get install libreadline-dev libxml2-dev
 \end{console}
 
 Then, extract, compile and install:
 
 \begin{console}[]
-$ tar xvzf augeas-0.8.0.tar.gz
-$ cd augeas-0.8.0
+$ tar xvzf augeas-1.0.tar.gz
+$ cd augeas-1.0
 $ ./configure
 $ make && sudo make install
 \end{console}
@@ -214,7 +214,7 @@ Augeas provides documentation in the form of \LaTeX~files and inline documentati
 
 If you want to build this documentation, begin with the instructions in section \Nameref{sec:installing_from_source} to retrieve the source code.
 
-On Ubuntu, you can find this documentation already built in the `augeas-doc` package\footnoteref{sec:installing_from_packages}.
+On Ubuntu and Debian, you can find this documentation already built in the \verb!augeas-doc! package\footnoteref{sec:installing_from_packages}.
 
 
 \subsubsection{Building the PDF documentation}
@@ -229,7 +229,7 @@ Then add the \texttt{--with\allowbreak-pdfdocs} flag to the \texttt{./configure}
 \consolecode|$ ./configure --with-pdfdocs|
 \consolecode|$ make|
 
-This will generate PDF files in the \verb!doc! directory, which contain mostly theorical information on lenses and their implementation in Augeas\seeref{chap:bx}.
+This will generate PDF files in the \verb!doc! directory, which contain mostly theorical information on lenses and their implementation in Augeas\footnote{\seeref{chap:bx}.}.
 
 
 \subsubsection{Building the NaturalDocs documentation}
@@ -256,7 +256,7 @@ This will produce HTML files in the \verb!doc/naturaldocs/output! directory. The
 This book uses the following conventions:
 \begin{itemize}
   \item
-    Filesystem paths, Augeas calls and Unix commands are written in a monospace font;
+    Filesystem paths, Augeas calls and Unix commands are typeset in a monospace font;
   \item
     When lines are too long in an output, an antislash (\verb!\!) is added and the rest of the line is reported to the next line with an indentation.
 \end{itemize}

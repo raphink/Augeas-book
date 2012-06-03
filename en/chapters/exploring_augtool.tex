@@ -20,7 +20,50 @@ The first thing we might want to do is to see how Augeas sees your system config
 
 \consolecode/$ augtool/
 
-This will give you an interactive shell which passes commands to Augeas. Augeas transforms your configuration files into a tree, which has two nodes at its root: \nolinkurl{/augeas} and \nolinkurl{/files}. The \nolinkurl{/augeas} node contains metadata, which we will be looking at in chapter~\ref{chap:metadata}, while \nolinkurl{/files} contains the representation of the files Augeas was able to parse. You can see these two nodes by typing \verb!ls /!:
+This will give you an interactive shell which passes commands to Augeas.
+
+To see which commands your version of \texttt{augtool} supports, simply type \texttt{help}:
+
+\begin{augtoolsh}[]
+augtool> help
+Commands:
+
+    quit       - exit the program
+    clear      - clear the value of a node
+    defnode    - set a variable, possibly creating a new node
+    defvar     - set a variable
+    get        - get the value of a node
+    ins        - insert new node
+    insert     - insert new node (alias of 'ins')
+    load       - (re)load files under /files
+    ls         - list children of a node
+    match      - print matches for a path expression
+    mv         - move a subtree
+    move       - move a subtree (alias of 'mv')
+    print      - print a subtree
+    dump-xml   - print a subtree as XML
+    rm         - delete nodes and subtrees
+    save       - save all pending changes
+    set        - set the value of a node
+\end{augtoolsh}
+\begin{augtoolsh}[]
+    setm       - set the value of multiple nodes
+    clearm     - clear the value of multiple nodes
+    span       - print position in input file corresponding to tree
+    store      - parse text into tree
+    retrieve   - transform tree into text
+    touch      - create a new node
+    help       - print help
+
+Type 'help <command>' for more information on a command
+\end{augtoolsh}
+
+
+Augeas transforms your configuration files into a tree,
+ which has two nodes at its root: \texttt{/augeas} and \texttt{/files}.
+ The \texttt{/augeas} node contains metadata, which we will be looking at in chapter~\ref{chap:metadata},
+ while \texttt{/files} contains the representation of the files Augeas was able to parse.
+ You can see these two nodes by typing \verb!ls /!:
 
 \index{Commands!ls}
 
@@ -34,7 +77,7 @@ What does that mean? We see the two nodes at the top of the Augeas tree, and we 
 
 \verb!ls! is an \verb!augtool! command which lists the children of the given node and gives their value (if any).
 
-You can see which files (or directories containing files) were successfully parsed by Augeas in \nolinkurl{/etc} by typing \verb!ls /files/etc!:
+You can see which files (or directories containing files) were successfully parsed by Augeas in \texttt{/etc} by typing \verb!ls /files/etc!:
 
 \begin{augtoolsh}[]
 augtool> ls /files/etc
@@ -53,7 +96,7 @@ crypttab/ = (none)
 
 \index{Commands!print}
 
-Let's inspect the contents of the first line of \nolinkurl{/etc/fstab} in the Augeas tree. We can use the \verb!print! command to inspect nodes and their values recursively:
+Let's inspect the contents of the first line of \texttt{/etc/fstab} in the Augeas tree. We can use the \verb!print! command to inspect nodes and their values recursively:
 
 \begin{augtoolsh}[]
 augtool> print /files/etc/fstab/1
@@ -68,7 +111,7 @@ augtool> print /files/etc/fstab/1
 /files/etc/fstab/1/passno = "0"
 \end{augtoolsh}
 
-Each of the child nodes beneath the \verb!1! node refers to a part of a single line in the \nolinkurl{/etc/fstab} file. The filesystem options are further split into separate nodes under the \verb!opt! node so they can be managed individually.
+Each of the child nodes beneath the \verb!1! node refers to a part of a single line in the \texttt{/etc/fstab} file. The filesystem options are further split into separate nodes under the \verb!opt! node so they can be managed individually.
 
 What if we only wanted to find the \verb!opt! nodes of this first line? The \verb!match! command lets us find the nodes matching an expression:
 
@@ -97,7 +140,7 @@ To leave the \verb!augtool! session, you can type \verb!quit! or \verb!^D!:
 
 \section{Using a Fakeroot}
 
-It is often useful to play with \verb!augtool! when you want to understand the Augeas tree or try XPath expressions. However, you likely don't want to play with the files in your \nolinkurl{/etc} directory and take the risk of ruining your system. Augeas lets you set a fakeroot so that the files parsed and modified by Augeas are taken from this root instead of the \nolinkurl{/} directory of your system.
+It is often useful to play with \verb!augtool! when you want to understand the Augeas tree or try XPath expressions. However, you likely don't want to play with the files in your \texttt{/etc} directory and take the risk of ruining your system. Augeas lets you set a fakeroot so that the files parsed and modified by Augeas are taken from this root instead of the \texttt{/} directory of your system.
 
 \index{augtool!options!--root} \index{Environment variables!\textsc{augeas\_root}}
 
@@ -136,7 +179,7 @@ The fakeroot option will be useful for us here, in order to modify the files wit
 \end{listing}
 
 
-In listing \refandpage{lst:rm_fstab_opt} we change the filesystem options specified on the first line of \nolinkurl{/etc/fstab} by removing the third \verb!opt! node. The \verb!rm! command on line 2 removes only the \verb!opt! node we specified. Line 3 tells us that the \verb!rm! command removed only one node, the \nolinkurl{/files/etc/fstab/1/opt[3]} node. Lines 4 through 11 show us the \nolinkurl{/files/etc/fstab/1} tree without the removed node.
+In listing \refandpage{lst:rm_fstab_opt} we change the filesystem options specified on the first line of \texttt{/etc/fstab} by removing the third \verb!opt! node. The \verb!rm! command on line 2 removes only the \verb!opt! node we specified. Line 3 tells us that the \verb!rm! command removed only one node, the \texttt{/files/etc/fstab/1/opt[3]} node. Lines 4 through 11 show us the \texttt{/files/etc/fstab/1} tree without the removed node.
 
 On line 12, we call the \verb!save! command. This command tells Augeas to save the tree back to the configuration files. Augeas inspects the files and tries to apply the new tree to them. In our case, the \verb!save! command was successful as line 13 tells us, and one file was modified, which is what we expected. We can then quit the \verb!augtool! session by typing \verb!quit! on line 14. We can then quit the \verb!augtool! session by typing \verb!quit! on line 14.
 
@@ -154,7 +197,7 @@ Augeas offers two options to preserve the existing files when saving the tree. I
 \item
   \verb!--new! will save the modified file with a .augnew extension and leave the original file untouched.
 \end{itemize}
-These options actually modify the value of the \nolinkurl{/augeas/save} node in the Augeas tree\footnoteref{sec:save_node}.
+These options actually modify the value of the \texttt{/augeas/save} node in the Augeas tree\footnoteref{sec:save_node}.
 
 \section{Locating nodes in files}
 
@@ -162,7 +205,7 @@ These options actually modify the value of the \nolinkurl{/augeas/save} node in 
 
 The span metadata were added in Augeas 0.8.0. For performance reasons, they are not activated by default. This functionality can be activated by the \verb!AUG_ENABLE_SPAN! flag or the \verb!--span! flag in \verb!augtool!.
 
-You can see if the \verb!span! functionality is activated in the current session by looking at the \nolinkurl{/augeas/span} node\footnoteref{sec:span_node}:
+You can see if the \verb!span! functionality is activated in the current session by looking at the \texttt{/augeas/span} node\footnoteref{sec:span_node}:
 
 \index{Metadata!\slash{}augeas\slash{}span}
 

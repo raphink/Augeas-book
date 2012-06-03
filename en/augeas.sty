@@ -21,6 +21,7 @@
 \usepackage[table]{xcolor}    % loads also »colortbl«, colored
 %\usepackage[table,gray]{xcolor}    % loads also »colortbl«, grayscale
 
+
 %\rowcolors{2}{gray!25}{white}
 \usepackage{multirow}
 
@@ -82,4 +83,9 @@
 
 % Number listings within chapters
 \numberwithin{listing}{chapter}
+
+% Use footnote package when footnotes (or NdT)
+% are called from within \dvquote
+% Warning:Load footnote after xcolor
+\usepackage{footnote}
 
