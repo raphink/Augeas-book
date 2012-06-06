@@ -6,7 +6,7 @@
 
 We have seen earlier that the \nolinkurl{/augeas} top node exposes Augeas metadata which can be parsed and modified in the same fashion as the \nolinkurl{/files} data. This chapter will focus on documenting the various parts of the \nolinkurl{/augeas} tree and their functions.
 
-\section{The root node}
+\section{The \texttt{/augeas/root} node}
 
 \index{Metadata!\slash{}augeas\slash{}root} \index{augtool!options!--root} \index{Environment variables!\textsc{augeas\_root}}
 
@@ -20,7 +20,7 @@ Example:
   \consolecode|$ augtool --root fakeroot|
   \augtoolshcode|augtool> print /augeas/root|
   \augtoolshcode|/augeas/root = "fakeroot/"|
-  \caption{Inspecting /augeas/root}
+  \caption{Inspecting \nolinkurl{/augeas/root}}
   \label{lst:metadata_root}
 \end{listing}
 
@@ -28,7 +28,7 @@ Example:
 \info{As of Augeas 0.8.0, this node is purely informative: changing its value has no effect on the way Augeas works.}
 
 \end{quote}
-\section{The version tree}
+\section{The \texttt{/augeas/version} tree}
 
 \index{Metadata!\slash{}augeas\slash{}version}
 
@@ -40,7 +40,9 @@ Example:
 \item
   The \verb!save! node contains \verb!mode! nodes which list the known saving modes for this version of Augeas;
 \item
-  The \verb!defvar! node contains \textbf{what exactly??}.
+  The presence of the \verb!defvar! node indicates whether \verb!defvar! and \verb!defnode! are supported;
+\item
+  The \verb!pathx! tree indicates which XPath functions\footnote{\seeref{sec:xpath_functions}.} are supported.
 \end{itemize}
 \index{Commands!print}
 
@@ -48,7 +50,7 @@ Example:
 \begin{listing}
   \begin{augtoolsh}[]
 augtool> print /augeas/version/
-/augeas/version = "0.8.0"
+/augeas/version = "0.10.0"
 /augeas/version/save
 /augeas/version/save/mode[1] = "backup"
 /augeas/version/save/mode[2] = "newfile"
@@ -56,13 +58,21 @@ augtool> print /augeas/version/
 /augeas/version/save/mode[4] = "overwrite"
 /augeas/version/defvar
 /augeas/version/defvar/expr
+/augeas/version/pathx
+/augeas/version/pathx/functions
+/augeas/version/pathx/functions/count
+/augeas/version/pathx/functions/glob
+/augeas/version/pathx/functions/label
+/augeas/version/pathx/functions/last
+/augeas/version/pathx/functions/position
+/augeas/version/pathx/functions/regexp
   \end{augtoolsh}
-  \caption{Inspecting /augeas/version}
+  \caption{Inspecting \nolinkurl{/augeas/version}}
   \label{lst:metadata_version}
 \end{listing}
 
 
-\section{The save node}
+\section{The \texttt{/augeas/save node}}
 
 \label{sec:save_node} \index{Metadata!\slash{}augeas\slash{}save}
 
@@ -70,7 +80,7 @@ The \nolinkurl{/augeas/save} node contains the saving mode used by Augeas for th
 
 If this node is modified during the session, it will affect the behaviour of the \verb!save! call whenever it is executed.
 
-\section{The load tree}
+\section{The \texttt{/augeas/load} tree}
 
 \index{Metadata!\slash{}augeas\slash{}load}
 
@@ -121,7 +131,7 @@ It is common to use Augeas to modify only one file. In that case you know exactl
   \consolecode|$ augtool --noautoload|
   \augtoolshcode|augtool> print /augeas/load|
   \augtoolshcode|/augeas/load|
-  \caption{The effect of --noautoload on /augeas/load}
+  \caption{The effect of \texttt{--noautoload} on \nolinkurl{/augeas/load}}
   \label{lst:metadata_noautoload}
 \end{listing}
 
@@ -146,7 +156,7 @@ augtool> print /augeas/load
 /augeas/load/Fstab/lens = "Fstab.lns"
 /augeas/load/Fstab/incl = "/etc/fstab"
   \end{augtoolsh}
-  \caption{Setting the Fstab lens manually in /augeas/load}
+  \caption{Setting the Fstab lens manually in \nolinkurl{/augeas/load}}
   \label{lst:metadata_setting_lens_manually}
 \end{listing}
 
@@ -192,7 +202,7 @@ foo.json/ = (none)
 \info{This technique can be combined with the above to load only the \texttt{Json} module}
 
 \end{quote}
-\section{The files tree}
+\section{The \texttt{/augeas/files} tree}
 
 \index{Metadata!\slash{}augeas\slash{}files|(}
 
@@ -200,19 +210,19 @@ The \nolinkurl{/augeas/files} provides metadata about the files parsed by Augeas
 
 For each file, the following nodes may be present.
 
-\subsection{The path node}
+\subsection{The \texttt{path} node}
 
 \verb!path! is the path to the file data in the \nolinkurl{/files} tree.
 
-\subsection{The mtime node}
+\subsection{The \texttt{mtime} node}
 
 \verb!mtime! is the last modification time of the file when it was read. Augeas uses this information internaly to speed up loading of files. Only the files whose modification time has changed are read again when \verb!aug_load! is called.
 
-\subsection{The lens tree}
+\subsection{The \texttt{lens} tree}
 
 The \verb!lens! tree indicates the lens used to parse this file, as specified in the \nolinkurl{/augeas/load} tree (see above). The \verb!lens/info! node gives the path to the lens module (physically), as well as the position of the lens declaration in the file.
 
-\subsection{The error tree}
+\subsection{The \texttt{error} tree}
 
 When Augeas fails to parse a file, the parsing error is listed here.
 
@@ -264,7 +274,7 @@ The parsing of \nolinkurl{/etc/ldap.conf} failed on position 9510, which located
 
 \index{Metadata!\slash{}augeas\slash{}files|)}
 
-\section{The variables tree}
+\section{The \texttt{/augeas/variables} tree}
 
 \index{Metadata!\slash{}augeas\slash{}variables} \index{Path expressions!variables!defvar}
 
@@ -281,15 +291,15 @@ augtool> print /augeas/variables/
 /augeas/variables
 /augeas/variables/l = "/augeas/files/etc/ldap.conf"
   \end{augtoolsh}
-  \caption{Defined variables are listed in /augeas/variables}
+  \caption{Defined variables are listed in \nolinkurl{/augeas/variables}}
   \label{lst:metadata_defvar}
 \end{listing}
 
 \begin{quote}
-\info{As of Augeas 0.8.0, this node is purely informative: changing its value has no effect on the way Augeas works.}
+\info{As of Augeas 0.10.0, this node is purely informative: changing its value has no effect on the way Augeas works.}
 
 \end{quote}
-\section{The span node}
+\section{The \texttt{/augeas/span} node}
 
 \label{sec:span_node} \index{Metadata!\slash{}augeas\slash{}span} \index{augtool!options!--span} \index{Flags!\textsc{aug\_enable\_span}}
 
