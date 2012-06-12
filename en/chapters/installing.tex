@@ -109,3 +109,33 @@ You can then build the documentation by calling \texttt{./configure} with the \t
 
 This will produce HTML files in the \verb!doc/naturaldocs/output! directory. The \verb!c_api! directory will contain the generated documentation for the C API. The \verb!lenses! directory will be the documentation for the lenses provided with Augeas. You can open the \verb!index.html! file of one of these directories to access the full documentation.
 
+
+\section{Installing the bindings}
+
+Augeas bindings are not provided with the Augeas source, but as separate projects.
+
+\subsection{Installing bindings from binary packages}
+
+Major GNU/Linux distributions provide some of them as packages.
+
+On Red Hat or Fedora derivatives, you can use:
+
+\begin{console}[]
+$ sudo yum install python-augeas      # Python bindings
+$ sudo yum install ruby-augeas        # Ruby bindings
+$ sudo yum install perl-Config-Augeas # Perl bindings
+$ sudo yum install ghc-augeas         # Haskell bindings
+$ sudo yum install java-augeas        # Java bindings
+$ sudo yum install ocaml-augeas       # OCaml bindings
+\end{console}
+
+On Debian and Ubuntu derivatives:
+
+\begin{console}[]
+$ sudo apt-get install python-augeas         # Python bindings
+$ sudo apt-get install libaugeas-ruby        # Ruby bindings
+$ sudo apt-get install libconfig-augeas-perl # Perl bindings
+$ sudo apt-get install libghc-augeas-dev     # Haskell bindings
+\end{console}
+
+
