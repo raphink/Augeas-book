@@ -1,0 +1,111 @@
+\chapter{Installing Augeas}
+
+\label{chap:installing_augeas} \index{Installation}
+
+\section{Installing from source}
+
+\index{Installation!from source}
+\label{sec:installing_from_source}
+
+You might want to install Augeas from source if your distribution does not provide any binary packages, if you simply want to use the latest version of Augeas, or tune compilation parameters.
+
+You can find the latest source code on the Augeas website:
+
+	\url{http://augeas.net/download/}
+
+Next, install the necessary dependencies to build Augeas. The minimal dependencies you will need are the readline and libxml headers. You can use one of these commands to install them:
+
+\begin{console}[]
+$ sudo yum install readline-devel libxml2-devel
+$ sudo apt-get install libreadline-dev libxml2-dev
+\end{console}
+
+Then, extract, compile and install:
+
+\begin{console}[]
+$ tar xvzf augeas-1.0.tar.gz
+$ cd augeas-1.0
+$ ./configure
+$ make && sudo make install
+\end{console}
+
+
+
+\section{Installing from binary packages}
+
+\index{Installation!from packages}
+
+\label{sec:installing_from_packages}
+
+Most distributions provide Augeas packages, often split up into the shared library, the lenses provided with Augeas and the command-line tools.
+
+On Red Hat or Fedora derivatives, you can install the \verb!augeas! package using yum:
+
+\consolecode/$ sudo yum install augeas/
+
+Or on Debian and Ubuntu systems, you can install the Augeas library and the augtool command-line interface with the following:
+
+\consolecode/$ sudo apt-get install augeas-tool/
+
+You might also want to install the documentation package with:
+
+\consolecode/$ sudo apt-get install augeas-doc/
+
+\section{Installing from the development head}
+
+\index{Installation!from development head}
+
+Augeas' code is maintained in a public repository which can be cloned and used to test the latest features and fixes before they are released.
+
+If you wish to build and install from the development head, you will need \verb!git! \footnote{provided by the \verb!git-core! package on Debian-based distributions}, \verb!autoconf!, \verb!automake! and \verb!libtool!, as well as the normal dependencies to build Augeas from source. Then follow these instructions:
+
+\begin{console}[]
+$ git clone git://git.fedorahosted.org/augeas.git
+$ ./autogen.sh
+$ ./configure
+$ make && sudo make install
+\end{console}
+
+
+\section{Building documentation}
+
+Augeas provides documentation in the form of \LaTeX~files and inline documentation in the C API source and lenses, formatted in the NaturalDocs\footnote{\url{http://naturaldocs.org}} format.
+
+If you want to build this documentation, begin with the instructions in section \Nameref{sec:installing_from_source} to retrieve the source code.
+
+On Ubuntu and Debian, you can find this documentation already built in the \verb!augeas-doc! package\footnoteref{sec:installing_from_packages}.
+
+
+\section{Building the PDF documentation}
+
+In order to build the PDF documentation, you will need to install \verb!pdflatex! on your system, with one of the following commands:
+
+\consolecode|$ sudo yum install texlive-latex|
+\consolecode|$ sudo apt-get install texlive-latex-base|
+
+Then add the \texttt{--with\allowbreak-pdfdocs} flag to the \texttt{./configure} call and call \texttt{make}:
+
+\consolecode|$ ./configure --with-pdfdocs|
+\consolecode|$ make|
+
+This will generate PDF files in the \verb!doc! directory, which contain mostly theorical information on lenses and their implementation in Augeas\footnote{\seeref{chap:bx}.}.
+
+
+\section{Building the NaturalDocs documentation}
+
+The NaturalDocs documentation covers the inline documentation for the C API and the lenses shipped with Augeas.
+
+\info{The NaturalDocs documentation is available online at \url{http://augeas.net/docs/references/lenses}}
+
+In order to build this documentation, you need to install \verb!naturaldocs! on your system, using one of these commands:
+
+\consolecode|$ sudo yum install NaturalDocs|
+\consolecode|$ sudo apt-get install naturaldocs|
+
+You can then build the documentation by calling \texttt{./configure} with the \texttt{--with\allowbreak-naturaldocs=HTML} or \texttt{--with\allowbreak-naturaldocs=FramedHTML} flags. The first flag will include the HTML header in each generated file, while the second flag will generate HTML frames to read the documentation:
+
+\consolecode|$ ./configure --with-naturaldocs=HTML|
+\consolecode|$ make|
+
+This will produce HTML files in the \verb!doc/naturaldocs/output! directory. The \verb!c_api! directory will contain the generated documentation for the C API. The \verb!lenses! directory will be the documentation for the lenses provided with Augeas. You can open the \verb!index.html! file of one of these directories to access the full documentation.
+
