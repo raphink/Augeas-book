@@ -10,10 +10,11 @@
 You might want to install Augeas from source if your distribution does not provide any binary packages, if you simply want to use the latest version of Augeas, or tune compilation parameters.
 
 You can find the latest source code on the Augeas website:
-
+\nopagebreak
 	\url{http://augeas.net/download/}
 
 Next, install the necessary dependencies to build Augeas. The minimal dependencies you will need are the readline and libxml headers. You can use one of these commands to install them:
+\nopagebreak
 
 \begin{console}[]
 $ sudo yum install readline-devel libxml2-devel
@@ -21,6 +22,7 @@ $ sudo apt-get install libreadline-dev libxml2-dev
 \end{console}
 
 Then, extract, compile and install:
+\nopagebreak
 
 \begin{console}[]
 $ tar xvzf augeas-1.0.tar.gz
@@ -40,14 +42,17 @@ $ make && sudo make install
 Most distributions provide Augeas packages, often split up into the shared library, the lenses provided with Augeas and the command-line tools.
 
 On Red Hat or Fedora derivatives, you can install the \verb!augeas! package using yum:
+\nopagebreak
 
 \consolecode/$ sudo yum install augeas/
 
 Or on Debian and Ubuntu systems, you can install the Augeas library and the augtool command-line interface with the following:
+\nopagebreak
 
 \consolecode/$ sudo apt-get install augeas-tool/
 
 You might also want to install the documentation package with:
+\nopagebreak
 
 \consolecode/$ sudo apt-get install augeas-doc/
 
@@ -58,6 +63,7 @@ You might also want to install the documentation package with:
 Augeas' code is maintained in a public repository which can be cloned and used to test the latest features and fixes before they are released.
 
 If you wish to build and install from the development head, you will need \verb!git! \footnote{provided by the \verb!git-core! package on Debian-based distributions}, \verb!autoconf!, \verb!automake! and \verb!libtool!, as well as the normal dependencies to build Augeas from source. Then follow these instructions:
+\nopagebreak
 
 \begin{console}[]
 $ git clone git://git.fedorahosted.org/augeas.git
@@ -79,14 +85,18 @@ On Ubuntu and Debian, you can find this documentation already built in the \verb
 \section{Building the PDF documentation}
 
 In order to build the PDF documentation, you will need to install \verb!pdflatex! on your system, with one of the following commands:
+\nopagebreak
 
 \consolecode|$ sudo yum install texlive-latex|
 \consolecode|$ sudo apt-get install texlive-latex-base|
 
 Then add the \texttt{--with\allowbreak-pdfdocs} flag to the \texttt{./configure} call and call \texttt{make}:
+\nopagebreak
 
-\consolecode|$ ./configure --with-pdfdocs|
-\consolecode|$ make|
+\begin{console}[]
+$ ./configure --with-pdfdocs
+$ make
+\end{console}
 
 This will generate PDF files in the \verb!doc! directory, which contain mostly theorical information on lenses and their implementation in Augeas\footnote{\seeref{chap:bx}.}.
 
@@ -103,6 +113,7 @@ In order to build this documentation, you need to install \verb!naturaldocs! on 
 \consolecode|$ sudo apt-get install naturaldocs|
 
 You can then build the documentation by calling \texttt{./configure} with the \texttt{--with\allowbreak-naturaldocs=HTML} or \texttt{--with\allowbreak-naturaldocs=FramedHTML} flags. The first flag will include the HTML header in each generated file, while the second flag will generate HTML frames to read the documentation:
+\nopagebreak
 
 \consolecode|$ ./configure --with-naturaldocs=HTML|
 \consolecode|$ make|
@@ -119,6 +130,7 @@ Augeas bindings are not provided with the Augeas source, but as separate project
 Major GNU/Linux distributions provide some of them as packages.
 
 On Red Hat or Fedora derivatives, you can use:
+\nopagebreak
 
 \begin{console}[]
 $ sudo yum install python-augeas      # Python bindings
@@ -130,6 +142,7 @@ $ sudo yum install ocaml-augeas       # OCaml bindings
 \end{console}
 
 On Debian and Ubuntu derivatives:
+\nopagebreak
 
 \begin{console}[]
 $ sudo apt-get install python-augeas         # Python bindings
