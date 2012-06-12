@@ -8,7 +8,7 @@ in some accounts a son of Helios,\\
 in others of Poseidon,\\
 and in still others of Phorbas.}{The Library 2.88}{Apollodorus}
 
-In the world of Unix systems, there is no standard way to store configuration. Countless formats can be found, from simple shell variables files to complex, specific, multi-level formats, making the infamous /etc directory a sort of digital Augean stable.
+In the world of Unix systems, there is no standard way to store configuration. Countless formats can be found, from simple shell variable files to complex, specific, multi-level formats, making the infamous /etc directory a sort of digital Augean stable.
 
 \begin{table}
 \begin{center}
@@ -38,7 +38,7 @@ In the world of Unix systems, there is no standard way to store configuration. C
 \end{table}
 
 
-Augeas provides a way to cleanly manage these configuration files through a unified API.
+Augeas provides a way to cleanly and safely manage these configuration files through a unified API.
 
 \section{Configuration Data Editing Approaches}
 
@@ -48,9 +48,9 @@ There are three main approaches to the issue of automating configuration data ed
 
 \subsection{Keyhole Approaches}
 
-While most programming languages provide modules to edit at least the most common formats, a lot of system administrators and developers have had to manipulate these files using string editing tools such as sed, awk or cut, or even to write scripts dedicated to a specific parsing job. In the majority of these cases, the results are not guaranteed, and you are likely to ruin the configuration files if your parsing expressions are wrong or the file layout changes.
+Most programming languages provide modules to edit at least the most common formats, but a lot of system administrators and developers manipulate these files using string editing tools such as \texttt{sed}, \texttt{awk} or \texttt{cut}, or even write scripts dedicated to a specific parsing job. In the majority of these cases, the results are not guaranteed, and you are likely to ruin the configuration files if your parsing expressions are wrong or the file layout changes between different versions of the program.
 
-Configuration management tools such as Cfengine provide tools (like AppendIfNoSuchLine) to achieve keyhole approaches, but the problems are similar to using string editing tools: you have no guarantee that the result will be a valid configuration file, and you have to write the regexps yourself.
+Configuration management tools such as Cfengine\footnote{\url{http://www.cfengine.com}} provide tools to achieve keyhole approaches, but the problems are similar to using string editing tools: you have no guarantee that the result will be a valid configuration file, and you have to write the regexps yourself.
 
 \todo{Provide examples of using sed or awk}
 
@@ -58,23 +58,23 @@ Augeas is particularly useful to ease and secure this kind of approach.
 
 \subsection{Greenfield approaches}
 
-When you are the main system administrator of a machine and you wish to control all the parameters of the machine, you may want to provide the configuration files entirely. In this case, it is common to set a repository of configuration files, or a database, which will contain the whole configuration as will be deployed to the machines.
+When you are the main system administrator of a machine and you wish to control all the parameters of the machine, you may want to provide the configuration files entirely. In this case, it is common to set up a repository of configuration files, or a database, which will contain the whole configuration as will be deployed to the machines. This is often the best solution but is not always possible.
 
 \todo{Maybe provide an example such organization or schema}
 
 \subsection{Templating}
 
-If you wish to control whole configuration files but you need a fine-grained mechanism to generate these files, templating is probably the best approach. There are lots of options to achieve this. Puppet, for example, provides ERB templates that let you easily generate configuration files from exported variables.
+If you wish to control whole configuration files but you need a fine-grained mechanism to generate these files, templating is probably the best approach. There are lots of options to achieve this. Puppet\footnote{\url{http://www.puppetlabs.com}}, for example, provides ERB templates that let you easily generate configuration files from exported variables.
 
 \todo{Given an example of an ERB template for Puppet for example}
 
 \section{A Unified Configuration API}
 
-In many cases, system administrators and users want to change a single value in their configuration without affecting the rest of it. This is often achieved using the keyhole approach, which as we have seen is not very reliable. A better approach would be to have a unified configuration API that lets you modify configurations in a simple and reliable way, ensuring that the modified files are valid configuration files. This is the goal of Augeas.
+In many cases, system administrators, developers and users want to change a single value in their configuration without affecting the rest of it. This is often achieved using the keyhole approach, which as we have seen is not very reliable. A better approach would be to have a unified configuration API that lets you modify configurations in a simple and reliable way, ensuring that the modified files are valid configuration files. This is the goal of Augeas.
 
 \section{What Augeas is not}
 
-A principle on Unix systems ensures the stability and simplicity of the system tools: each tool attempts to do one thing, and to do it well. Augeas is no exception to this rule, so that Augeas is as much defined by the things it does not try to accomplish as by its goals.
+A principle on Unix systems ensures the stability and simplicity of the system tools: each tool attempts to do one thing, and to do it well. Augeas is no exception to this rule, so Augeas is as much defined by the things it does not try to accomplish as by its goals.
 
 Before we dive into what Augeas can do for you, it is important to note the following points.
 
@@ -95,11 +95,11 @@ Augeas will not attempt to parse the contents of the files in \nolinkurl{/etc/fo
 /files/etc/foo.conf/#include = /etc/foo.d/*
 \end{augtoolsh}
 
-\verb!#include! is just a parameter of the \nolinkurl{/etc/foo.conf} configuration file and \nolinkurl{/etc/foo.d/*} is the value of the parameter. The contents of \nolinkurl{/etc/foo.d/*} will probably appear in the tree if the lens is able to parse them, but in no way will Augeas make a logical link between \nolinkurl{/etc/foo.conf} and \nolinkurl{/etc/foo.d/*}.
+\verb!#include! is just a parameter of the \nolinkurl{/etc/foo.conf} configuration file and \nolinkurl{/etc/foo.d/*} is the value of this parameter. The contents of \nolinkurl{/etc/foo.d/*} will probably appear in the tree if the lens is able to parse them, but in no way will Augeas make a logical link between \nolinkurl{/etc/foo.conf} and \nolinkurl{/etc/foo.d/*}.
 
-Other software provide this kind of abstraction layer. This is the case of Config::Model, which can use Augeas as a backend, and is able to understand the logic of a configuration files, such as include statements, or the link between several statements in a configuration file.
+Other software provide this kind of abstraction layer. This is the case of \texttt{Config::Model}, which can use Augeas as a backend, and is able to understand the logic of a configuration files, such as include statements, or the link between several statements in a configuration file.
 
-Another consequence of this non-goal is that the statements in the Augeas tree will appear in the same order as they do in the configuration file. In some cases, it is technically possible to write Augeas lenses that invert parameters or otherwise modify the logic of the configuration statements. Doing this is not recommended, as the Augeas tree should stay as close as possible in its logic to the configuration files it is representing to provide maximum flexibility.
+Another consequence of this non-goal is that the statements in the Augeas tree will appear in the same order as they do in the configuration file. In some cases, it is technically possible to write Augeas lenses that invert parameters or otherwise modify the logic of the configuration statements. Doing this is not recommended, as the Augeas tree should stay as close as possible in its logic to the configuration files it is representing in order to provide maximum flexibility.
 
 \subsection{Not a cross-platform abstraction layer}
 
@@ -115,7 +115,7 @@ When you are dealing with a whole fleet of servers and wish to set a parameter f
 
 Remote access to the Augeas API are meant to be added on top of it, not in it.
 
-Puppet\footnote{\url{http://www.puppetlabs.com}} is an example of configuration management tool which supports Augeas as a native type and provides remote management functionality\footnote{\seeref{chap:puppet}.}. Mcollective with the \texttt{augeasquery} agent also provides a remote access to Augeas.
+Puppet is an example of configuration management tool which supports Augeas as a native type and provides remote management functionality\footnote{\seeref{chap:puppet}.}. Mcollective with the \texttt{augeasquery} agent also provides a remote access to Augeas\footnote{\seeref{sec:mcollective}}.
 
 \subsection{Very little modelling}
 
@@ -152,4 +152,39 @@ This book uses the following conventions:
 
 
 \todo{Refine conventions}
+
+
+\subsection{How to read this book}
+
+The first chapter of this book is about installing Augeas. You can skip this chapter if you already have Augeas installed on your machine.
+
+This book is intended primarily for developers and systems administrators.
+ Whether you are one or the other, you should read chapter~\ref{chap:augtool} to understand what Augeas is about if you are not familiar with it yet.
+
+Chapter~\ref{chap:bx} introduces the reader to the theory of Biridectional Transformations, on which Augeas lenses are built. You can safely skip this chapter if you do not intend to write lenses, but it is strongly recommended to read it otherwise.
+
+Path Expressions, presented in chapter~\ref{chap:pathx}, is an essential part of using Augeas. This chapter will assume that you know the basics about XPath expressions\footnote{\url{http://www.w3schools.com/xpath}}.
+
+Developers will most likely be interested in the C API and bindings presented in chapter~\ref{chap:api}.
+
+The Augeas metadata which will be talked about in chapter~\ref{chap:metadata} are useful for all kinds of tree manipulation, and all users should probably go through it.
+
+Chapter~\ref{chap:puppet} is specifically about using Augeas in Puppet and Mcollective. It will mostly be interesting to systems administrators using these tools.
+
+Should you need to write your own lenses, chapter~\ref{chap:writing_lenses} will help you reach this goal.
+
+Finally, chapter~\ref{chap:troubleshooting} will teach you how to troubleshoot Augeas, which will be useful to all users.
+
+
+\subsection{Prerequisites}
+
+This book will assume that you are familiar with Unix configuration files in general.
+
+Chapter~\ref{chap:pathx} will use XPath expressions. Knowing standard XPath implementations will make this chapter easier to understand.
+
+Augeas lenses are written in a language similar to OCaml. Knowing this language, or another ML language, will greatly help you to understand how to write lenses.
+
+
+
+
 
