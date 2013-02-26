@@ -1,7 +1,8 @@
 augtool> rm /files/etc/fstab/1/opt[3]
 rm : /files/etc/fstab/1/opt[3] 1
 augtool> print /files/etc/fstab/1
-/files/etc/fstab/1 /files/etc/fstab/1/spec = "proc"
+/files/etc/fstab/1
+/files/etc/fstab/1/spec = "proc"
 /files/etc/fstab/1/file = "/proc"
 /files/etc/fstab/1/vfstype = "proc"
 /files/etc/fstab/1/opt[1] = "nodev"

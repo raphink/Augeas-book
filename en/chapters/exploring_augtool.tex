@@ -260,6 +260,51 @@ Line 5 in listing \refandpage{lst:span_ntp} indicates that:
 We verify on line 9 that the data located between positions 67 and 100 in the file correspond to the \verb!driftfile! key and the value returned by the \verb!get! command on line 3.
 
 
+
+\section{Dumping the tree as XML}
+
+Augeas 0.10.0 added the possibility of dumping parts of the tree as XML. In \verb!augtool!, this can be achieved with the \verb!dump-xml! command, as shown in listing \refandpage{lst:dump_xml}.
+
+\index{Commands!dump-xml}
+
+\begin{listing}
+  \consolecode|$ augtool dump-xml /files/etc/fstab/1|
+  \begin{myminted}{xml}
+<augeas match="/files/etc/fstab/1">
+  <node label="1" path="/files/etc/fstab/1">
+    <node label="spec">
+      <value>proc</value>
+    </node>
+    <node label="file">
+      <value>/proc</value>
+    </node>
+    <node label="vfstype">
+      <value>proc</value>
+    </node>
+    <node label="opt">
+      <value>nodev</value>
+    </node>
+    <node label="opt">
+      <value>noexec</value>
+    </node>
+    <node label="dump">
+      <value>0</value>
+    </node>
+    <node label="passno">
+      <value>0</value>
+    </node>
+  </node>
+</augeas>
+  \end{myminted}
+  \caption{Dumping the first line of fstab as XML}
+  \label{lst:dump_xml}
+\end{listing}
+
+\begin{quote}
+  \info{As of Augeas 1.0.0 there is no strict DTD published for this XML format. It is mainly intended as a way to retrieve parts of the tree for later parsing.}
+\end{quote}
+
+
 \section{Scripting with augtool}
 
 \index{augtool!scripting}
