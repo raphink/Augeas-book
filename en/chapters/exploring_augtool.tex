@@ -189,16 +189,16 @@ The \verb!--root! option will be useful for us here, in order to modify the file
   \myinputminted[linenos,firstnumber=2]{augtool-shell}{rm_fstab_opt.augtoolshell}
   \consolecode[linenos,firstnumber=15]|$ diff -u myroot/etc/fstab myroot/etc/fstab.augsave|
   \myinputminted[linenos,firstnumber=16]{diff}{fstab_opt.diff}
-  \caption{Removing an option in fstab}
+  \caption{Removing and settings options in fstab}
   \label{lst:rm_fstab_opt}
 \end{listing}
 
 
-In listing \refandpage{lst:rm_fstab_opt} we change the filesystem options specified on the first line of \texttt{/etc/fstab} by removing the third \verb!opt! node. The \verb!rm! command on line 2 removes only the \verb!opt! node we specified. Line 3 tells us that the \verb!rm! command removed only one node, the \texttt{/files/etc/fstab/1/opt[3]} node. Lines 4 through 11 show us the \texttt{/files/etc/fstab/1} tree without the removed node.
+In listing \refandpage{lst:rm_fstab_opt} we change the filesystem options specified on the first line of \texttt{/etc/fstab} by removing the third \verb!opt! node and setting the second \verb!opt! node to \verb!nofoo!. The \verb!rm! command on line 2 removes only the \verb!opt! node we specified. Line 3 tells us that the \verb!rm! command removed only one node, the \texttt{/files/etc/fstab/1/opt[3]} node. Line 4 sets the value of the second \verb!opt! node to \verb!nofoo!. Lines 5 through 13 show us the \texttt{/files/etc/fstab/1} tree without the removed node.
 
-On line 12, we call the \verb!save! command. This command tells Augeas to save the tree back to the configuration files. Augeas inspects the files and tries to apply the new tree to them. In our case, the \verb!save! command was successful as line 13 tells us, and one file was modified, which is what we expected. We can then quit the \verb!augtool! session by typing \verb!quit! on line 14.
+On line 14, we call the \verb!save! command. This command tells Augeas to save the tree back to the configuration files. Augeas inspects the files and tries to apply the new tree to them. In our case, the \verb!save! command was successful as line 15 tells us, and one file was modified, which is what we expected. We can then quit the \verb!augtool! session by typing \verb!quit! on line 16.
 
-We use the \verb!diff -u! command on line 15 to inspect the changes made by Augeas to the file. As expected, only the first line that is not empty or a comment was modified. Lines 22 and 23 in the listing show us the differences between the old and new lines. We can see that only the third option has been removed, and that the spaces have been strictly preserved. The rest of the file was left untouched.
+We use the \verb!diff -u! command on line 17 to inspect the changes made by Augeas to the file. As expected, only the first line that is not empty or a comment was modified. Lines 22 and 23 in the listing show us the differences between the old and new lines. We can see that only the third option has been removed, and that the spaces have been strictly preserved. The rest of the file was left untouched.
 
 \section{Preserving existing files}
 

@@ -1,12 +1,13 @@
 augtool> rm /files/etc/fstab/1/opt[3]
 rm : /files/etc/fstab/1/opt[3] 1
+augtool> set /files/etc/fstab/1/opt[2] nofoo
 augtool> print /files/etc/fstab/1
 /files/etc/fstab/1
 /files/etc/fstab/1/spec = "proc"
 /files/etc/fstab/1/file = "/proc"
 /files/etc/fstab/1/vfstype = "proc"
 /files/etc/fstab/1/opt[1] = "nodev"
-/files/etc/fstab/1/opt[2] = "noexec"
+/files/etc/fstab/1/opt[2] = "nofoo"
 /files/etc/fstab/1/dump = "0"
 /files/etc/fstab/1/passno = "0"
 augtool> save

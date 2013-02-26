@@ -1,9 +1,9 @@
---- myroot/etc/fstab    2011-03-14 23:46:07.000000000 +0100
-+++ myroot/etc/fstab.augsave    2010-09-30 08:45:53.000000000 +0200
+--- myroot/etc/fstab.augsave    2011-03-14 23:46:07.000000000 +0100
++++ myroot/etc/fstab    2010-09-30 08:45:53.000000000 +0200
 @@ -5,7 +5,7 @@
  # devices that works even if disks are added and removed. See fstab(5).
 
  # <file system> <mount point>   <type>  <options>       <dump>  <pass>
--proc            /proc           proc    nodev,noexec 0       0
-+proc            /proc           proc    nodev,noexec,nosuid 0       0
+-proc            /proc           proc    nodev,noexec,nosuid 0       0
++proc            /proc           proc    nodev,nofoo 0       0
  /dev/sdb1 /               ext4    errors=remount-ro 0       1
